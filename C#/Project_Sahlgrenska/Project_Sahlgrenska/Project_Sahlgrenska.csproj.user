@@ -22,6 +22,9 @@
     <Compile Update="NewPatient.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="OrderItems.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SearchPatient.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="NewPatient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="OrderItems.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SearchPatient.xaml">
