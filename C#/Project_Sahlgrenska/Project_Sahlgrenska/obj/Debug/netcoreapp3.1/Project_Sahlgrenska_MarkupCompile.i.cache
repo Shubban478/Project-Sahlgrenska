@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\tutte2k\source\repos\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\
 Project_Sahlgrenska
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\tutte2k\source\repos\Project_Sahlgrenska\Project_Sahlgrenska\App.xaml
-32052536216
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\App.xaml
+7409425875
 
-72032172986
+111030394560
 192-1533232326
-Hem.xaml;Login.xaml;MainWindow.xaml;
+BookingSchedule.xaml;BookRoom.xaml;Hem.xaml;Login.xaml;MainWindow.xaml;NewPatient.xaml;SearchPatient.xaml;
 
-False
+True
 

@@ -7,14 +7,32 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="BookingSchedule.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BookRoom.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Hem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="NewPatient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SearchPatient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="BookingSchedule.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="BookRoom.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -22,6 +40,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Hem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewPatient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SearchPatient.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
