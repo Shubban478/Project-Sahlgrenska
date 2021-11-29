@@ -54,3 +54,5 @@ C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Proje
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Project_Sahlgrenska.dll
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Project_Sahlgrenska.pdb
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Project_Sahlgrenska.genruntimeconfig.cache
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\OrderItems.g.cs
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\OrderItems.baml

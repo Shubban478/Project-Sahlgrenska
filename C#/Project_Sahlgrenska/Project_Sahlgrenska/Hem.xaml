@@ -27,7 +27,7 @@
         <Button Content="Visa bokningar" x:Name="bookingSchedule" Grid.Column="0" Grid.Row="3"/>
         <Button Content="Beställningar" x:Name="orderItems" Grid.Column="0" Grid.Row="4"/>
         <Button Content="Sjukdomar" x:Name="diseaseList" Grid.Column="0" Grid.Row="5"/>
-        <Button Content="Logga ut" x:Name="logOutButton" Grid.Column="0" Grid.Row="6"/>
+        <Button Content="Logga ut" x:Name="logOutButton" Grid.Column="0" Grid.Row="6" Click="logOutButton_Click"/>
         <StackPanel Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4">
             <TextBlock x:Name="pageInfo" Text="Välkommen"  FontSize="28"/>            <!-- NAMN PÅ PERSON -->
             
