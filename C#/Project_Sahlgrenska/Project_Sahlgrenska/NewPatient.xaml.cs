@@ -34,7 +34,7 @@ namespace Project_Sahlgrenska
             PatientName = patientName.Text;
             PatientAdress = patientAdress.Text;
             PatientGender = patientGender.Text;
-            PatientDate = "2021-11-30";
+            PatientDate = patientDate.Text;
             Hem.conn.Open();
             string sql = "INSERT INTO patients(Patient_Name,Patient_Address, Patient_Gender, Patient_Admitted) VALUES('" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate + "')";
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
