@@ -99,6 +99,15 @@ main {
     border-radius: 12px;
 }
 
+main h1, main p, main button {
+    margin: 12px 24px;
+    padding: 20px;
+}
+
+#temp {
+    padding-top: 400px;
+}
+
 footer {
     background-color: rgb(238, 163, 173);
 }
