@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,6 +18,14 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class Hem : Window
     {
+        public static string connStr =
+            "server=bjjyx4krtcspjgah0tay-mysql.services.clever-cloud.com;" +
+            "user=ulhpxhgnf5tkywq2;" +
+            "database=bjjyx4krtcspjgah0tay;" +
+            "port=3306;" +
+            "password=CE2AriOp5v9YqliNasMM";
+        public static MySqlConnection conn = new MySqlConnection(connStr);
+
         public Hem()
         {
             InitializeComponent();

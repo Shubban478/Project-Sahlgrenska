@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +19,27 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class NewPatient : Window
     {
+        string PatientName = "";
+        string PatientAdress = "";
+        string PatientGender = "";
+        string PatientDate = "";
+        
         public NewPatient()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PatientName = patientName.Text;
+            PatientAdress = patientAdress.Text;
+            PatientGender = patientGender.Text;
+            PatientDate = "2021-11-30";
+            Hem.conn.Open();
+            string sql = "INSERT INTO patients(Patient_Name,Patient_Address, Patient_Gender, Patient_Admitted) VALUES('" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate + "')";
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+            _ = cmd.ExecuteNonQuery();
+            Hem.conn.Close();
         }
     }
 }

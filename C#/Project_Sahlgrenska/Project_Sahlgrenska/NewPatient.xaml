@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="Ny patient" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="Namn"/>
+            <TextBox x:Name="patientName"/>
+            <Label Content="Adress"/>
+            <TextBox x:Name="patientAdress"/>
+            <Label Content="Kön"/>
+            <TextBox x:Name="patientGender"/>
+            <Label Content="Datum"/>
+            <DatePicker x:Name="patientDate"/>
+            <Label Content="Rum"/>
+            <ComboBox>
+                <ComboBoxItem IsSelected="True">Inget Rum</ComboBoxItem>
+                <ComboBoxItem>**hämta lediga rum från databas**</ComboBoxItem>
+            </ComboBox>
+            <Button Content="Ok" Click="Button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
