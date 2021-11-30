@@ -1,0 +1,104 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.header {
+    text-align: left;
+    background-color: rgb(238, 163, 173);
+}
+
+.flexbox {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-slide {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+.flex-slide img {
+    width: 300px;
+    height: 200px;
+}
+
+.active {
+    font-weight: bolder;
+}
+
+.bottom-strip {
+    background-color: rgb(184, 29, 50);
+    height: 50px;
+}
+
+#about-us {
+    color: rgb(63, 4, 12);
+    padding: 20px 20px;
+    width: 50%;
+}
+
+#about-us span {
+    background-color: rgb(184, 29, 50);
+    color: white;
+    border-radius: 100px 0px 100px 0px;
+    padding: 10px 25px;
+    border: 10px;
+}
+
+#about-us p {
+    font-size: 24px;
+}
+
+#navbar {
+    background-color: rgb(243, 236, 245);
+}
+
+#navbar a {
+    text-decoration: none;
+    color: rgb(199, 56, 75);
+    font-size: 32px;
+    padding: 10px;
+    min-width: 200px;
+    text-align: center;
+    border-right: 1px solid rgb(207, 199, 209);
+    flex: 1;
+}
+
+#navbar a:hover {
+    color: rgb(243, 236, 245);
+    background-color: rgb(199, 56, 75);
+}
+
+#navbar a:last-child {
+    border-right: none;
+}
+
+#title {
+    background-color: rgb(184, 29, 50);
+    color: white;
+    display: inline-block;
+    border-radius: 100px 0px 100px 0px;
+    padding: 20px 50px;
+    margin: 0px;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+}
+
+main {
+    background-color: rgb(243, 236, 245);
+    width: 86%;
+    margin: 12px auto;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+footer {
+    background-color: rgb(238, 163, 173);
+}
