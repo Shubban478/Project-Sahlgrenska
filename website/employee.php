@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Projekt-Sahlgrenska - inloggad</title>
 </head>
 
@@ -13,14 +14,26 @@
     <div class="header">
         <h1 id="title">Projekt-Sahlgrenska</h1>
         <nav class="flexbox" id="navbar">
-            <a href="index.html">Hem</a>
+            <a href="index.php">Hem</a>
             <a href="">Bokningar</a>
-            <a href="index.html#about-us">Om oss</a>
+            <a href="index.php#about-us">Om oss</a>
             <a class="active" href="">Inloggad</a>
         </nav>
     </div>
     <main>
         <h1>Välkommen anställd#2</h1>
+        <div class="button-container">
+            <button onclick="clickButton()">Visa Patientlista</button>
+            <p id="sql-writer"></p>
+            <script>
+                function clickButton(){
+                    $.ajax({url:"sql-getter.php", success:function(result){
+                    $("#sql-writer").html(result);}
+                })
+                } 
+            </script>
+        </div>
+        <div id="temp"></div>
     </main>
     <footer>
         <div class="bottom-strip">
@@ -28,5 +41,6 @@
         </div>
     </footer>
 </body>
+<script src="sql-getter.js"></script>
 
 </html>
