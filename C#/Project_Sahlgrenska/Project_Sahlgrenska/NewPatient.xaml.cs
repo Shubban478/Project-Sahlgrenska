@@ -23,7 +23,7 @@ namespace Project_Sahlgrenska
         string PatientAdress = "";
         string PatientGender = "";
         string PatientDate = "";
-        List<object> roomsAvailable = new List<object>();
+        
         
         public NewPatient()
         {
@@ -42,35 +42,7 @@ namespace Project_Sahlgrenska
             _ = cmd.ExecuteNonQuery();
             Hem.conn.Close();
         }
-        private void PopulateComboBox()
-        {
-            
-            Hem.conn.Open();
-            string sql = "select id from rooms where vaccant = 'yes'; ";
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            int counter = 0;
-            while (rdr.Read())
-            {
-                
-                try
-                {
-                    rdr.Read();
-                    roomsAvailable.Add(rdr[counter]);
-                    
-                }
-                catch
-                {
-                    break;
-                }
-                counter++;
-            }
-            rdr.Close();
-            Hem.conn.Close();
 
-            patientRooms.ItemsSource = roomsAvailable;
-
-        }
 
         private void patientId_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -82,9 +54,6 @@ namespace Project_Sahlgrenska
             patientGender.Text = string.Empty;
         }
 
-        private void patientRooms_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PopulateComboBox();
-        }
+
     }
 }

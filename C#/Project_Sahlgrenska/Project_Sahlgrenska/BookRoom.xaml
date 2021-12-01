@@ -7,6 +7,28 @@
         mc:Ignorable="d"
         Title="BookRoom" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="Patient"/>
+            <TextBox x:Name="patientId" Text="xxxxxxxx-xxxx" GotFocus="patientId_GotFocus" />
+            <Label Content="Doktor"/>
+            <TextBox x:Name="bookingDoctor"/>
+            <Label Content="Utrustning"/>
+            <TextBox x:Name="bookingEquipment"/>
+            <Label Content="Medicin"/>
+            <TextBox x:Name="bookingMeds"/>
+            <Label Content="Datum"/>
+            <DatePicker x:Name="bookingDate"/>
+            <Label Content="Tid"/>
+            <TextBox x:Name="bookingTime" Text="13:37" GotFocus="bookingTime_GotFocus"/>
+            <Label Content="Rum"/>
+            <ComboBox x:Name="availableRooms" Text="Välj Rum" GotFocus="availableRooms_GotFocus">
+
+            </ComboBox>
+            <Button Content="Ok" Click="Button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -24,10 +24,6 @@
             <TextBox x:Name="patientReason"/>
             <Label Content="Datum"/>
             <DatePicker x:Name="patientDate"/>
-            <Label Content="Rum"/>
-            <ComboBox x:Name="patientRooms" GotFocus="patientRooms_GotFocus">
-
-            </ComboBox>
             <Button Content="Ok" Click="Button_Click"/>
         </StackPanel>
     </Grid>
