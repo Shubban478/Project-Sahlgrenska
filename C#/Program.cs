@@ -7,8 +7,8 @@ namespace MySQL_Csharp
     {
         static void Main(string[] args)
         {
-            string connStr = "server=localhost;user=root;database=facebookMessengerBot" +
-                ";port=3306;password=Mysql4ever?";
+            string connStr = "server=SERVER;user=root;database=DATABASE" +
+                ";port=3306;password=PASS";
 
             MySqlConnection conn = new MySqlConnection(connStr);
             try
@@ -23,7 +23,7 @@ namespace MySQL_Csharp
                 cmd.ExecuteNonQuery();
 
                 ////Läser in data från min databas
-                //string sql =  "use facebookMessengerBot; select * from Locations;";
+                //string sql =  "use DATABASE; select * from TABLE;";
                 //MySqlCommand cmd = new MySqlCommand(sql, conn);
                 //MySqlDataReader rdr = cmd.ExecuteReader();
 
