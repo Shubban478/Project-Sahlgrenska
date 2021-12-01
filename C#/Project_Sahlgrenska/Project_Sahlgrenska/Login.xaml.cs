@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +19,9 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class Login : Window
     {
+        string username = "";
+        string password = "";
+        string auth = "";
         public Login()
         {
             InitializeComponent();
@@ -24,8 +29,25 @@ namespace Project_Sahlgrenska
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (true) // kolla om namn och lösen stämmer med databas
+            username = loginName.Text;
+            password = loginPassword.Password;
+
+            Hem.conn.Open();
+            string sql = "select password from doctors where name = '" + username + "';";
+            MySqlCommand cmd = new MySqlCommand(sql, Hem.conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            rdr.Read();
+            try
+            {
+                auth = rdr[0].ToString();
+            }
+            catch (Exception)
+            {
+                errormessage.Text = "Användare ej hittad";
+            }
+            rdr.Close();
+            Hem.conn.Close();
+            if (password == auth)
             {
                 Hem hem = new Hem();
                 this.Close();
@@ -35,7 +57,7 @@ namespace Project_Sahlgrenska
             {
                 errormessage.Text = "Användare ej hittad";
             }
-            
+
         }
     }
 }
