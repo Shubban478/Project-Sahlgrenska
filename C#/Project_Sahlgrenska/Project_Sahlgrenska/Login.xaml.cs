@@ -69,7 +69,7 @@ namespace Project_Sahlgrenska
                 this.Close();
                 hem.Show();
             }
-
+            
         }
     }
 }

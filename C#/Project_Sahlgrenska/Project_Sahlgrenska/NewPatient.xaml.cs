@@ -19,9 +19,11 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class NewPatient : Window
     {
+        string PatientId = "";
         string PatientName = "";
         string PatientAdress = "";
         string PatientGender = "";
+        string PatientReason = "";
         string PatientDate = "";
         
         
@@ -32,12 +34,14 @@ namespace Project_Sahlgrenska
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            PatientId = patientId.Text;
             PatientName = patientName.Text;
             PatientAdress = patientAdress.Text;
             PatientGender = patientGender.Text;
             PatientDate = patientDate.Text;
+            PatientReason = patientReason.Text;
             Hem.conn.Open();
-            string sql = "INSERT INTO patients(Patient_Name,Patient_Address, Patient_Gender, Patient_Admitted) VALUES('" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate + "')";
+            string sql = "INSERT INTO patients(ID,Name,Address,Gender,Admitted,Reason) VALUES('" + PatientId + "','" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate + "','"+ PatientReason + "')";
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
             _ = cmd.ExecuteNonQuery();
             Hem.conn.Close();
