@@ -25,10 +25,12 @@ namespace Project_Sahlgrenska
             "port=3306;" +
             "password=CE2AriOp5v9YqliNasMM";
         public static MySqlConnection conn = new MySqlConnection(connStr);
+        public static string user="";
 
         public Hem()
         {
             InitializeComponent();
+            pageInfo.Text += " " + user;
         }
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)

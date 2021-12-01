@@ -52,6 +52,7 @@ namespace Project_Sahlgrenska
             Hem.conn.Close();
             if (password == auth)
             {
+                Hem.user = username;
                 Hem hem = new Hem();
                 this.Close();
                 hem.Show();
@@ -63,6 +64,7 @@ namespace Project_Sahlgrenska
             */
             if (true)
             {
+                Hem.user = "Testmode";
                 Hem hem = new Hem();
                 this.Close();
                 hem.Show();
