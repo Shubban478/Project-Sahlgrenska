@@ -29,6 +29,7 @@ namespace Project_Sahlgrenska
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            /*
             username = loginName.Text;
             password = loginPassword.Password;
 
@@ -40,9 +41,11 @@ namespace Project_Sahlgrenska
             try
             {
                 auth = rdr[0].ToString();
+             
             }
             catch (Exception)
             {
+                
                 errormessage.Text = "Användare ej hittad";
             }
             rdr.Close();
@@ -56,6 +59,13 @@ namespace Project_Sahlgrenska
             else
             {
                 errormessage.Text = "Användare ej hittad";
+            }
+            */
+            if (true)
+            {
+                Hem hem = new Hem();
+                this.Close();
+                hem.Show();
             }
 
         }
