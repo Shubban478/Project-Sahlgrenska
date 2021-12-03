@@ -22,7 +22,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 --
 
 SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'a05a675a-1414-11e9-9c82-cecd01b08c7e:1-491550428,
-a38a16d0-767a-11eb-abe2-cecd029e558e:1-99954609';
+a38a16d0-767a-11eb-abe2-cecd029e558e:1-100181646';
 
 --
 -- Temporary view structure for view `patients_critical_condition`
@@ -38,10 +38,40 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Address`,
  1 AS `Gender`,
  1 AS `Admitted`,
- 1 AS `Senthome`,
+ 1 AS `Sent Home`,
  1 AS `Reason`,
  1 AS `History`,
  1 AS `Appointment`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `diagnosis_overview`
+--
+
+DROP TABLE IF EXISTS `diagnosis_overview`;
+/*!50001 DROP VIEW IF EXISTS `diagnosis_overview`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `diagnosis_overview` AS SELECT 
+ 1 AS `Patient ID`,
+ 1 AS `Diagnosis Name`,
+ 1 AS `Comments`,
+ 1 AS `Symtoms`,
+ 1 AS `Treatment`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `patients_rooms`
+--
+
+DROP TABLE IF EXISTS `patients_rooms`;
+/*!50001 DROP VIEW IF EXISTS `patients_rooms`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `patients_rooms` AS SELECT 
+ 1 AS `Room`,
+ 1 AS `Name`,
+ 1 AS `ID`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -57,20 +87,6 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Patients Name`,
  1 AS `Patients ID`,
  1 AS `Patients Appointment`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary view structure for view `patients_rooms`
---
-
-DROP TABLE IF EXISTS `patients_rooms`;
-/*!50001 DROP VIEW IF EXISTS `patients_rooms`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `patients_rooms` AS SELECT 
- 1 AS `Room`,
- 1 AS `Name`,
- 1 AS `ID`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -99,16 +115,16 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`ulhpxhgnf5tkywq2`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `patients_critical_condition` AS select `patients`.`ID` AS `ID`,`patients`.`Name` AS `Name`,`patients`.`Address` AS `Address`,`patients`.`Gender` AS `Gender`,`patients`.`Admitted` AS `Admitted`,`patients`.`Senthome` AS `Senthome`,`patients`.`Reason` AS `Reason`,`patients`.`History` AS `History`,`patients`.`Appointment` AS `Appointment` from `patients` where (`patients`.`Reason` like '%critical%') */;
+/*!50001 VIEW `patients_critical_condition` AS select `patients`.`ID` AS `ID`,`patients`.`Name` AS `Name`,`patients`.`Address` AS `Address`,`patients`.`Gender` AS `Gender`,`patients`.`Admitted` AS `Admitted`,`patients`.`Senthome` AS `Sent Home`,`patients`.`Reason` AS `Reason`,`patients`.`History` AS `History`,`patients`.`Appointment` AS `Appointment` from `patients` where (`patients`.`Reason` like '%critical%') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
--- Final view structure for view `patients_doctors`
+-- Final view structure for view `diagnosis_overview`
 --
 
-/*!50001 DROP VIEW IF EXISTS `patients_doctors`*/;
+/*!50001 DROP VIEW IF EXISTS `diagnosis_overview`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -117,7 +133,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`ulhpxhgnf5tkywq2`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `patients_doctors` AS select `doctors`.`Name` AS `Doctors Name`,`patients`.`Name` AS `Patients Name`,`patients`.`ID` AS `Patients ID`,`patients`.`Appointment` AS `Patients Appointment` from (`patients` left join (`doctors_has_patients` left join `doctors` on((`doctors_has_patients`.`doctors_ID` = `doctors`.`ID`))) on((`doctors_has_patients`.`patients_ID` = `patients`.`ID`))) order by `patients`.`Appointment` */;
+/*!50001 VIEW `diagnosis_overview` AS select `patients_has_diagnosis`.`patients_ID` AS `Patient ID`,`patients_has_diagnosis`.`diagnosis_Name` AS `Diagnosis Name`,`diagnosis`.`Comments` AS `Comments`,`diagnosis`.`Symtoms` AS `Symtoms`,`diagnosis`.`Treatment` AS `Treatment` from (`patients_has_diagnosis` join `diagnosis` on((`patients_has_diagnosis`.`diagnosis_Name` = `diagnosis`.`Name`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -136,6 +152,24 @@ SET character_set_client = @saved_cs_client;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`ulhpxhgnf5tkywq2`@`%` SQL SECURITY DEFINER */
 /*!50001 VIEW `patients_rooms` AS select `patients_has_rooms`.`rooms_ID` AS `Room`,`patients`.`Name` AS `Name`,`patients_has_rooms`.`patients_ID` AS `ID` from (`patients_has_rooms` join `patients` on((`patients_has_rooms`.`patients_ID` = `patients`.`ID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `patients_doctors`
+--
+
+/*!50001 DROP VIEW IF EXISTS `patients_doctors`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`ulhpxhgnf5tkywq2`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `patients_doctors` AS select `doctors`.`Name` AS `Doctors Name`,`patients`.`Name` AS `Patients Name`,`patients`.`ID` AS `Patients ID`,`patients`.`Appointment` AS `Patients Appointment` from (`patients` left join (`doctors_has_patients` left join `doctors` on((`doctors_has_patients`.`doctors_ID` = `doctors`.`ID`))) on((`doctors_has_patients`.`patients_ID` = `patients`.`ID`))) order by `patients`.`Appointment` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -168,4 +202,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-02 20:09:24
+-- Dump completed on 2021-12-03 16:37:29

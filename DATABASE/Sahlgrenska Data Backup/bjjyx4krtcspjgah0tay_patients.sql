@@ -22,7 +22,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 --
 
 SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'a05a675a-1414-11e9-9c82-cecd01b08c7e:1-491550428,
-a38a16d0-767a-11eb-abe2-cecd029e558e:1-99954588';
+a38a16d0-767a-11eb-abe2-cecd029e558e:1-100181637';
 
 --
 -- Table structure for table `patients`
@@ -33,12 +33,12 @@ DROP TABLE IF EXISTS `patients`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `patients` (
   `ID` varchar(13) NOT NULL,
-  `Name` varchar(45) DEFAULT NULL,
-  `Address` varchar(255) DEFAULT NULL,
-  `Gender` varchar(1) DEFAULT NULL,
-  `Admitted` datetime DEFAULT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Address` varchar(255) NOT NULL,
+  `Gender` varchar(1) NOT NULL,
+  `Admitted` datetime NOT NULL,
   `Senthome` datetime DEFAULT NULL,
-  `Reason` varchar(2555) DEFAULT NULL,
+  `Reason` varchar(2555) NOT NULL,
   `History` varchar(2555) DEFAULT NULL,
   `Appointment` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
@@ -51,7 +51,7 @@ CREATE TABLE `patients` (
 
 LOCK TABLES `patients` WRITE;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
-INSERT INTO `patients` VALUES ('19471013-6666','Thomas Stenström','Slåmighårtiansiktet 145, TENSTA Stockholm','M','2021-12-17 00:00:00',NULL,'Fick en gitarr i ögonbrynet CRITICAL',NULL,'2022-01-08 11:20:00'),('19480216-0889','Ofelia Månsson','Lemesjö 13, 570 91, KRISTDALA','F','2021-12-01 00:00:00',NULL,'Sprang in på ICA Kvantum utan kläder. Inkommer med polis','Närstående upplever förändrat habitaltillstånd och kör in till oss','2022-01-19 10:30:00'),('19530310-3518','Mats Sjögren','Hökgatan 99, 823 26, KILAFORS','M','2021-12-01 00:00:00',NULL,'Hög feber under några dagar och säger själv att det känns som rakblad i halsen',NULL,'2022-02-27 14:50:00'),('19550810-2489','Sanna Persson','Gulleråsen Västabäcksgatu 58, 372 10, JOHANNESHUS','F','2021-12-01 00:00:00',NULL,'Kan inte äta på grund av halsont och hög feber',NULL,'2022-01-03 17:00:00'),('19691205-1668','Isolde Söderberg','Östanlid 52, 432 29, VARBERG','F','2021-12-01 00:00:00',NULL,'Närstående upplever försämring i hennes schizofreni','Påstår sig sett Gud i spegeln, uppvisar schizofrena tecken','2022-01-04 12:00:00'),('19791012-3095','Alexander Sandström','Ovansjövägen 93, 570 01, RÖRVIK','M','2021-12-01 00:00:00',NULL,'Smärtor i lymfkörtlar',NULL,'2022-01-11 08:10:00'),('19830504-3047','Hanan Nordin','Hålebäcksvägen 36, 791 95, FALUN','F','2021-12-01 00:00:00',NULL,'Joggade med feber och upplever efter detta smärtor i bröstet critical','Bruten arm, inkommer med ambulans','2022-01-14 09:30:00'),('19910807-2795','Zakaria Olofsson','Läktargatan 19, 260 36, ÖDÅKRA-VÅLA','M','2021-12-01 00:00:00',NULL,'Illamående, blodblandad urin',NULL,'2022-01-09 15:50:00'),('19931013-8350','Johan Johansson','Gatan 2','M','2021-12-01 00:00:00','2021-12-02 18:25:28','Kass i Magen',NULL,'2022-01-01 14:30:00'),('19980318-2964','Emmy Gunnarsson','Östra Förstadsgatan 22, 740 34, SKYTTORP','F','2021-12-01 00:00:00',NULL,'Ser dvärgar utanför fönstret samt säger att hon är Snövit','Nedstämd, allt känns tråkigt','2022-02-01 17:10:00'),('19981007-8296','Nathan Hellström','Fälloheden 32, 930 92, MELLANSTRÖM','M','2021-12-01 00:00:00',NULL,'Extrema smärtor i hals med feber ',NULL,'2022-02-03 16:20:00'),('20000704-3284','Rosa Göransson','Ovansjövägen 35, 812 00, STORVIK','F','2021-12-01 00:00:00',NULL,'Upplever massiva svettningar',NULL,'2021-12-07 08:20:00');
+INSERT INTO `patients` VALUES ('','','','','2021-12-18 00:00:00',NULL,'',NULL,NULL),('10101010-1010','Paladin of Bolts','Venore','F','2021-12-17 00:00:00',NULL,'utevo res \"rat',NULL,NULL),('123','123','123','m','2021-12-17 00:00:00',NULL,'123',NULL,NULL),('12345678-1234','asd asd','asd asd','m','2021-12-11 00:00:00',NULL,'asd',NULL,NULL),('19471013-6666','Thomas Stenström','Slåmighårtiansiktet 145, TENSTA Stockholm','M','2021-12-17 00:00:00',NULL,'Fick en gitarr i ögonbrynet CRITICAL',NULL,'2022-01-08 11:20:00'),('19480216-0889','Ofelia Månsson','Lemesjö 13, 570 91, KRISTDALA','F','2021-12-01 00:00:00',NULL,'Sprang in på ICA Kvantum utan kläder. Inkommer med polis','Närstående upplever förändrat habitaltillstånd och kör in till oss','2022-01-19 10:30:00'),('19530310-3518','Mats Sjögren','Hökgatan 99, 823 26, KILAFORS','M','2021-12-01 00:00:00',NULL,'Hög feber under några dagar och säger själv att det känns som rakblad i halsen',NULL,'2022-02-27 14:50:00'),('19550810-2489','Sanna Persson','Gulleråsen Västabäcksgatu 58, 372 10, JOHANNESHUS','F','2021-12-01 00:00:00',NULL,'Kan inte äta på grund av halsont och hög feber',NULL,'2022-01-03 17:00:00'),('19691205-1668','Isolde Söderberg','Östanlid 52, 432 29, VARBERG','F','2021-12-01 00:00:00',NULL,'Närstående upplever försämring i hennes schizofreni','Påstår sig sett Gud i spegeln, uppvisar schizofrena tecken','2022-01-04 12:00:00'),('19791012-3095','Alexander Sandström','Ovansjövägen 93, 570 01, RÖRVIK','M','2021-12-01 00:00:00',NULL,'Smärtor i lymfkörtlar',NULL,'2022-01-11 08:10:00'),('19830504-3047','Hanan Nordin','Hålebäcksvägen 36, 791 95, FALUN','F','2021-12-01 00:00:00',NULL,'Joggade med feber och upplever efter detta smärtor i bröstet critical','Bruten arm, inkommer med ambulans','2022-01-14 09:30:00'),('19900101-0101','dwaadw','dwadwa','M','2021-12-26 00:00:00',NULL,'Ingen aning',NULL,NULL),('19910807-2795','Zakaria Olofsson','Läktargatan 19, 260 36, ÖDÅKRA-VÅLA','M','2021-12-01 00:00:00',NULL,'Illamående, blodblandad urin',NULL,'2022-01-09 15:50:00'),('19921013-8350','tom johansson','container nr 3','M','2021-12-17 00:00:00',NULL,'kass programmerare',NULL,NULL),('19930306-1288','Linn Wallin','Platåvägen 25, 31164 Vessigebro','F','2021-12-11 00:00:00',NULL,'Utbränd CRITICAL',NULL,NULL),('19931013-8350','Johan Johansson','Gatan 2','M','2021-12-01 00:00:00','2021-12-02 18:25:28','Kass i Magen',NULL,'2022-01-01 14:30:00'),('19980318-2964','Emmy Gunnarsson','Östra Förstadsgatan 22, 740 34, SKYTTORP','F','2021-12-01 00:00:00',NULL,'Ser dvärgar utanför fönstret samt säger att hon är Snövit','Nedstämd, allt känns tråkigt','2022-02-01 17:10:00'),('19981007-8296','Nathan Hellström','Fälloheden 32, 930 92, MELLANSTRÖM','M','2021-12-01 00:00:00',NULL,'Extrema smärtor i hals med feber ',NULL,'2022-02-03 16:20:00'),('20000704-3284','Rosa Göransson','Ovansjövägen 35, 812 00, STORVIK','F','2021-12-01 00:00:00',NULL,'Upplever massiva svettningar',NULL,'2021-12-07 08:20:00'),('32323232-3232','sebbe shubb','bakom bobergsgården i skogen där','M','2021-12-19 00:00:00',NULL,'givet CRITICAL',NULL,NULL),('asd','asd','asd','f','2021-12-18 00:00:00',NULL,'asd',NULL,NULL),('awd','awadw','dawd','F','2021-12-12 00:00:00',NULL,'dawd',NULL,NULL),('AWDDAW','SEWE','SDWA','F','2021-12-04 00:00:00',NULL,'AWD',NULL,NULL),('dwawa','AWDDAWaw','DAWWAAWD','F','2021-12-10 00:00:00',NULL,'DWADWA',NULL,NULL);
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 UNLOCK TABLES;
 SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
@@ -65,4 +65,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-02 20:09:19
+-- Dump completed on 2021-12-03 16:37:18

@@ -22,7 +22,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 --
 
 SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'a05a675a-1414-11e9-9c82-cecd01b08c7e:1-491550428,
-a38a16d0-767a-11eb-abe2-cecd029e558e:1-99954595';
+a38a16d0-767a-11eb-abe2-cecd029e558e:1-100181646';
 
 --
 -- Table structure for table `rooms_has_equipment`
@@ -62,4 +62,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-02 20:09:21
+-- Dump completed on 2021-12-03 16:37:26
