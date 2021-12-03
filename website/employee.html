@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Projekt-Sahlgrenska - inloggad</title>
+    <title>Projekt-Sahlgrenska - Inloggad</title>
 </head>
 
 <body>
     <div class="header">
         <h1 id="title">Projekt-Sahlgrenska</h1>
+        <a id="logout-button" href="/scripts/logout.php">Logga ut</a>
         <nav class="flexbox" id="navbar">
             <a href="/index.html">Hem</a>
             <a href="">Bokningar</a>
@@ -27,7 +28,7 @@
             <p id="sql-writer"></p>
             <script>
                 function clickButton(){
-                    $.ajax({url:"/php/sql-getter.php", success:function(result) {
+                    $.ajax({url:"/scripts/sql-getter.php", success:function(result) {
                     $("#sql-writer").html(result);}
                 })
                 } 

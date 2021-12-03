@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Compare passwords
         if ($password == $row["password"]) {
             echo "Succesfully logged in.";
+            session_start();
+            $_SESSION["username"] = $username;
             header("Location: /employee.html");
         } else {
             echo "Wrong password!";
