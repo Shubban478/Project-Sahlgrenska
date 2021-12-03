@@ -81,7 +81,7 @@ namespace Project_Sahlgrenska
                     throw new Exception();
                 }
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 
                 patientAdded.Text = "\nKontrollera följande:\n" +
@@ -90,7 +90,10 @@ namespace Project_Sahlgrenska
                     "Hela adressen.\n" +
                     "Kön anges i 'M' eller 'F.'\n" +
                     "Datum får ej lämnas blank.\n" +
-                    "Anledning får ej lämnas blank.";
+                    "Anledning får ej lämnas blank.\n" +
+                    "------------\n" +
+                    "Error:\n"+
+                    ex.Message;
                     
             }
             Hem.conn.Close();

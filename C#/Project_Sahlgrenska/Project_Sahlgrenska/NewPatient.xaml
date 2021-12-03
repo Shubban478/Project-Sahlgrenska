@@ -25,7 +25,7 @@
             <Label Content="Datum"/>
             <DatePicker x:Name="patientDate"/>
             <Button Content="Ok" Click="Button_Click"/>
-            <TextBlock x:Name="patientAdded" Foreground="Crimson"/>
+            <TextBlock  x:Name="patientAdded" Foreground="Crimson"/>
         </StackPanel>
     </Grid>
 </Window>

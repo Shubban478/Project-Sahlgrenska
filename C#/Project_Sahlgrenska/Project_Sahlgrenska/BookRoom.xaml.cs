@@ -19,6 +19,7 @@ namespace Project_Sahlgrenska
     {
         List<string> roomsAvailable = new List<string>();
         List<string> patientsAvailable = new List<String>();
+        List<string> doctorsAvailable = new List<String>();
         public BookRoom()
         {
             InitializeComponent();
@@ -48,11 +49,36 @@ namespace Project_Sahlgrenska
             MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
-                patientsAvailable.Add(rdr.GetString(0)+" "+rdr.GetString(1));
+                patientsAvailable.Add(rdr.GetString(0)+", "+rdr.GetString(1));
             }
             rdr.Close();
             Hem.conn.Close();
             bookingPatient.ItemsSource = patientsAvailable;
+
+        }
+        private void PopulateDoctorsAvailable()
+        {
+
+            Hem.conn.Open();
+            string sql = "select name, speciality from doctors;";
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                try
+                {
+
+
+                    doctorsAvailable.Add(rdr.GetString(0) + ", " + rdr.GetString(1));
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            rdr.Close();
+            Hem.conn.Close();
+            bookingDoctor.ItemsSource = doctorsAvailable;
 
         }
         private void availableRooms_GotFocus(object sender, RoutedEventArgs e)
@@ -74,6 +100,11 @@ namespace Project_Sahlgrenska
         private void bookingPatient_GotFocus(object sender, RoutedEventArgs e)
         {
             PopulatePatientsAvailable();
+        }
+
+        private void bookingDoctor_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PopulateDoctorsAvailable();
         }
     }
 }
