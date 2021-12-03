@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="BookRoom" Height="450" Width="800">
+        Title="Boka Rum" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -13,13 +13,21 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <Label Content="Patient"/>
-            <TextBox x:Name="patientId" Text="xxxxxxxx-xxxx" GotFocus="patientId_GotFocus" />
+            <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingPatient" GotFocus="bookingPatient_GotFocus"/>
             <Label Content="Doktor"/>
-            <TextBox x:Name="bookingDoctor"/>
+            <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingDoctor"/>
             <Label Content="Utrustning"/>
-            <TextBox x:Name="bookingEquipment"/>
+            <StackPanel x:Name="bookingEquipment" Orientation="Horizontal">
+                <CheckBox Content="asd(2)"/>
+                <CheckBox Content="asd(3)"/>
+                <CheckBox Content="asd(1)"/>
+            </StackPanel>
             <Label Content="Medicin"/>
-            <TextBox x:Name="bookingMeds"/>
+            <StackPanel x:Name="bookingMeds" Orientation="Horizontal">
+                <CheckBox Content="asd(212)"/>
+                <CheckBox Content="asd(3323)"/>
+                <CheckBox Content="asd(10)"/>
+            </StackPanel>
             <Label Content="Datum"/>
             <DatePicker x:Name="bookingDate"/>
             <Label Content="Tid"/>

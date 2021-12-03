@@ -18,11 +18,12 @@ namespace Project_Sahlgrenska
     public partial class BookRoom : Window
     {
         List<string> roomsAvailable = new List<string>();
+        List<string> patientsAvailable = new List<String>();
         public BookRoom()
         {
             InitializeComponent();
         }
-        private void PopulateComboBox()
+        private void PopulateAvailableRooms()
         {
 
             Hem.conn.Open();
@@ -38,14 +39,27 @@ namespace Project_Sahlgrenska
             availableRooms.ItemsSource = roomsAvailable;
 
         }
+        private void PopulatePatientsAvailable()
+        {
+
+            Hem.conn.Open();
+            string sql = "select id, name from patients;";
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                patientsAvailable.Add(rdr.GetString(0)+" "+rdr.GetString(1));
+            }
+            rdr.Close();
+            Hem.conn.Close();
+            bookingPatient.ItemsSource = patientsAvailable;
+
+        }
         private void availableRooms_GotFocus(object sender, RoutedEventArgs e)
         {
-            PopulateComboBox();
+            PopulateAvailableRooms();
         }
-        private void patientId_GotFocus(object sender, RoutedEventArgs e)
-        {
-            patientId.Text = string.Empty;
-        }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -55,6 +69,11 @@ namespace Project_Sahlgrenska
         private void bookingTime_GotFocus(object sender, RoutedEventArgs e)
         {
             bookingTime.Text = string.Empty;
+        }
+
+        private void bookingPatient_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PopulatePatientsAvailable();
         }
     }
 }

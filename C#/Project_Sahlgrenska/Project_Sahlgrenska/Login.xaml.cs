@@ -50,7 +50,8 @@ namespace Project_Sahlgrenska
             }
             rdr.Close();
             Hem.conn.Close();
-            if (password == auth)
+            
+            if (password == auth && password != string.Empty)
             {
                 Hem.user = username;
                 Hem hem = new Hem();
