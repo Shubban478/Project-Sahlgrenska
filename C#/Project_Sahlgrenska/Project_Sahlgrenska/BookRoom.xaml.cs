@@ -22,8 +22,8 @@ namespace Project_Sahlgrenska
         List<string> doctorsAvailable = new List<String>();
         List<string> equipmentAvailable = new List<String>();
         List<string> medsAvailable = new List<string>();
-        
-        
+
+
         public BookRoom()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace Project_Sahlgrenska
             availableRooms.ItemsSource = roomsAvailable;
 
         }
-        private void PopulatePatientsAvailable()
+        private void PopulateBookingPatient()
         {
 
             Hem.conn.Open();
@@ -55,14 +55,14 @@ namespace Project_Sahlgrenska
             MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
-                patientsAvailable.Add(rdr.GetString(0)+", "+rdr.GetString(1));
+                patientsAvailable.Add(rdr.GetString(0) + ", " + rdr.GetString(1));
             }
             rdr.Close();
             Hem.conn.Close();
             bookingPatient.ItemsSource = patientsAvailable;
 
         }
-        private void PopulateDoctorsAvailable()
+        private void PopulateBookingDoctor()
         {
 
             Hem.conn.Open();
@@ -97,14 +97,9 @@ namespace Project_Sahlgrenska
             {
                 try
                 {
-
-
-                    equipmentAvailable.Add(rdr.GetString(0) + ", (" + rdr.GetString(1)+")");
+                    equipmentAvailable.Add(rdr.GetString(0) + ", (" + rdr.GetString(1) + ")");
                 }
-                catch (Exception)
-                {
-
-                }
+                catch (Exception) { }
             }
             rdr.Close();
             Hem.conn.Close();
@@ -115,7 +110,7 @@ namespace Project_Sahlgrenska
                     Name = "eq" + i,
                     Content = equipmentAvailable[i]
                 }
-                ); 
+                );
             }
 
         }
@@ -134,9 +129,7 @@ namespace Project_Sahlgrenska
                     medsAvailable.Add(rdr.GetString(0) + ", (" + rdr.GetString(2) + ")");
                 }
                 catch (Exception)
-                {
-
-                }
+                { }
             }
             rdr.Close();
             Hem.conn.Close();
@@ -145,9 +138,12 @@ namespace Project_Sahlgrenska
                 bookingMeds.Children.Add(new CheckBox
                 {
                     Name = "med" + i,
-                    Content = medsAvailable[i]
+                    Content = medsAvailable[i],
+                    
+
+
                 }
-                );
+                ); ;
             }
 
         }
@@ -155,10 +151,20 @@ namespace Project_Sahlgrenska
         {
             PopulateAvailableRooms();
         }
-        
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Hem.conn.Open();
+
+            foreach (CheckBox item in bookingMeds.Children)
+            {
+                    string sql = "update medication set Quantity = Quantity - 1 where Name like '" + item.Name.ToString().Substring(0,4) + "';";
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+                    _ = cmd.ExecuteNonQuery();
+            }
+            Hem.conn.Close();
+
 
         }
 
@@ -169,12 +175,22 @@ namespace Project_Sahlgrenska
 
         private void bookingPatient_GotFocus(object sender, RoutedEventArgs e)
         {
-            PopulatePatientsAvailable();
+            PopulateBookingPatient();
         }
 
         private void bookingDoctor_GotFocus(object sender, RoutedEventArgs e)
         {
-            PopulateDoctorsAvailable();
+            PopulateBookingDoctor();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckBox_Initialized(object sender, EventArgs e)
+        {
+
         }
     }
 }

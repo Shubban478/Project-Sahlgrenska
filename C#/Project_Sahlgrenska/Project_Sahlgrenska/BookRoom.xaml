@@ -1,4 +1,5 @@
 ﻿<Window x:Class="Project_Sahlgrenska.BookRoom"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,9 @@
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
         Title="Boka Rum" Height="450" Width="800">
+    
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -18,7 +21,6 @@
             <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingDoctor" GotFocus="bookingDoctor_GotFocus"/>
             <Label Content="Utrustning"/>
             <StackPanel x:Name="bookingEquipment" Orientation="Horizontal">
-                
             </StackPanel>
             <Label Content="Medicin"/>
             <StackPanel x:Name="bookingMeds" Orientation="Horizontal">
