@@ -107,7 +107,7 @@ namespace Project_Sahlgrenska
             {
                 bookingEquipment.Children.Add(new CheckBox
                 {
-                    Name = "eq" + i,
+                    Name = equipmentAvailable[i].Substring(0, 4),
                     Content = equipmentAvailable[i]
                 }
                 );
@@ -137,11 +137,8 @@ namespace Project_Sahlgrenska
             {
                 bookingMeds.Children.Add(new CheckBox
                 {
-                    Name = "med" + i,
+                    Name = medsAvailable[i].Substring(0, 4),
                     Content = medsAvailable[i],
-                    
-
-
                 }
                 ); ;
             }
@@ -155,15 +152,42 @@ namespace Project_Sahlgrenska
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            /*
             Hem.conn.Open();
+            string sql1 = "insert into patients_has_rooms values (" + bookingPatient.Text.Substring(0,13)+ ", " + availableRooms.SelectedItem.ToString()+");";
+            MySql.Data.MySqlClient.MySqlCommand cmd1 = new MySql.Data.MySqlClient.MySqlCommand(sql1, Hem.conn);
+            _ = cmd1.ExecuteNonQuery();
+            Hem.conn.Close();
+            */
+
+
 
             foreach (CheckBox item in bookingMeds.Children)
             {
-                    string sql = "update medication set Quantity = Quantity - 1 where Name like '" + item.Name.ToString().Substring(0,4) + "';";
+                if (item.IsChecked == true)
+                {
+                    Hem.conn.Open();
+                    string sql = "update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';";
                     MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
                     _ = cmd.ExecuteNonQuery();
+                    Hem.conn.Close();
+                    pageInfo.Text = pageInfo.Text + item.Name + ", ";
+                }
             }
-            Hem.conn.Close();
+            foreach (CheckBox item in bookingEquipment.Children)
+            {
+                if (item.IsChecked == true)
+                {
+                    Hem.conn.Open();
+                    string sql = "update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';";
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+                    _ = cmd.ExecuteNonQuery();
+                    Hem.conn.Close();
+                    pageInfo.Text = pageInfo.Text + item.Name + ", ";
+
+                }
+            }
+
 
 
         }
