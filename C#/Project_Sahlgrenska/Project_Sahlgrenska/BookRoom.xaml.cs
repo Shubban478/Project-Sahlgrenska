@@ -20,9 +20,15 @@ namespace Project_Sahlgrenska
         List<string> roomsAvailable = new List<string>();
         List<string> patientsAvailable = new List<String>();
         List<string> doctorsAvailable = new List<String>();
+        List<string> equipmentAvailable = new List<String>();
+        List<string> medsAvailable = new List<string>();
+        
+        
         public BookRoom()
         {
             InitializeComponent();
+            PopulateAvailableEquipment();
+            PopulateAvailableMeds();
         }
         private void PopulateAvailableRooms()
         {
@@ -79,6 +85,70 @@ namespace Project_Sahlgrenska
             rdr.Close();
             Hem.conn.Close();
             bookingDoctor.ItemsSource = doctorsAvailable;
+
+        }
+        private void PopulateAvailableEquipment()
+        {
+            Hem.conn.Open();
+            string sql = "select * from equipment;";
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                try
+                {
+
+
+                    equipmentAvailable.Add(rdr.GetString(0) + ", (" + rdr.GetString(1)+")");
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            rdr.Close();
+            Hem.conn.Close();
+            for (int i = 0; i < equipmentAvailable.Count; i++)
+            {
+                bookingEquipment.Children.Add(new CheckBox
+                {
+                    Name = "eq" + i,
+                    Content = equipmentAvailable[i]
+                }
+                ); 
+            }
+
+        }
+        private void PopulateAvailableMeds()
+        {
+            Hem.conn.Open();
+            string sql = "select * from medication;";
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                try
+                {
+
+
+                    medsAvailable.Add(rdr.GetString(0) + ", (" + rdr.GetString(2) + ")");
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            rdr.Close();
+            Hem.conn.Close();
+            for (int i = 0; i < medsAvailable.Count; i++)
+            {
+                bookingMeds.Children.Add(new CheckBox
+                {
+                    Name = "med" + i,
+                    Content = medsAvailable[i]
+                }
+                );
+            }
 
         }
         private void availableRooms_GotFocus(object sender, RoutedEventArgs e)

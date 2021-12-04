@@ -117,7 +117,7 @@ namespace Project_Sahlgrenska {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Project_Sahlgrenska;component/hem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Project_Sahlgrenska;V1.0.0.0;component/hem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Hem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

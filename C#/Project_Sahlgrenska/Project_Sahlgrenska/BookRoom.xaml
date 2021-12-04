@@ -11,22 +11,17 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.ColumnSpan="2" Grid.Column="0">
             <Label Content="Patient"/>
             <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingPatient" GotFocus="bookingPatient_GotFocus"/>
             <Label Content="Doktor"/>
             <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingDoctor" GotFocus="bookingDoctor_GotFocus"/>
             <Label Content="Utrustning"/>
             <StackPanel x:Name="bookingEquipment" Orientation="Horizontal">
-                <CheckBox Content="asd(2)"/>
-                <CheckBox Content="asd(3)"/>
-                <CheckBox Content="asd(1)"/>
+                
             </StackPanel>
             <Label Content="Medicin"/>
             <StackPanel x:Name="bookingMeds" Orientation="Horizontal">
-                <CheckBox Content="asd(212)"/>
-                <CheckBox Content="asd(3323)"/>
-                <CheckBox Content="asd(10)"/>
             </StackPanel>
             <Label Content="Datum"/>
             <DatePicker x:Name="bookingDate"/>
