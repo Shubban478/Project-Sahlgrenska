@@ -47,7 +47,7 @@ namespace Project_Sahlgrenska
                 patientName.AppendText(rdr.GetString(1));
                 patientAdress.AppendText(rdr.GetString(2));
                 
-                if (rdr.IsDBNull(5)) { patientAdmitted.Text = "SAKNAS"; }
+                if (rdr.IsDBNull(4)) { patientAdmitted.Text = "SAKNAS"; }
                 else { patientAdmitted.AppendText(rdr.GetString(4)); }
 
                 if (rdr.IsDBNull(5)) { patientDischarged.Text = "SAKNAS"; }
