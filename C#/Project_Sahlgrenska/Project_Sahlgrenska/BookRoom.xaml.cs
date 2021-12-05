@@ -152,25 +152,27 @@ namespace Project_Sahlgrenska
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            Hem.conn.Open();
-            string sql1 = "insert into patients_has_rooms values (" + bookingPatient.Text.Substring(0,13)+ ", " + availableRooms.SelectedItem.ToString()+");";
-            MySql.Data.MySqlClient.MySqlCommand cmd1 = new MySql.Data.MySqlClient.MySqlCommand(sql1, Hem.conn);
-            _ = cmd1.ExecuteNonQuery();
-            Hem.conn.Close();
-            */
 
+            Bot.Update("insert into patients_has_rooms values ('" + bookingPatient.Text.Substring(0, 13) + "', " + Int32.Parse(availableRooms.SelectedItem.ToString()) + "); ");
+            Bot.Update("update patients set appointment = '" + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + "' where id = '" + bookingPatient.Text.Substring(0, 13) + "'; ");
+            Bot.Update("update rooms set vaccant = 'No' where id = '" + availableRooms.SelectedItem.ToString() + "'; ");
+
+
+            int doctorId = Int32.Parse(Bot.ReadOne("select id from doctors where name = '" + bookingDoctor.Text.Split(',')[0] + "'"));
+
+            Bot.Update("insert into doctors_has_patients values (" + doctorId + ", '" + bookingPatient.Text.Substring(0, 13) + "'); ");
+
+            pageInfo.Text = pageInfo.Text + bookingPatient.Text.Substring(0, 13) + ", ";
+            pageInfo.Text = pageInfo.Text + (availableRooms.SelectedItem.ToString()) + ", ";
+            pageInfo.Text = pageInfo.Text + bookingDate.SelectedDate.ToString().Substring(0, 10) + " "+ bookingTime.Text.ToString() + ", ";
+            pageInfo.Text = pageInfo.Text + doctorId.ToString() + ", ";
 
 
             foreach (CheckBox item in bookingMeds.Children)
             {
                 if (item.IsChecked == true)
                 {
-                    Hem.conn.Open();
-                    string sql = "update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';";
-                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-                    _ = cmd.ExecuteNonQuery();
-                    Hem.conn.Close();
+                    Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
                     pageInfo.Text = pageInfo.Text + item.Name + ", ";
                 }
             }
@@ -178,11 +180,7 @@ namespace Project_Sahlgrenska
             {
                 if (item.IsChecked == true)
                 {
-                    Hem.conn.Open();
-                    string sql = "update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';";
-                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-                    _ = cmd.ExecuteNonQuery();
-                    Hem.conn.Close();
+                    Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
                     pageInfo.Text = pageInfo.Text + item.Name + ", ";
 
                 }

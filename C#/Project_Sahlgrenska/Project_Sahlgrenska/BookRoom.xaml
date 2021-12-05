@@ -27,6 +27,8 @@
             </StackPanel>
             <Label Content="Datum"/>
             <DatePicker x:Name="bookingDate"/>
+            <Label Content="Anledning"/>
+            <TextBox x:Name="bookingReason"/>
             <Label Content="Tid"/>
             <TextBox x:Name="bookingTime" Text="13:37:00" GotFocus="bookingTime_GotFocus"/>
             <Label Content="Rum"/>
