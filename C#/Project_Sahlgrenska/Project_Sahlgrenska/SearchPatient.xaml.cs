@@ -37,7 +37,6 @@ namespace Project_Sahlgrenska
 
             Hem.conn.Open();
             string sql = "select * from bjjyx4krtcspjgah0tay.patients where id = '" + searchPatient.Text + "'";
-            //string sql = "select * from bjjyx4krtcspjgah0tay.patients where id = '19791012-3095'";
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
             MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
 
