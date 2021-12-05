@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="SearchPatient" Height="450" Width="800">
+        Title="Sök patient" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="10,0,10,0">
+            <Label Content="Fyll i personnummer"/>
+            <TextBox x:Name="searchPatient" Height="20"/>
+            <Label />
+            <Button Content="Sök" Click="Button_Click"/>
+            <Label />
+            
+            <Label Content="Personnummer" />
+            <TextBox x:Name="patientId" Height="20" />
+            <Label Content="Kön" />
+            <TextBox x:Name="patientGender" Height="20" />
+            <Label Content="Fullständigt namn" />
+            <TextBox x:Name="patientName" Height="20" />
+            <Label Content="Adress" />
+            <TextBox x:Name="patientAdress" Height="20"/>
+            <Label Content="Inlagd datum" />
+            <TextBox x:Name="patientAdmitted" Height="20"/>
+            <Label Content="Utskiven datum" />
+            <TextBox x:Name="patientDischarged" Height="20"/>
+            <Label Content="Nästkommande möte" />
+            <TextBox x:Name="patientBooking" Height="20"/>
+
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10,0,10,0">
+            <Label Content="Anledning till inläggning"/>
+            <TextBox x:Name="patientReason" Height="170"/>
+            <Label Content="Historik"/>
+            <TextBox x:Name="patientHistory" Height="170"/>
+            
+        </StackPanel>
     </Grid>
 </Window>
