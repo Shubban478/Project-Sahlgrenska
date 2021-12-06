@@ -7,28 +7,7 @@ namespace Project_Sahlgrenska
 {
     public static class Bot
     {
-        public static void Update(string Command)
-        {
-            Hem.conn.Open();
-            string command = Command;
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
-            _ = cmd.ExecuteNonQuery();
-            Hem.conn.Close();
-        }
-        public static string ReadOne(string Command)
-        {
-            Hem.conn.Open();
-            string command = Command;
-            MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            rdr.Read();
-            string result = rdr[0].ToString();
-            rdr.Close();
-            Hem.conn.Close();
-            return result;
-
-
-        }
+        //4
 
 
         /* 

@@ -153,34 +153,26 @@ namespace Project_Sahlgrenska
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            Bot.Update("insert into patients_has_rooms values ('" + bookingPatient.Text.Substring(0, 13) + "', " + Int32.Parse(availableRooms.SelectedItem.ToString()) + "); ");
-            Bot.Update("update patients set appointment = '" + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + "' where id = '" + bookingPatient.Text.Substring(0, 13) + "'; ");
-            Bot.Update("update rooms set vaccant = 'No' where id = '" + availableRooms.SelectedItem.ToString() + "'; ");
-
-
-            int doctorId = Int32.Parse(Bot.ReadOne("select id from doctors where name = '" + bookingDoctor.Text.Split(',')[0] + "'"));
-
-            Bot.Update("insert into doctors_has_patients values (" + doctorId + ", '" + bookingPatient.Text.Substring(0, 13) + "'); ");
+            ///1
 
             pageInfo.Text = pageInfo.Text + bookingPatient.Text.Substring(0, 13) + ", ";
             pageInfo.Text = pageInfo.Text + (availableRooms.SelectedItem.ToString()) + ", ";
             pageInfo.Text = pageInfo.Text + bookingDate.SelectedDate.ToString().Substring(0, 10) + " "+ bookingTime.Text.ToString() + ", ";
-            pageInfo.Text = pageInfo.Text + doctorId.ToString() + ", ";
+            //pageInfo.Text = pageInfo.Text + doctorId.ToString() + ", ";
 
 
             foreach (CheckBox item in bookingMeds.Children)
             {
                 if (item.IsChecked == true)
                 {
-                    Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
-                    pageInfo.Text = pageInfo.Text + item.Name + ", ";
+                   ///2
                 }
             }
             foreach (CheckBox item in bookingEquipment.Children)
             {
                 if (item.IsChecked == true)
                 {
-                    Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
+                    ///3
                     pageInfo.Text = pageInfo.Text + item.Name + ", ";
 
                 }
