@@ -1,46 +1,71 @@
-﻿<Window x:Class="Project_Sahlgrenska.SearchPatient"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Project_Sahlgrenska"
-        mc:Ignorable="d"
-        Title="Sök patient" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="10,0,10,0">
-            <Label Content="Fyll i personnummer"/>
-            <TextBox x:Name="searchPatient" Height="20"/>
-            <Label />
-            <Button Content="Sök" Click="Button_Click"/>
-            <Label />
-            
-            <Label Content="Personnummer" />
-            <TextBox x:Name="patientId" Height="20" />
-            <Label Content="Kön" />
-            <TextBox x:Name="patientGender" Height="20" />
-            <Label Content="Fullständigt namn" />
-            <TextBox x:Name="patientName" Height="20" />
-            <Label Content="Adress" />
-            <TextBox x:Name="patientAdress" Height="20"/>
-            <Label Content="Inlagd datum" />
-            <TextBox x:Name="patientAdmitted" Height="20"/>
-            <Label Content="Utskiven datum" />
-            <TextBox x:Name="patientDischarged" Height="20"/>
-            <Label Content="Nästkommande möte" />
-            <TextBox x:Name="patientBooking" Height="20"/>
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
+namespace Project_Sahlgrenska
+{
+    /// <summary>
+    /// Interaction logic for SearchPatient.xaml
+    /// </summary>
+    public partial class SearchPatient : Window
+    {
+        public SearchPatient()
+        {
+            InitializeComponent();
+        }
 
-        </StackPanel>
-        <StackPanel Grid.Column="1" Margin="10,0,10,0">
-            <Label Content="Anledning till inläggning"/>
-            <TextBox x:Name="patientReason" Height="170"/>
-            <Label Content="Historik"/>
-            <TextBox x:Name="patientHistory" Height="170"/>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            patientId.Text = "";
+            patientGender.Text = "";
+            patientName.Text = "";
+            patientAdress.Text = "";
+            patientAdmitted.Text = "";
+            patientDischarged.Text = "";
+            patientBooking.Text = "";
+            patientReason.Text = "";
+            patientHistory.Text = "";
+
+            Hem.conn.Open();
+            string sql = "select * from bjjyx4krtcspjgah0tay.patients where id LIKE '" + searchPatient.Text + "'";
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
+            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                patientId.AppendText(rdr.GetString(0));
+                patientGender.AppendText(rdr.GetString(3));
+                patientName.AppendText(rdr.GetString(1));
+                patientAdress.AppendText(rdr.GetString(2));
+
+                if (rdr.IsDBNull(5)) { patientAdmitted.Text = "SAKNAS"; }
+                else { patientAdmitted.AppendText(rdr.GetString(4)); }
+
+                if (rdr.IsDBNull(5)) { patientDischarged.Text = "SAKNAS"; }
+                else { patientDischarged.AppendText(rdr.GetString(5)); }
+
+                if (rdr.IsDBNull(8)) { patientBooking.Text = "SAKNAS"; }
+                else { patientBooking.AppendText(rdr.GetString(8)); }
+
+                if (rdr.IsDBNull(6)) { patientReason.Text = "SAKNAS"; }
+                else { patientReason.AppendText(rdr.GetString(6)); ; }
+
+                if (rdr.IsDBNull(7)) { patientHistory.Text = "SAKNAS"; }
+                else { patientHistory.AppendText(rdr.GetString(7)); }
+            }
             
-        </StackPanel>
-    </Grid>
-</Window>
+            rdr.Close();
+            Hem.conn.Close();
+        }
+
+    }
+}
