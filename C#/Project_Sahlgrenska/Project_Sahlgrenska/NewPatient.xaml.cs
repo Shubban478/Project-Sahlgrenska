@@ -41,8 +41,7 @@ namespace Project_Sahlgrenska
                 {
                     if (patientName.Text != string.Empty && 
                         patientAdress.Text != string.Empty &&
-                        patientGender.Text != string.Empty &&
-                        patientReason.Text != string.Empty)
+                        patientGender.Text != string.Empty)
                     {
                         if (patientGender.Text == "M" || patientGender.Text == "F")
                         {
@@ -51,12 +50,9 @@ namespace Project_Sahlgrenska
                             PatientAdress = patientAdress.Text;
                             PatientGender = patientGender.Text;
                             PatientDate = patientDate.Text;
-                            PatientReason = patientReason.Text;
-                            Hem.conn.Open();
-                            string sql = "INSERT INTO patients(ID,Name,Address,Gender,Admitted,Reason) VALUES('" + PatientId + "','" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate + "','" + PatientReason + "')";
-                            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-                            _ = cmd.ExecuteNonQuery();
-
+                            
+                            
+                            Bot.Update("INSERT INTO patients(ID,Name,Address,Gender,Admitted) VALUES('" + PatientId + "','" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate +  "')");
 
                             patientAdded.Text = PatientName + " added to database.";
                             patientId.Text = string.Empty;
@@ -64,7 +60,7 @@ namespace Project_Sahlgrenska
                             patientAdress.Text = string.Empty;
                             patientGender.Text = string.Empty;
                             patientDate.SelectedDate = null;
-                            patientReason.Text = string.Empty;
+                            
                         }
                         else
                         {
@@ -94,9 +90,10 @@ namespace Project_Sahlgrenska
                     "------------\n" +
                     "Error:\n"+
                     ex.Message;
+                    Hem.conn.Close();
                     
             }
-            Hem.conn.Close();
+            
             
             
 

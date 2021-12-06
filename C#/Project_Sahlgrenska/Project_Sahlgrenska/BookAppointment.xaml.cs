@@ -15,7 +15,7 @@ namespace Project_Sahlgrenska
     /// <summary>
     /// Interaction logic for BookRoom.xaml
     /// </summary>
-    public partial class BookRoom : Window
+    public partial class BookAppointment : Window
     {
         List<string> roomsAvailable = new List<string>();
         List<string> patientsAvailable = new List<String>();
@@ -24,7 +24,7 @@ namespace Project_Sahlgrenska
         List<string> medsAvailable = new List<string>();
 
 
-        public BookRoom()
+        public BookAppointment()
         {
             InitializeComponent();
             PopulateAvailableEquipment();
@@ -32,117 +32,61 @@ namespace Project_Sahlgrenska
         }
         private void PopulateAvailableRooms()
         {
-
-            Hem.conn.Open();
-            string sql = "select id from rooms where vaccant = 'yes'; ";
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
-            {
-                roomsAvailable.Add(rdr.GetString(0));
-            }
-            rdr.Close();
-            Hem.conn.Close();
+            roomsAvailable = Bot.ReadOneColumn("select id from rooms where vaccant = 'yes'; ");
             availableRooms.ItemsSource = roomsAvailable;
 
         }
         private void PopulateBookingPatient()
         {
-
-            Hem.conn.Open();
-            string sql = "select id, name from patients;";
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            for (int i = 0; i < Bot.ReadOneColumn("select id from patients;").Count; i++)
             {
-                patientsAvailable.Add(rdr.GetString(0) + ", " + rdr.GetString(1));
+                patientsAvailable.Add(Bot.ReadOneColumn("select id from patients;")[i]);
+                patientsAvailable[i] += " " + Bot.ReadOneColumn("select name from patients;")[i];
             }
-            rdr.Close();
-            Hem.conn.Close();
             bookingPatient.ItemsSource = patientsAvailable;
-
         }
         private void PopulateBookingDoctor()
         {
 
-            Hem.conn.Open();
-            string sql = "select name, speciality from doctors;";
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            for (int i = 0; i < Bot.ReadOneColumn("select name from doctors;").Count; i++)
             {
-                try
-                {
-
-
-                    doctorsAvailable.Add(rdr.GetString(0) + ", " + rdr.GetString(1));
-                }
-                catch (Exception)
-                {
-
-                }
+                doctorsAvailable.Add(Bot.ReadOneColumn("select name from doctors;")[i]);
+                doctorsAvailable[i] += " " + Bot.ReadOneColumn("select speciality from doctors;")[i];
             }
-            rdr.Close();
-            Hem.conn.Close();
             bookingDoctor.ItemsSource = doctorsAvailable;
 
         }
         private void PopulateAvailableEquipment()
         {
-            Hem.conn.Open();
-            string sql = "select * from equipment;";
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            for (int i = 0; i < Bot.ReadOneColumn("select name from equipment;").Count; i++)
             {
-                try
-                {
-                    equipmentAvailable.Add(rdr.GetString(0) + ", (" + rdr.GetString(1) + ")");
-                }
-                catch (Exception) { }
+                equipmentAvailable.Add(Bot.ReadOneColumn("select name from equipment;")[i]);
+                equipmentAvailable[i] += " -Lediga:" + Bot.ReadOneColumn("select quantity from equipment;")[i];
             }
-            rdr.Close();
-            Hem.conn.Close();
             for (int i = 0; i < equipmentAvailable.Count; i++)
             {
                 bookingEquipment.Children.Add(new CheckBox
                 {
                     Name = equipmentAvailable[i].Substring(0, 4),
                     Content = equipmentAvailable[i]
-                }
-                );
+                });
             }
-
         }
         private void PopulateAvailableMeds()
         {
-            Hem.conn.Open();
-            string sql = "select * from medication;";
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            for (int i = 0; i < Bot.ReadOneColumn("select name from medication;").Count; i++)
             {
-                try
-                {
-
-
-                    medsAvailable.Add(rdr.GetString(0) + ", (" + rdr.GetString(2) + ")");
-                }
-                catch (Exception)
-                { }
+                medsAvailable.Add(Bot.ReadOneColumn("select name from medication;")[i]);
+                medsAvailable[i] += " -Lagersaldo:" + Bot.ReadOneColumn("select quantity from medication;")[i];
             }
-            rdr.Close();
-            Hem.conn.Close();
             for (int i = 0; i < medsAvailable.Count; i++)
             {
                 bookingMeds.Children.Add(new CheckBox
                 {
                     Name = medsAvailable[i].Substring(0, 4),
-                    Content = medsAvailable[i],
-                }
-                ); ;
+                    Content = medsAvailable[i]
+                });
             }
-
         }
         private void availableRooms_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -157,7 +101,7 @@ namespace Project_Sahlgrenska
 
             pageInfo.Text = pageInfo.Text + bookingPatient.Text.Substring(0, 13) + ", ";
             pageInfo.Text = pageInfo.Text + (availableRooms.SelectedItem.ToString()) + ", ";
-            pageInfo.Text = pageInfo.Text + bookingDate.SelectedDate.ToString().Substring(0, 10) + " "+ bookingTime.Text.ToString() + ", ";
+            pageInfo.Text = pageInfo.Text + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + ", ";
             //pageInfo.Text = pageInfo.Text + doctorId.ToString() + ", ";
 
 
@@ -165,7 +109,7 @@ namespace Project_Sahlgrenska
             {
                 if (item.IsChecked == true)
                 {
-                   ///2
+                    ///2
                 }
             }
             foreach (CheckBox item in bookingEquipment.Children)

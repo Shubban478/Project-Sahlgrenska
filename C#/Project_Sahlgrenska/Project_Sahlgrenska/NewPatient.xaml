@@ -20,8 +20,6 @@
             <TextBox x:Name="patientAdress"/>
             <Label Content="Kön"/>
             <TextBox x:Name="patientGender" Text="M/F" GotFocus="patientGender_GotFocus"/>
-            <Label Content="Anledning"/>
-            <TextBox x:Name="patientReason"/>
             <Label Content="Datum"/>
             <DatePicker x:Name="patientDate"/>
             <Button Content="Ok" Click="Button_Click"/>

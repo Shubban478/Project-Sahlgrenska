@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <Button Content="Ny patient" x:Name="newPatient" Grid.Column="0" Grid.Row="0" Click="newPatient_Click"/>
         <Button Content="Sök patient" x:Name="searchPatient" Grid.Column="0" Grid.Row="1" Click="searchPatient_Click"/>
-        <Button Content="Boka rum" x:Name="bookRoom" Grid.Column="0" Grid.Row="2" Click="bookRoom_Click"/>
+        <Button Content="Boka Möte" x:Name="bookAppointment" Grid.Column="0" Grid.Row="2" Click="bookAppointment_Click"/>
         <Button Content="Visa bokningar" x:Name="bookingSchedule" Grid.Column="0" Grid.Row="3" Click="bookingSchedule_Click"/>
         <Button Content="Beställningar" x:Name="orderItems" Grid.Column="0" Grid.Row="4" Click="orderItems_Click"/>
         <Button Content="Sjukdomar" x:Name="diseaseList" Grid.Column="0" Grid.Row="5" Click="diseaseList_Click"/>
