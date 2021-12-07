@@ -109,18 +109,33 @@ namespace Project_Sahlgrenska
             {
                 if (item.IsChecked == true)
                 {
-                    ///2
+                    if (item.Content.ToString().Contains('0'))
+                    {
+
+                    }
+                    else
+                    {
+                        Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
+                    }
+                    
                 }
             }
             foreach (CheckBox item in bookingEquipment.Children)
             {
                 if (item.IsChecked == true)
                 {
-                    ///3
-                    pageInfo.Text = pageInfo.Text + item.Name + ", ";
+                    if (item.Content.ToString().Contains('0'))
+                    {
+
+                    }
+                    else
+                    {
+                        Bot.Update("update equipment set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
+                    }
 
                 }
             }
+            Bot.Update("insert into appointments values (id," + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + ", ");
 
 
 
@@ -141,14 +156,5 @@ namespace Project_Sahlgrenska
             PopulateBookingDoctor();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Initialized(object sender, EventArgs e)
-        {
-
-        }
     }
 }
