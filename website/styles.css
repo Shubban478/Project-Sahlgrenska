@@ -106,6 +106,14 @@
     background-color: rgb(228, 218, 231);
     padding: 2px;
     border-radius: 3px;
+    float: right;
+}
+
+#sql-writer {
+    background-color: rgb(235, 213, 216);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 body {
