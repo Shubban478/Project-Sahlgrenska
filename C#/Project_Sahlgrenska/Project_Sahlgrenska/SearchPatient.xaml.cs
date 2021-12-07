@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -36,7 +36,7 @@ namespace Project_Sahlgrenska
             patientHistory.Text = "";
 
             Hem.conn.Open();
-            string sql = "select * from bjjyx4krtcspjgah0tay.patients where id = '" + searchPatient.Text + "'";
+            string sql = "select * from bjjyx4krtcspjgah0tay.patients where id LIKE '" + searchPatient.Text + "'";
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql, Hem.conn);
             MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -46,8 +46,8 @@ namespace Project_Sahlgrenska
                 patientGender.AppendText(rdr.GetString(3));
                 patientName.AppendText(rdr.GetString(1));
                 patientAdress.AppendText(rdr.GetString(2));
-                
-                if (rdr.IsDBNull(4)) { patientAdmitted.Text = "SAKNAS"; }
+
+                if (rdr.IsDBNull(5)) { patientAdmitted.Text = "SAKNAS"; }
                 else { patientAdmitted.AppendText(rdr.GetString(4)); }
 
                 if (rdr.IsDBNull(5)) { patientDischarged.Text = "SAKNAS"; }

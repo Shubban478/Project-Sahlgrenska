@@ -30,7 +30,6 @@ C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Proje
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\bin\Debug\netcoreapp3.1\Project_Sahlgrenska.pdb
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Project_Sahlgrenska.csproj.AssemblyReference.cache
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\BookingSchedule.g.cs
-C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\BookRoom.g.cs
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Hem.g.cs
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Login.g.cs
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\MainWindow.g.cs
@@ -40,7 +39,6 @@ C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Proje
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Project_Sahlgrenska_MarkupCompile.cache
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Project_Sahlgrenska_MarkupCompile.lref
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\BookingSchedule.baml
-C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\BookRoom.baml
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Hem.baml
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Login.baml
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\MainWindow.baml
@@ -70,3 +68,5 @@ C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Proje
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\Project_Sahlgrenska.csproj.CopyComplete
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\BookAppointment.g.cs
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\BookAppointment.baml

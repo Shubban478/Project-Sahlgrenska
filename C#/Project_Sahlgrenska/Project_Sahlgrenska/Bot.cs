@@ -7,17 +7,47 @@ namespace Project_Sahlgrenska
 {
     public static class Bot
     {
-        //4
+        public static void Update(string Command)
+        {
+            string command = Command;
+            Hem.conn.Open();
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
+            _ = cmd.ExecuteNonQuery();
+            Hem.conn.Close();
+
+        }
+        public static string ReadOneValue(string Command)
+        {
+            string command = Command;
+            Hem.conn.Open();
+            MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            rdr.Read();
+            string result = rdr[0].ToString();
+            rdr.Close();
+            Hem.conn.Close();
+            return result;
+        }
+
+        public static List<string> ReadOneColumn(string Command)
+        {
+            List<string> result = new List<string>();
+            string command = Command;
+            Hem.conn.Open();
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
+            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                result.Add(rdr.GetString(0));
+            }
+            rdr.Close();
+            Hem.conn.Close();
+            return result;
+        }
 
 
-        /* 
-            Bot.Read(patients where id like 19%;)    -select
-            Bot.Update(medication, set quantity -1 where name = Kåvepenin)
-            Bot.????????????
-        
-        */
 
     }
-    
+
 
 }

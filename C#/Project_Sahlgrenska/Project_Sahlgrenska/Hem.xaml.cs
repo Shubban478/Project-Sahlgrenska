@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,13 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class Hem : Window
     {
+        /*  
+         *  ----- testconsole. kan användas som vanlig console application.
+        [DllImport("Kernel32")]
+        public static extern void AllocConsole();
+
+        */
+
         public static string connStr =
             "server=bjjyx4krtcspjgah0tay-mysql.services.clever-cloud.com;" +
             "user=ulhpxhgnf5tkywq2;" +
@@ -52,13 +60,13 @@ namespace Project_Sahlgrenska
             searchPatient.Show();
         }
 
-        private void bookRoom_Click(object sender, RoutedEventArgs e)
+        private void bookAppointment_Click(object sender, RoutedEventArgs e)
         {
-            BookRoom bookRoom = new BookRoom();
-            bookRoom.Show();
+            BookAppointment bookAppointment = new BookAppointment();
+            bookAppointment.Show();
         }
 
-        private void bookingSchedule_Click(object sender, RoutedEventArgs e)
+        private void bookingSchedule_Click(object sender, RoutedEventArgs e)    
         {
             BookingSchedule bookingSchedule = new BookingSchedule();
             bookingSchedule.Show();
