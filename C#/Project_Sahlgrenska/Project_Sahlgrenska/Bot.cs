@@ -19,11 +19,12 @@ namespace Project_Sahlgrenska
         public static string ReadOneValue(string Command)
         {
             string command = Command;
+            
             Hem.conn.Open();
             MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             rdr.Read();
-            string result = rdr[0].ToString();
+            string result = rdr.GetString(0);
             rdr.Close();
             Hem.conn.Close();
             return result;

@@ -23,23 +23,25 @@ namespace Project_Sahlgrenska
         string PatientName;
         string PatientAdress;
         string PatientGender;
-        string PatientReason;
+
         string PatientDate;
         
-        
+
+
         public NewPatient()
         {
             InitializeComponent();
+            patientDate.Text = DateTime.UtcNow.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
             try
             {
                 if (patientId.Text != "xxxxxxxx-xxxx" || patientId.Text.Length != 13 || patientGender.Text.Length != 1)
                 {
-                    if (patientName.Text != string.Empty && 
+                    if (patientName.Text != string.Empty &&
                         patientAdress.Text != string.Empty &&
                         patientGender.Text != string.Empty)
                     {
@@ -50,17 +52,20 @@ namespace Project_Sahlgrenska
                             PatientAdress = patientAdress.Text;
                             PatientGender = patientGender.Text;
                             PatientDate = patientDate.Text;
-                            
-                            
-                            Bot.Update("INSERT INTO patients(ID,Name,Address,Gender,Admitted) VALUES('" + PatientId + "','" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate +  "')");
 
+
+                            Bot.Update("INSERT INTO patients(ID,Name,Address,Gender,Admitted) VALUES('" + PatientId + "','" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate + "')");
+                            if (critical.IsChecked==true)
+                            {
+                                Bot.Update("update patients set critical = 'Yes' where id = '" + PatientId + "';");
+                            }
                             patientAdded.Text = PatientName + " added to database.";
                             patientId.Text = string.Empty;
                             patientName.Text = string.Empty;
                             patientAdress.Text = string.Empty;
                             patientGender.Text = string.Empty;
                             patientDate.SelectedDate = null;
-                            
+
                         }
                         else
                         {
@@ -77,9 +82,9 @@ namespace Project_Sahlgrenska
                     throw new Exception();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+
                 patientAdded.Text = "\nKontrollera följande:\n" +
                     "Personnummer 12 siffror med bindestreck. \n" +
                     "Hela namnet.\n" +
@@ -88,14 +93,14 @@ namespace Project_Sahlgrenska
                     "Datum får ej lämnas blank.\n" +
                     "Anledning får ej lämnas blank.\n" +
                     "------------\n" +
-                    "Error:\n"+
+                    "Error:\n" +
                     ex.Message;
-                    Hem.conn.Close();
-                    
+                Hem.conn.Close();
+
             }
-            
-            
-            
+
+
+
 
 
         }

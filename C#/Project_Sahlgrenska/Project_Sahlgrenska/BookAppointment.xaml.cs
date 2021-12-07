@@ -29,6 +29,8 @@ namespace Project_Sahlgrenska
             InitializeComponent();
             PopulateAvailableEquipment();
             PopulateAvailableMeds();
+            PopulateAvailableRooms();
+            bookingDate.Text = DateTime.UtcNow.ToString();
         }
         private void PopulateAvailableRooms()
         {
@@ -67,7 +69,7 @@ namespace Project_Sahlgrenska
             {
                 bookingEquipment.Children.Add(new CheckBox
                 {
-                    Name = equipmentAvailable[i].Substring(0, 4),
+                    Name = equipmentAvailable[i].Split(' ')[0],
                     Content = equipmentAvailable[i]
                 });
             }
@@ -83,53 +85,47 @@ namespace Project_Sahlgrenska
             {
                 bookingMeds.Children.Add(new CheckBox
                 {
-                    Name = medsAvailable[i].Substring(0, 4),
+                    Name = medsAvailable[i].Split(' ')[0],
                     Content = medsAvailable[i]
                 });
             }
         }
-        private void availableRooms_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PopulateAvailableRooms();
-        }
+
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int appointmentId = Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments"));
+            int initAppointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0])+1;
+            int appointmentId = initAppointmentId;
             string patientId = bookingPatient.Text.Substring(0, 13);
-            int doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name = '" + bookingDoctor.Text.Split(',')[0] + "'")); ;
+            string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[0] + "%';");
+            int doctorId = Int32.Parse(initDoctorId);
             string meds = "";
             string eq = "";
             string reason = bookingReason.Text.ToString();
             string time = bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString();
             int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
 
-
-
-            pageInfo.Text = pageInfo.Text + bookingPatient.Text.Substring(0, 13) + ", ";
-            pageInfo.Text = pageInfo.Text + (availableRooms.SelectedItem.ToString()) + ", ";
-            pageInfo.Text = pageInfo.Text + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + ", ";
-            //pageInfo.Text = pageInfo.Text + doctorId.ToString() + ", ";
-
-            Bot.Update("insert into appointments values (id," + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + ", " + bookingReason.Text.ToString());
-            Bot.Update("insert into appointments_has_rooms values (id," + Convert.ToInt32(availableRooms.SelectedItem.ToString()));
-            Bot.Update("insert into patients_has_appointments values("+ patientId +", "+ Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments")) + ");");
-            Bot.Update("insert into doctors_has_appointments values");
+            Bot.Update("insert into appointments values (" + initAppointmentId + ", '" + time + "', '" + reason + "');");
+            Bot.Update("insert into appointments_has_rooms values (" + appointmentId + ", " + roomId + ");");
+            Bot.Update("insert into patients_has_appointments values('" + patientId + "', " + appointmentId + ");");
+            Bot.Update("insert into doctors_has_appointments values(" + doctorId + ", " + appointmentId + ");");
 
             foreach (CheckBox item in bookingMeds.Children)
             {
+
                 if (item.IsChecked == true)
                 {
-                    if (item.Content.ToString().Contains('0'))
+                    int quantity = Int32.Parse(Bot.ReadOneValue("select quantity from medication where name ='" + item.Name + "';"));
+                    if (quantity == 0)
                     {
-
+                        meds += item.Name + " är slut.";
                     }
                     else
                     {
                         Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
                         meds += item.Name;
-                        Bot.Update("insert into appointments_has_medication values(" + Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments_has_equipment")) + "," + item.Name);
+                        Bot.Update("insert into appointments_has_medication values(" + appointmentId + ",'" + item.Name + "');");
                     }
 
                 }
@@ -138,19 +134,26 @@ namespace Project_Sahlgrenska
             {
                 if (item.IsChecked == true)
                 {
-                    if (item.Content.ToString().Contains('0'))
+                    int quantity = Int32.Parse(Bot.ReadOneValue("select quantity from equipment where name ='" + item.Name + "';"));
+                    if (quantity == 0)
                     {
-
+                        eq += item.Name + " är upptagen.";
                     }
                     else
                     {
                         Bot.Update("update equipment set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
                         eq += item.Name;
-                        Bot.Update("insert into appointments_has_equipment values(" + Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments_has_equipment")) + "," + item.Name);
+                        Bot.Update("insert into appointments_has_equipment values(" + appointmentId + ",'" + item.Name + "');");
                     }
 
                 }
             }
+            pageInfo.Text = "Bokning gjord för: " + patientId +
+                "\n i rum " + roomId +
+                "\n med medicin: " + meds +
+                "\n med utrustning: " + eq +
+                "\n vid tillfälle: " + time + " med doktor " + doctorId +
+                "\n med anledning: " + reason;
 
 
 

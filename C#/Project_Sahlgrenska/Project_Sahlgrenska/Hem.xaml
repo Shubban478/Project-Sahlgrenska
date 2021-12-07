@@ -29,9 +29,10 @@
         <Button Content="Beställningar" x:Name="orderItems" Grid.Column="0" Grid.Row="4" Click="orderItems_Click"/>
         <Button Content="Sjukdomar" x:Name="diseaseList" Grid.Column="0" Grid.Row="5" Click="diseaseList_Click"/>
         <Button Content="Logga ut" x:Name="logOutButton" Grid.Column="0" Grid.Row="6" Click="logOutButton_Click"/>
-        <StackPanel Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4">
-            <TextBlock x:Name="pageInfo" Text="Välkommen"  FontSize="28"/>            <!-- NAMN PÅ PERSON -->
-            
+        <StackPanel x:Name="news" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4">
+            <TextBlock x:Name="pageInfo" Text="Välkommen"  FontSize="28"/>
+            <TextBlock Text="Nödläge"  FontSize="18" Foreground="Red" HorizontalAlignment="Center"/>
+
         </StackPanel>
         
     </Grid>

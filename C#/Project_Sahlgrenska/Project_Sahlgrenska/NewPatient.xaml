@@ -22,6 +22,7 @@
             <TextBox x:Name="patientGender" Text="M/F" GotFocus="patientGender_GotFocus"/>
             <Label Content="Datum"/>
             <DatePicker x:Name="patientDate"/>
+            <CheckBox x:Name="critical" Content="Kritiskt läge"/>
             <Button Content="Ok" Click="Button_Click"/>
             <TextBlock  x:Name="patientAdded" Foreground="Crimson"/>
         </StackPanel>

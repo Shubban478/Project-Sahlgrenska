@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -33,12 +34,25 @@ namespace Project_Sahlgrenska
             "port=3306;" +
             "password=CE2AriOp5v9YqliNasMM";
         public static MySqlConnection conn = new MySqlConnection(connStr);
-        public static string user="";
+        public static string user = "";
+        List<string> criticalPatients = new List<string>();
 
         public Hem()
         {
             InitializeComponent();
             pageInfo.Text += " " + user;
+
+
+            criticalPatients = Bot.ReadOneColumn("select name from patients where critical ='Yes';");
+            for (int i = 0; i < criticalPatients.Count; i++)
+            {
+                news.Children.Add(new Button
+                {
+                    Name = criticalPatients[i].Split(' ')[0],
+                    Content = criticalPatients[i]
+                });
+            }
+
         }
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)
@@ -66,7 +80,7 @@ namespace Project_Sahlgrenska
             bookAppointment.Show();
         }
 
-        private void bookingSchedule_Click(object sender, RoutedEventArgs e)    
+        private void bookingSchedule_Click(object sender, RoutedEventArgs e)
         {
             BookingSchedule bookingSchedule = new BookingSchedule();
             bookingSchedule.Show();

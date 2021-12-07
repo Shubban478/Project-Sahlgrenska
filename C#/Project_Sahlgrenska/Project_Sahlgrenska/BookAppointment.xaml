@@ -32,7 +32,7 @@
             <Label Content="Tid"/>
             <TextBox x:Name="bookingTime" Text="13:37:00" GotFocus="bookingTime_GotFocus"/>
             <Label Content="Rum"/>
-            <ComboBox x:Name="availableRooms" Text="Välj Rum" GotFocus="availableRooms_GotFocus">
+            <ComboBox x:Name="availableRooms" Text="Välj Rum">
             </ComboBox>
             <Button Content="Ok" Click="Button_Click"/>
             <TextBlock x:Name="pageInfo"/>
