@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["username"])) {
+    header("Location: /login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,18 +29,16 @@
         </nav>
     </div>
     <main>
-        <h1>Välkommen anställd#2</h1>
+        <?php
+        $username = $_SESSION["username"];
+        $t = date("D d F", time());
+        echo "<h1>Välkommen $username, idag är det $t</h1>";
+        ?>
         <div class="button-container">
-            <button onclick="clickButton()">Visa Patientlista</button>
-            <p id="sql-writer"></p>
-            <script>
-                function clickButton(){
-                    $.ajax({url:"/scripts/sql-getter.php", success:function(result) {
-                    $("#sql-writer").html(result);}
-                })
-                } 
-            </script>
+            <button onclick="query('patient_query.php')">Visa Patientlista</button>
+            <button onclick="getInput('patient_info_query.php')">Sök patientinfo</button>
         </div>
+        <div id="sql-writer"></div>
         <div id="temp"></div>
     </main>
     <footer>
@@ -42,5 +47,6 @@
         </div>
     </footer>
 </body>
+<script src="/scripts/php_runner.js"></script>
 
 </html>

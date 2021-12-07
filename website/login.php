@@ -1,9 +1,9 @@
 <?php
-    session_start();
-
-    if (isset($_SESSION["username"])) {
-        header("Location: /employee.html");
-    }
+session_start();
+if (isset($_SESSION["username"])) {
+    header("Location: /employee.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +20,13 @@
     <div class="header">
         <h1 id="title">Projekt-Sahlgrenska</h1>
     </div>
-    <div id=login-box>
+    <div id="login-box">
         <h1>Login</h1>
         <form action="/scripts/login_check.php" method="post">
             <label for="username">Username: </label>
-            <input type="text" name="username" id="username"><br><br>
+            <input type="text" name="username" id="username" required><br><br>
             <label for="password">Password: </label>
-            <input type="text" name="password" id="password"><br><br>
+            <input type="password" name="password" id="password" required><br><br>
             <input type="submit" name="submit" id="submit">
         </form>
         <a href="index.html">Tillbaka</a>

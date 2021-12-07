@@ -1,9 +1,12 @@
 <?php
 function query() {
-    include "connection.php";
+    include "../connection.php";
+
+    $value = $_GET["key"];
+    echo "Value: $value<br>";
 
     // Query
-    $sql = "SELECT name FROM doctors";
+    $sql = "SELECT * FROM patients WHERE id = $value";
     $result = $conn->query($sql);
 
     echo "Running command: $sql<br>Output:<br>";
