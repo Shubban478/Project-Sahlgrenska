@@ -96,14 +96,26 @@ namespace Project_Sahlgrenska
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int appointmentId = Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments"));
+            string patientId = bookingPatient.Text.Substring(0, 13);
+            int doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name = '" + bookingDoctor.Text.Split(',')[0] + "'")); ;
+            string meds = "";
+            string eq = "";
+            string reason = bookingReason.Text.ToString();
+            string time = bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString();
+            int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
 
-            ///1
+
 
             pageInfo.Text = pageInfo.Text + bookingPatient.Text.Substring(0, 13) + ", ";
             pageInfo.Text = pageInfo.Text + (availableRooms.SelectedItem.ToString()) + ", ";
             pageInfo.Text = pageInfo.Text + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + ", ";
             //pageInfo.Text = pageInfo.Text + doctorId.ToString() + ", ";
 
+            Bot.Update("insert into appointments values (id," + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + ", " + bookingReason.Text.ToString());
+            Bot.Update("insert into appointments_has_rooms values (id," + Convert.ToInt32(availableRooms.SelectedItem.ToString()));
+            Bot.Update("insert into patients_has_appointments values("+ patientId +", "+ Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments")) + ");");
+            Bot.Update("insert into doctors_has_appointments values");
 
             foreach (CheckBox item in bookingMeds.Children)
             {
@@ -116,8 +128,10 @@ namespace Project_Sahlgrenska
                     else
                     {
                         Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
+                        meds += item.Name;
+                        Bot.Update("insert into appointments_has_medication values(" + Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments_has_equipment")) + "," + item.Name);
                     }
-                    
+
                 }
             }
             foreach (CheckBox item in bookingEquipment.Children)
@@ -131,11 +145,14 @@ namespace Project_Sahlgrenska
                     else
                     {
                         Bot.Update("update equipment set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
+                        eq += item.Name;
+                        Bot.Update("insert into appointments_has_equipment values(" + Convert.ToInt32(Bot.ReadOneValue("select max(id) from appointments_has_equipment")) + "," + item.Name);
                     }
 
                 }
             }
-            Bot.Update("insert into appointments values (id," + bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString() + ", ");
+
+
 
 
 
