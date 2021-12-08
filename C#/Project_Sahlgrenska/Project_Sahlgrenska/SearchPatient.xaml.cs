@@ -35,6 +35,5 @@ namespace Project_Sahlgrenska
             patientDischarged.Text = list[5];
             patientReason.Text = list[6];
         }
-
     }
 }
