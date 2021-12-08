@@ -106,11 +106,8 @@ namespace Project_Sahlgrenska
         }
         private void appointCritical_Click(object sender, RoutedEventArgs e)
         {
-
             BookAppointment criticalAppointment = new BookAppointment ();
-            
             criticalAppointment.bookingDoctor.Text = Hem.user;
-            
             try
             {
                 foreach (RadioButton item in critical.Children)
@@ -124,27 +121,16 @@ namespace Project_Sahlgrenska
                         }
                     }
                     catch (Exception)
-                    {
-
-                        continue;
-                    }
+                    { continue;}
 
                 }
             }
             catch (Exception)
-            {
-
-                
-            }
+            { }
             criticalAppointment.availableRooms.SelectedItem = criticalAppointment.availableRooms.Items[0];
             criticalAppointment.bookingReason.Text = "AKUT";
+            criticalAppointment.bookingTime.Text = DateTime.UtcNow.ToString().Split(' ')[1];
             criticalAppointment.Show();
-
-
-
-
-
-
         }
 
        
