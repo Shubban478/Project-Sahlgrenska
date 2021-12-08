@@ -31,9 +31,18 @@
         <Button Content="Logga ut" x:Name="logOutButton" Grid.Column="0" Grid.Row="6" Click="logOutButton_Click"/>
         <StackPanel x:Name="news" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4">
             <TextBlock x:Name="pageInfo" Text="Välkommen"  FontSize="28"/>
-            <TextBlock Text="Nödläge"  FontSize="18" Foreground="Red" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="alert" Text="Nödläge"  FontSize="18" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Center"/>
+            <StackPanel x:Name="critical">
+                
+            
+            
+            </StackPanel>
+            <StackPanel>
+            <Button x:Name="appointCritical" Content="Boka kritiskt möte" Visibility="Hidden" Click="appointCritical_Click" VerticalContentAlignment="Bottom"></Button>
+            </StackPanel>
 
         </StackPanel>
+        
         
     </Grid>
     

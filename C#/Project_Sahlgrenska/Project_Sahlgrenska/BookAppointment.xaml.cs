@@ -93,7 +93,7 @@ namespace Project_Sahlgrenska
 
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
             int initAppointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0])+1;
             int appointmentId = initAppointmentId;

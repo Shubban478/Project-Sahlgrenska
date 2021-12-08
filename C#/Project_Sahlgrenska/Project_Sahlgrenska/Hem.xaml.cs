@@ -46,12 +46,19 @@ namespace Project_Sahlgrenska
             criticalPatients = Bot.ReadOneColumn("select name from patients where critical ='Yes';");
             for (int i = 0; i < criticalPatients.Count; i++)
             {
-                news.Children.Add(new Button
+                critical.Children.Add(new RadioButton
                 {
                     Name = criticalPatients[i].Split(' ')[0],
                     Content = criticalPatients[i]
                 });
+                
             }
+            if (criticalPatients.Count > 0)
+            {
+                appointCritical.Visibility = Visibility.Visible;
+                alert.Visibility = Visibility.Visible;
+            }
+            
 
         }
 
@@ -97,5 +104,49 @@ namespace Project_Sahlgrenska
             DiseaseList diseaseList = new DiseaseList();
             diseaseList.Show();
         }
+        private void appointCritical_Click(object sender, RoutedEventArgs e)
+        {
+
+            BookAppointment criticalAppointment = new BookAppointment ();
+            
+            criticalAppointment.bookingDoctor.Text = Hem.user;
+            
+            try
+            {
+                foreach (RadioButton item in critical.Children)
+                {
+                    try
+                    {
+                        if (item.IsChecked == true)
+                        {
+                            string patientId = Bot.ReadOneValue("select id from patients where name ='"+item.Content + "';");
+                            criticalAppointment.bookingPatient.Text = patientId;
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        continue;
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            criticalAppointment.availableRooms.SelectedItem = criticalAppointment.availableRooms.Items[0];
+            criticalAppointment.bookingReason.Text = "AKUT";
+            criticalAppointment.Show();
+
+
+
+
+
+
+        }
+
+       
     }
 }
