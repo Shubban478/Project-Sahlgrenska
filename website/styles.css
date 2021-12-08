@@ -35,6 +35,14 @@
     height: 50px;
 }
 
+.sql-info {
+    background-color: rgb(233, 202, 224);
+    width: 75%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
 #about-us {
     color: rgb(63, 4, 12);
     padding: 20px 20px;
@@ -87,7 +95,7 @@
 }
 
 #login-box {
-    background-color: rgb(228, 218, 231);
+    background-color: rgb(243, 236, 245);
     margin: 10% auto;
     max-width: 300px;
     min-height: 300px;
@@ -102,15 +110,17 @@
 }
 
 #logout-button {
-    text-align: right;
-    background-color: rgb(228, 218, 231);
-    padding: 2px;
-    border-radius: 3px;
-    float: right;
+    text-decoration: none;
+    color: rgb(199, 56, 75);
+    font-size: 32px;
+    padding: 10px;
+    min-width: 200px;
+    text-align: center;
+    flex: 1;
 }
 
 #sql-writer {
-    background-color: rgb(235, 213, 216);
+    background-color: rgb(233, 202, 224);
     margin: 5px;
     padding: 10px;
     border-radius: 10px;

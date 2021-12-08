@@ -20,12 +20,10 @@ if (!isset($_SESSION["username"])) {
 <body>
     <div class="header">
         <h1 id="title">Projekt-Sahlgrenska</h1>
-        <a id="logout-button" href="/scripts/logout.php">Logga ut</a>
         <nav class="flexbox" id="navbar">
             <a href="/index.html">Hem</a>
-            <a href="">Bokningar</a>
             <a href="/index.html#about-us">Om oss</a>
-            <a class="active" href="">Inloggad</a>
+            <a class="active" id="logout-button" href="/scripts/logout.php">Logga ut</a>
         </nav>
     </div>
     <main>

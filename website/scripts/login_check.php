@@ -6,8 +6,8 @@ if (isset($_POST)) {
     $password = $_POST["password"];
     
     $sql = "SELECT name, password FROM doctors WHERE name = '$username'";
-    #echo "$sql<br>";
     $result = $conn->query($sql);
+    //echo "$sql<br>";
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_array(MYSQLI_ASSOC);

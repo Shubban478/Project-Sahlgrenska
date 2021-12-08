@@ -1,6 +1,12 @@
 function getInput(php_file) {
-    let value = prompt("Skriv in patientens personnummer i format (ååååmmdd-xxxx): ");
-    query_search(php_file, value);
+    let id = prompt("Skriv in patientens personnummer i format (ååååmmdd-xxxx): ");
+
+    let re = /[0-9]{8}-[0-9]{4}/;
+    if (!re.test(id)) {
+        alert("Personnumret är inte giltigt!");
+        return;
+    }
+    query_search(php_file, id);
 }
 
 function query_search(php_file, value) {

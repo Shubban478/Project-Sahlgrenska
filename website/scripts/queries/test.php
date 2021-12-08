@@ -3,7 +3,7 @@ function sqlQuery() {
     include "../connection.php";
 
     // Query
-    $sql = "SELECT * FROM patients";
+    $sql = "SELECT * FROM doctors";
     $result = $conn->query($sql);
 
     echo "Running command: $sql<br>Output:<br>";
