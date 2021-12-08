@@ -29,7 +29,29 @@ namespace Project_Sahlgrenska
             Hem.conn.Close();
             return result;
         }
-
+        
+        public static List<string> ReadOneLine(string Command)
+        {
+            List<string> result = new List<string>();
+            string command = Command;
+            Hem.conn.Open();
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
+            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+            //while (rdr.Read())
+            for (int i = 0; rdr.Read(); i++)
+            {
+                //if (rdr.IsDBNull(i) == false)
+                //{
+                //    result.Add("hej");
+                    
+                //}
+                result.Add(rdr.GetString(i));
+            }
+            rdr.Close();
+            Hem.conn.Close();
+            return result;
+        }
+        
         public static List<string> ReadOneColumn(string Command)
         {
             List<string> result = new List<string>();
