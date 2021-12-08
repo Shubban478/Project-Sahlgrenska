@@ -5,22 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="Beställningar" Height="500" Width="800">
+        Title="Beställningar" Height="508" Width="823">
     <Grid x:Name="Beställningar">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Beställ" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="142" Margin="0,340,0,0" Click="Button_Click"/>
-        <CheckBox Content="Snus" HorizontalAlignment="Left" Margin="13,24,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Snus"/>
-        <CheckBox Content="Medicin 2" HorizontalAlignment="Left" Margin="13,54,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Medicin2"/>
-        <CheckBox Content="Medicin 3" HorizontalAlignment="Left" Margin="13,84,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Medicin3"/>
-        <CheckBox Content="Equipement" HorizontalAlignment="Left" Margin="113,24,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Equipment"/>
-        <CheckBox Content="Equipement 2" HorizontalAlignment="Left" Margin="113,54,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Equipment2"/>
-        <CheckBox Content="Equipement 3" HorizontalAlignment="Left" Margin="113,84,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Equipment3"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" Margin="0,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="193" Width="380" TextChanged="TextBox_TextChanged"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" Margin="0,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="199" Width="380"/>
-        <Label Grid.Column="1" Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
-        <Label Grid.Column="1" Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
+        <Button Content="Beställ" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="142" Margin="142,146,0,0" Click="Button_Click"/>
+        <CheckBox Content="Snus" HorizontalAlignment="Left" Margin="113,23,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Snus"/>
+        <CheckBox Content="Medicin 2" HorizontalAlignment="Left" Margin="113,53,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Medicin2"/>
+        <CheckBox Content="Medicin 3" HorizontalAlignment="Left" Margin="113,83,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Medicin3"/>
+        <CheckBox Content="Equipement" HorizontalAlignment="Left" Margin="213,23,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Equipment"/>
+        <CheckBox Content="Equipement 2" HorizontalAlignment="Left" Margin="213,53,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Equipment2"/>
+        <CheckBox Content="Equipement 3" HorizontalAlignment="Left" Margin="213,83,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Equipment3"/>
+        <TextBox HorizontalAlignment="Left" Margin="420,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="193" Width="380" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Margin="420,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="199" Width="380"/>
+        <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="420,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
+        <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="420,249,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
     </Grid>
 </Window>

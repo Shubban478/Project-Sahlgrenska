@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="Logga in" Height="600" Width="800">
+        Title="Logga in" Height="450" Width="800">
     <Grid>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="66,120,0,0" Text="Namn" VerticalAlignment="Top" Width="67" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Text="Lösenord" VerticalAlignment="Top" Width="77" />

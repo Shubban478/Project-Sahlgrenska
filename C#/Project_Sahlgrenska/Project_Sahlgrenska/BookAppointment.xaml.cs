@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Project_Sahlgrenska
 {
@@ -95,7 +88,7 @@ namespace Project_Sahlgrenska
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
-            int initAppointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0])+1;
+            int initAppointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
             int appointmentId = initAppointmentId;
             string patientId = bookingPatient.Text.Substring(0, 13);
             string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[0] + "%';");
@@ -176,5 +169,9 @@ namespace Project_Sahlgrenska
             PopulateBookingDoctor();
         }
 
+        private void bookingDoctor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

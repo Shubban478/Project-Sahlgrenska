@@ -18,7 +18,7 @@
             <Label Content="Patient"/>
             <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingPatient" GotFocus="bookingPatient_GotFocus"/>
             <Label Content="Doktor"/>
-            <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingDoctor" GotFocus="bookingDoctor_GotFocus"/>
+            <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingDoctor" GotFocus="bookingDoctor_GotFocus" SelectionChanged="bookingDoctor_SelectionChanged"/>
             <Label Content="Utrustning"/>
             <StackPanel x:Name="bookingEquipment" Orientation="Horizontal">
             </StackPanel>
