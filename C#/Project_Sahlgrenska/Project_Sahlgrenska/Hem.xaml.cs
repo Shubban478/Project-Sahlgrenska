@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,27 +38,11 @@ namespace Project_Sahlgrenska
         public static string user = "";
         List<string> criticalPatients = new List<string>();
 
+
         public Hem()
         {
             InitializeComponent();
             pageInfo.Text += " " + user;
-
-
-            criticalPatients = Bot.ReadOneColumn("select name from patients where critical ='Yes';");
-            for (int i = 0; i < criticalPatients.Count; i++)
-            {
-                critical.Children.Add(new RadioButton
-                {
-                    Name = criticalPatients[i].Split(' ')[0],
-                    Content = criticalPatients[i]
-                });
-                
-            }
-            if (criticalPatients.Count > 0)
-            {
-                appointCritical.Visibility = Visibility.Visible;
-                alert.Visibility = Visibility.Visible;
-            }
             
 
         }
@@ -106,7 +91,7 @@ namespace Project_Sahlgrenska
         }
         private void appointCritical_Click(object sender, RoutedEventArgs e)
         {
-            BookAppointment criticalAppointment = new BookAppointment ();
+            BookAppointment criticalAppointment = new BookAppointment();
             criticalAppointment.bookingDoctor.Text = Hem.user;
             try
             {
@@ -116,12 +101,12 @@ namespace Project_Sahlgrenska
                     {
                         if (item.IsChecked == true)
                         {
-                            string patientId = Bot.ReadOneValue("select id from patients where name ='"+item.Content + "';");
+                            string patientId = Bot.ReadOneValue("select id from patients where name ='" + item.Content + "';");
                             criticalAppointment.bookingPatient.Text = patientId;
                         }
                     }
                     catch (Exception)
-                    { continue;}
+                    { continue; }
 
                 }
             }
@@ -133,6 +118,51 @@ namespace Project_Sahlgrenska
             criticalAppointment.Show();
         }
 
-       
+        private void Window_GotFocus(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void PopulateCriticalPatients()
+        {
+            
+            criticalPatients = Bot.ReadOneColumn("select name from patients where critical ='Yes';");
+            for (int i = 0; i < criticalPatients.Count; i++)
+            {
+                
+                    critical.Children.Add(new RadioButton
+                    {
+                        Name = criticalPatients[i].Split(' ')[0],
+                        Content = criticalPatients[i]
+                    });
+                
+
+            }
+            if (criticalPatients.Count > 0)
+            {
+                appointCritical.Visibility = Visibility.Visible;
+                alert.Visibility = Visibility.Visible;
+            }
+            
+        }
+        private void ExtinctCriticalPatients()
+        {
+            critical.Children.Clear();
+        }
+
+        private void Window_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            PopulateCriticalPatients();
+        }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            ExtinctCriticalPatients();  
+        }
     }
 }
