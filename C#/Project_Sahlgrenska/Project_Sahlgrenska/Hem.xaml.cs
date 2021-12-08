@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -33,12 +35,16 @@ namespace Project_Sahlgrenska
             "port=3306;" +
             "password=CE2AriOp5v9YqliNasMM";
         public static MySqlConnection conn = new MySqlConnection(connStr);
-        public static string user="";
+        public static string user = "";
+        List<string> criticalPatients = new List<string>();
+
 
         public Hem()
         {
             InitializeComponent();
             pageInfo.Text += " " + user;
+            
+
         }
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)
@@ -66,7 +72,7 @@ namespace Project_Sahlgrenska
             bookAppointment.Show();
         }
 
-        private void bookingSchedule_Click(object sender, RoutedEventArgs e)    
+        private void bookingSchedule_Click(object sender, RoutedEventArgs e)
         {
             BookingSchedule bookingSchedule = new BookingSchedule();
             bookingSchedule.Show();
@@ -82,6 +88,81 @@ namespace Project_Sahlgrenska
         {
             DiseaseList diseaseList = new DiseaseList();
             diseaseList.Show();
+        }
+        private void appointCritical_Click(object sender, RoutedEventArgs e)
+        {
+            BookAppointment criticalAppointment = new BookAppointment();
+            criticalAppointment.bookingDoctor.Text = Hem.user;
+            try
+            {
+                foreach (RadioButton item in critical.Children)
+                {
+                    try
+                    {
+                        if (item.IsChecked == true)
+                        {
+                            string patientId = Bot.ReadOneValue("select id from patients where name ='" + item.Content + "';");
+                            criticalAppointment.bookingPatient.Text = patientId;
+                        }
+                    }
+                    catch (Exception)
+                    { continue; }
+
+                }
+            }
+            catch (Exception)
+            { }
+            criticalAppointment.availableRooms.SelectedItem = criticalAppointment.availableRooms.Items[0];
+            criticalAppointment.bookingReason.Text = "AKUT";
+            criticalAppointment.bookingTime.Text = DateTime.UtcNow.ToString().Split(' ')[1];
+            criticalAppointment.Show();
+        }
+
+        private void Window_GotFocus(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void PopulateCriticalPatients()
+        {
+            
+            criticalPatients = Bot.ReadOneColumn("select name from patients where critical ='Yes';");
+            for (int i = 0; i < criticalPatients.Count; i++)
+            {
+                
+                    critical.Children.Add(new RadioButton
+                    {
+                        Name = criticalPatients[i].Split(' ')[0],
+                        Content = criticalPatients[i]
+                    });
+                
+
+            }
+            if (criticalPatients.Count > 0)
+            {
+                appointCritical.Visibility = Visibility.Visible;
+                alert.Visibility = Visibility.Visible;
+            }
+            
+        }
+        private void ExtinctCriticalPatients()
+        {
+            critical.Children.Clear();
+        }
+
+        private void Window_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            PopulateCriticalPatients();
+        }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            ExtinctCriticalPatients();  
         }
     }
 }

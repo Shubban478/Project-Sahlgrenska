@@ -65,7 +65,7 @@ namespace Project_Sahlgrenska
             */
             if (true)
             {
-                Hem.user = "Testmode";
+                Hem.user = "Tom Johansson";
                 Hem hem = new Hem();
                 this.Close();
                 hem.Show();
