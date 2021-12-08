@@ -37,14 +37,13 @@ namespace Project_Sahlgrenska
             Hem.conn.Open();
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
             MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            //while (rdr.Read())
             for (int i = 0; rdr.Read(); i++)
             {
                 //if (rdr.IsDBNull(i) == false)
                 //{
                 //    result.Add("hej");
-                    
                 //}
+                
                 result.Add(rdr.GetString(i));
             }
             rdr.Close();
@@ -67,10 +66,5 @@ namespace Project_Sahlgrenska
             Hem.conn.Close();
             return result;
         }
-
-
-
     }
-
-
 }
