@@ -103,6 +103,7 @@ namespace Project_Sahlgrenska
             Bot.Update("insert into appointments_has_rooms values (" + appointmentId + ", " + roomId + ");");
             Bot.Update("insert into patients_has_appointments values('" + patientId + "', " + appointmentId + ");");
             Bot.Update("insert into doctors_has_appointments values(" + doctorId + ", " + appointmentId + ");");
+            Bot.Update("insert into patients_has_rooms values(" + patientId + ", " + roomId + ");");
 
             foreach (CheckBox item in bookingMeds.Children)
             {

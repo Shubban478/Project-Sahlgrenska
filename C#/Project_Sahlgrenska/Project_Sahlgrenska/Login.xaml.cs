@@ -66,10 +66,12 @@ namespace Project_Sahlgrenska
             if (true)
             {
                 Hem.user = "Tom Johansson";
+                Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
                 Hem hem = new Hem();
                 this.Close();
                 hem.Show();
             }
+            
             
         }
     }

@@ -32,13 +32,15 @@
         <StackPanel x:Name="news" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4">
             <TextBlock x:Name="pageInfo" Text="Välkommen"  FontSize="28"/>
             <TextBlock x:Name="alert" Text="Nödläge"  FontSize="18" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Center"/>
-            <StackPanel x:Name="critical">
+            <StackPanel x:Name="critical" GotFocus="critical_GotFocus">
                 
             
             
             </StackPanel>
             <StackPanel>
             <Button x:Name="appointCritical" Content="Boka kritiskt möte" Visibility="Hidden" Click="appointCritical_Click" VerticalContentAlignment="Bottom"></Button>
+                <Button x:Name="criticalFinished" Content="Markera som klar" Visibility="Hidden" Click="criticalFinished_Click" VerticalContentAlignment="Bottom"></Button>
+                
             </StackPanel>
 
         </StackPanel>

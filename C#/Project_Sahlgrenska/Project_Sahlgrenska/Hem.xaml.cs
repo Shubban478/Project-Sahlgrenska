@@ -36,7 +36,9 @@ namespace Project_Sahlgrenska
             "password=CE2AriOp5v9YqliNasMM";
         public static MySqlConnection conn = new MySqlConnection(connStr);
         public static string user = "";
+        public static int doctorId;
         List<string> criticalPatients = new List<string>();
+        
 
 
         public Hem()
@@ -97,12 +99,14 @@ namespace Project_Sahlgrenska
             {
                 foreach (RadioButton item in critical.Children)
                 {
+                    
                     try
                     {
                         if (item.IsChecked == true)
                         {
                             string patientId = Bot.ReadOneValue("select id from patients where name ='" + item.Content + "';");
                             criticalAppointment.bookingPatient.Text = patientId;
+                            
                         }
                     }
                     catch (Exception)
@@ -164,5 +168,34 @@ namespace Project_Sahlgrenska
         {
             ExtinctCriticalPatients();  
         }
+
+        private void criticalFinished_Click(object sender, RoutedEventArgs e)
+        {
+            string donePatientId = "";
+            foreach (RadioButton item in critical.Children)
+            {
+
+                try
+                {
+                    if (item.IsChecked == true)
+                    {
+                        donePatientId = Bot.ReadOneValue("select id from patients where name ='" + item.Content + "';");
+                        
+                    }
+                }
+                catch (Exception)
+                { continue; }
+
+            }
+            Bot.Update("update patients set critical = 'No' where id = '" + donePatientId + "';");
+            ExtinctCriticalPatients();
+            PopulateCriticalPatients();
+        }
+
+        private void critical_GotFocus(object sender, RoutedEventArgs e)
+        {
+            criticalFinished.Visibility = Visibility.Visible;
+        }
+        
     }
 }
