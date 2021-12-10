@@ -40,6 +40,10 @@ if (!isset($_SESSION["username"])) {
         <div id="temp"></div>
     </main>
     <footer>
+        <div id="about-us">
+            <h1><span>Projekt-Sahlgrenska</span> - ditt liv i våra händer</h1>
+            <p>Här kan du läsa om din vård och göra bokningar direkt från webbsidan.</p>
+        </div>
         <div class="bottom-strip">
             <p>End of site.</p>
         </div>

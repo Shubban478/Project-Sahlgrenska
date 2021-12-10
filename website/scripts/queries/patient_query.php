@@ -1,23 +1,23 @@
 <?php
 function sqlQuery() {
-    include "../connection.php";
+    include "../db_reader.php";
 
     // Query
     $sql = "SELECT * FROM patients";
-    $result = $conn->query($sql);
 
-    echo "Running command: $sql<br>Output:<br>";
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            foreach ($row as $r) {
-                echo "$r<br>";
-            }
-        }
-    } else {
-        echo "0 results";
+    $db = new db_reader();
+    $result = $db->fetch_array($sql);
+    // Output data in seperate divs
+    for ($i=0; $i < count($result); $i++) {
+        $row = $result[$i];
+        echo '<div class="sql-info">';
+        echo "<h3>".$row[1]."</h3>";
+        echo "Personnummer: ".$row[0]."<br>";
+        echo "Address: ".$row[2]."<br>";
+        echo "Kön: ".$row[3]."<br>";
+        echo "Inläggningsdatum: ".$row[4]."<br>";
+        echo "</div>";
     }
-    $conn->close();
 }
 sqlQuery();
 ?>

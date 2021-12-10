@@ -1,50 +1,27 @@
 <?php
-function sqlQuery() {
-    include "../connection.php";
+function patient_info() {
+    include "../db_reader.php";
 
-    $value = $_GET["key"];
-    echo "Value: $value<br>";
+    $key = $_GET["key"];
 
     // Query
-    $sql = "SELECT * FROM patients WHERE id = '$value'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM patients WHERE id = '$key'";
 
-    echo "Running command: $sql<br>Output:<br>";
-    if ($result->num_rows > 0) {
-        // output data based on info
-        $row = $result->fetch_array(MYSQLI_NUM);
-        echo "Id: $row[0]<br>";
-        echo "Namn: $row[1]<br>";
-        echo "Address: $row[2]<br>";
-        echo "Kön: $row[3]<br>";
-        echo "Inläggningsdatum: $row[4]<br>";
+    $db = new db_reader();
+    $result = $db->fetch_array($sql);
+    // output data based on info
+    $row = $result[0];
+    echo '<div class="sql-info">';
+    echo "<h3>Namn: $row[1]</h3>";
+    echo "Id: $row[0]<br>";
+    echo "Address: $row[2]<br>";
+    echo "Kön: $row[3]<br>";
+    echo "Inläggningsdatum: $row[4]<br>";
+    echo "</div>";
 
-        //visa bokningar
-        $sql = "SELECT p.id, name, time, reason FROM patients as p LEFT JOIN patients_has_appointments as pa 
-        ON p.id=pa.patients_id LEFT JOIN appointments as a ON pa.appointments_id=a.id WHERE p.id = '$value'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            // output data based on info
-            while ($row = $result->fetch_array(MYSQLI_NUM)) {
-                for ($i=0; $i < count($row); $i+=4) {
-                    echo '<div class="sql-info">';
-                    echo "Ärendet gäller: ".$row[($i+1)]."<br>";
-                    echo "Tid och datum: ".$row[($i+2)]."<br>";
-                    echo "Anledning till besöket: ".$row[($i+3)]."<br>";
-                    echo "</div>";
-                }
-                //foreach ($row as $r) {
-                //  echo "$r<br>";
-                //}
-            }
-        } else {
-            echo "Inga bokningar hittade.";
-        }
-    } else {
-        echo "0 results";
-    }
-    $conn->close();
+    // Get bookings
+    $value = $row[0];
+    include "bookings_query.php";
 }
-sqlQuery();
+patient_info();
 ?>
