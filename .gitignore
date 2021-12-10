@@ -5,3 +5,6 @@ DATABASE/Database Model.mwb.bak
 C#/Project_Sahlgrenska/.vs/Project_Sahlgrenska/v17/.suo
 *.v2
 .vs
+bin/
+obj/
+Debug/
