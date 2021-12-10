@@ -25,7 +25,8 @@ namespace Project_Sahlgrenska
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<string> list = new List<string>();
-            list = Bot.ReadOneLine("select * from bt0mlsay6vs1xbceqzzn.patients_all where ID LIKE '" + searchPatient.Text + "';");
+
+            list = Bot.ReadOneLine("select * from patients_all where ID LIKE '" + searchPatient.Text + "';");
 
             patientId.Text = list[0];
             if (list[0] != "INGEN PATIENT")
