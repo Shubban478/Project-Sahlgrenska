@@ -3,14 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        ResizeMode="NoResize"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="Beställningar" Height="625" Width="439">
-    <Grid x:Name="Beställningar" Margin="0,0,10,-6">
+        Title="Beställningar" Height="657" Width="439">
+    <Grid x:Name="Beställningar" Margin="0,0,10,10">
         <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
         <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
-        <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,422"/>
+        <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,410"/>
         <DataGrid x:Name="AvlEqu" AutoGenerateColumns="True" Margin="10,261,0,202"/>
-        <Button Content="Skicka beställning" HorizontalAlignment="Center" Margin="0,504,0,0" VerticalAlignment="Top" Width="129"/>
+        <Button Content="Beställ" HorizontalAlignment="Center" Margin="0,490,0,0" VerticalAlignment="Top" Width="82"/>
     </Grid>
 </Window>

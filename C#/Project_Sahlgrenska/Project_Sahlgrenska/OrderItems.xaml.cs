@@ -39,22 +39,7 @@ namespace Project_Sahlgrenska
             Hem.conn.Close();
         }
 
-        private void AvlMeds_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void AvlEqu_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click2(object sender, RoutedEventArgs e)
         {
 
         }
