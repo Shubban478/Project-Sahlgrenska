@@ -16,7 +16,7 @@
         <CheckBox Content="Equipement 3" HorizontalAlignment="Left" Margin="211,451,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_Equipment3"/>
         <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
         <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
-        <DataGrid x:Name="AvlMeds" Margin="10,41,0,422" SelectionChanged="DataGrid_SelectionChanged"/>
+        <DataGrid x:Name="AvlMeds" Margin="10,41,0,422"/>
         <DataGrid x:Name="AvlEqu" Margin="10,224,0,239"/>
     </Grid>
 </Window>
