@@ -30,14 +30,12 @@
             <TextBox x:Name="patientAdmitted" Height="20"/>
             <Label Content="Utskiven datum" />
             <TextBox x:Name="patientDischarged" Height="20"/>
-            <Label Content="Nästkommande möte" />
-            <TextBox x:Name="patientBooking" Height="20"/>
 
 
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10,0,10,0">
-            <Label Content="Anledning till inläggning"/>
-            <TextBox x:Name="patientReason" Height="170"/>
+            <Label Content="Diagnos"/>
+            <TextBox x:Name="patientDiagnosis" Height="170"/>
             <Label Content="Historik"/>
             <TextBox x:Name="patientHistory" Height="170"/>
             
