@@ -7,11 +7,10 @@
         mc:Ignorable="d"
         Title="Beställningar" Height="625" Width="439">
     <Grid x:Name="Beställningar" Margin="0,0,10,-6">
-        <Button Content="Ladda tillgänglig medicin" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="196" Margin="0,198,0,0" Click="Button_Click"/>
         <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
         <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
         <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,422"/>
         <DataGrid x:Name="AvlEqu" AutoGenerateColumns="True" Margin="10,261,0,202"/>
-        <Button Content="Ladda tillgänglig utrustning" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="198" Margin="0,418,0,0" Click="Button_Click2"/>
+        <Button Content="Skicka beställning" HorizontalAlignment="Center" Margin="0,504,0,0" VerticalAlignment="Top" Width="129"/>
     </Grid>
 </Window>
