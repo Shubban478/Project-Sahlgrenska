@@ -29,10 +29,10 @@ namespace Project_Sahlgrenska
         */
 
         public static string connStr =
-            "server=bjjyx4krtcspjgah0tay-mysql.services.clever-cloud.com;" +
+            "server=bt0mlsay6vs1xbceqzzn-mysql.services.clever-cloud.com;" +
             "user=ulhpxhgnf5tkywq2;" +
-            "database=bjjyx4krtcspjgah0tay;" +
-            "port=3306;" +
+            "database=bt0mlsay6vs1xbceqzzn;" +
+            "port=21191;" +
             "password=CE2AriOp5v9YqliNasMM";
         public static MySqlConnection conn = new MySqlConnection(connStr);
         public static string user = "";
