@@ -13,6 +13,20 @@ namespace Project_Sahlgrenska
         public OrderItems()
         {
             InitializeComponent();
+
+            Hem.conn.Open();
+
+            string query = "SELECT * FROM medication";
+            MySqlCommand cmd = new MySqlCommand(query, Hem.conn);
+            cmd.ExecuteNonQuery();
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable("medication");
+            adapter.Fill(dt);
+            AvlMeds.ItemsSource = dt.DefaultView;
+            adapter.Update(dt);
+
+            Hem.conn.Close();
         }
 
         private void AvlMeds_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -27,19 +41,7 @@ namespace Project_Sahlgrenska
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Hem.conn.Open();
 
-            string query = "SELECT * FROM medication";
-            MySqlCommand cmd = new MySqlCommand(query, Hem.conn);
-            cmd.ExecuteNonQuery();
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable("medication");
-            adapter.Fill(dt);
-            AvlMeds.ItemsSource = dt.DefaultView;
-            adapter.Update(dt);
-
-            Hem.conn.Close();
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)
