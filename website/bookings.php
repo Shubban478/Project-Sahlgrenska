@@ -15,13 +15,15 @@
         <nav class="flexbox" id="navbar">
             <a href="/index.html">Hem</a>
             <a class="active" href="">Bokningar</a>
-            <a href="/index.html/#about-us">Om oss</a>
+            <a href="/index.html#about-us">Om oss</a>
             <a href="/login.php">Till intranätet</a>
         </nav>
     </div>
     <main>
         <?php
         //ini_set('display_errors', 1); error_reporting(-1);
+        $value = $_GET["patientid"];
+        include "scripts/db_reader.php";
         include "scripts/queries/bookings_query.php";
         ?>
     </main>

@@ -1,34 +1,28 @@
 <?php
-function sqlQuery() {
-    include "scripts/connection.php";
-
-    $value = $_GET["patientid"];
-    echo "Value: $value<br>";
-
+function sqlQuery($patientid) {
+    // Inclusion of db_reader.php is necessary
+    
     // Query
     $sql = "SELECT p.id, name, time, reason FROM patients as p LEFT JOIN patients_has_appointments as pa 
-    ON p.id=pa.patients_id LEFT JOIN appointments as a ON pa.appointments_id=a.id WHERE p.id = '$value'";
-    $result = $conn->query($sql);
+    ON p.id=pa.patients_id LEFT JOIN appointments as a ON pa.appointments_id=a.id WHERE p.id = '$patientid'";
 
-    echo "Running command: $sql<br>Output:<br>";
-    if ($result->num_rows > 0) {
-        // output data based on info
-        while ($row = $result->fetch_array(MYSQLI_NUM)) {
-            for ($i=0; $i < count($row); $i+=4) {
-                echo '<div class="sql-info">';
-                echo "Ärendet gäller: ".$row[($i+1)]."<br>";
-                echo "Tid och datum: ".$row[($i+2)]."<br>";
-                echo "Anledning till besöket: ".$row[($i+3)]."<br>";
-                echo "</div>";
-            }
-            //foreach ($row as $r) {
-              //  echo "$r<br>";
-            //}
+    $db = new db_reader();
+    $result = $db->fetch_array($sql);
+    // Output data in seperate divs
+    echo "<h1>Bokningar för ".$result[0][1]."</h1>";
+
+    for ($i=0; $i < count($result); $i++) {
+        $row = $result[$i];
+        echo '<div class="sql-info">';
+        if (is_null($row[2])) {
+            echo "<h3>Inget ärende hittat för ".$row[1]."</h3></div>";
+        } else {
+            echo "<h3>Tid och datum: ".$row[2]."</h3>";
+            echo "Ärendet gäller: ".$row[1]."<br>";
+            echo "Anledning till besöket: ".$row[3]."<br>";
+            echo "</div>";
         }
-    } else {
-        echo "0 results";
     }
-    $conn->close();
 }
-sqlQuery();
+sqlQuery($value);
 ?>

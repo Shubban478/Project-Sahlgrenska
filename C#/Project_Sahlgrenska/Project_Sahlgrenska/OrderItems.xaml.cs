@@ -13,20 +13,7 @@ namespace Project_Sahlgrenska
         public OrderItems()
         {
             InitializeComponent();
-        }
 
-        private void AvlMeds_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void AvlEqu_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
             Hem.conn.Open();
 
             string query = "SELECT * FROM medication";
@@ -39,24 +26,22 @@ namespace Project_Sahlgrenska
             AvlMeds.ItemsSource = dt.DefaultView;
             adapter.Update(dt);
 
+            string query2 = "SELECT * FROM equipment";
+            MySqlCommand cmd2 = new MySqlCommand(query2, Hem.conn);
+            cmd2.ExecuteNonQuery();
+
+            MySqlDataAdapter adapter2 = new MySqlDataAdapter(cmd2);
+            DataTable dt2 = new DataTable("equipment");
+            adapter2.Fill(dt2);
+            AvlEqu.ItemsSource = dt2.DefaultView;
+            adapter2.Update(dt2);
+
             Hem.conn.Close();
         }
 
-        private void Button_Click2(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Hem.conn.Open();
 
-            string query = "SELECT * FROM equipment";
-            MySqlCommand cmd = new MySqlCommand(query, Hem.conn);
-            cmd.ExecuteNonQuery();
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable("equipment");
-            adapter.Fill(dt);
-            AvlEqu.ItemsSource = dt.DefaultView;
-            adapter.Update(dt);
-
-            Hem.conn.Close();
         }
     }
 }
