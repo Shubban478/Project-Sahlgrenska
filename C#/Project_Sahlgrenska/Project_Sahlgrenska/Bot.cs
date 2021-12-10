@@ -38,13 +38,19 @@ namespace Project_Sahlgrenska
             Hem.conn.Open();
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
             MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            rdr.Read();
-            for (int i = 0; i < rdr.FieldCount; i++)
-            {
-                result.Add(rdr[i].ToString());
+
+            if (rdr.Read() == true)
+            {            
+                for (int i = 0; i < rdr.FieldCount; i++)
+                {
+                    result.Add(rdr[i].ToString());
+                }
             }
-                
-            
+            else
+            {
+                result.Add("INGEN PATIENT");
+            }
+
             rdr.Close();
             Hem.conn.Close();
             return result;
