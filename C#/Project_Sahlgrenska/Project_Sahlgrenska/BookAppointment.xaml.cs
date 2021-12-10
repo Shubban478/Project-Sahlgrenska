@@ -103,7 +103,7 @@ namespace Project_Sahlgrenska
             Bot.Update("insert into appointments_has_rooms values (" + appointmentId + ", " + roomId + ");");
             Bot.Update("insert into patients_has_appointments values('" + patientId + "', " + appointmentId + ");");
             Bot.Update("insert into doctors_has_appointments values(" + doctorId + ", " + appointmentId + ");");
-            Bot.Update("insert into patients_has_rooms values(" + patientId + ", " + roomId + ");");
+            Bot.Update("insert into patients_has_rooms values('" + patientId + "', " + roomId + ");");
 
             foreach (CheckBox item in bookingMeds.Children)
             {
@@ -123,6 +123,11 @@ namespace Project_Sahlgrenska
                     }
 
                 }
+                else
+                {
+                    meds = "ingen medicin";
+                    Bot.Update("insert into appointments_has_medication values(" + appointmentId + ",'" + meds + "');");
+                }
             }
             foreach (CheckBox item in bookingEquipment.Children)
             {
@@ -140,6 +145,11 @@ namespace Project_Sahlgrenska
                         Bot.Update("insert into appointments_has_equipment values(" + appointmentId + ",'" + item.Name + "');");
                     }
 
+                }
+                else
+                {
+                    eq = "ingen utrustning";
+                    Bot.Update("insert into appointments_has_equipment values(" + appointmentId + ",'" + eq + "');");
                 }
             }
             pageInfo.Text = "Bokning gjord för: " + patientId +

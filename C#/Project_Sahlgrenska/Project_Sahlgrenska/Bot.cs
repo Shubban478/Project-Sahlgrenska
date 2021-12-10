@@ -1,7 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Project_Sahlgrenska
 {
@@ -9,67 +12,139 @@ namespace Project_Sahlgrenska
     {
         public static void Update(string Command)
         {
-            string command = Command;
-            Hem.conn.Open();
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
-            _ = cmd.ExecuteNonQuery();
-            Hem.conn.Close();
+            try
+            {
+                string command = Command;
+                Hem.conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
+                _ = cmd.ExecuteNonQuery();
+                Hem.conn.Close();
+            }
+            catch (Exception e)
+            {
+                Hem.conn.Close();
+                MessageBox.Show(e.Message);
+                
+            }
+            
+            
 
         }
         public static string ReadOneValue(string Command)
         {
-            string command = Command;
+            string result ="";
+            try
+            {
+                string command = Command;
+                Hem.conn.Open();
+                MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                rdr.Read();
+                result = rdr.GetString(0);
+                rdr.Close();
+                Hem.conn.Close();
+                
 
-            Hem.conn.Open();
-            MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            rdr.Read();
-            string result = rdr.GetString(0);
-            rdr.Close();
-            Hem.conn.Close();
+            }
+            catch (Exception e)
+            {
+                Hem.conn.Close();
+                MessageBox.Show(e.Message);
+                
+            }
             return result;
+
+
+
         }
 
         public static List<string> ReadOneLine(string Command)
         {
-            
             List<string> result = new List<string>();
-            string command = Command;
-            Hem.conn.Open();
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-
-            if (rdr.Read() == true)
-            {            
-                for (int i = 0; i < rdr.FieldCount; i++)
-                {
-                    result.Add(rdr[i].ToString());
-                }
-            }
-            else
+            try
             {
-                result.Add("INGEN PATIENT");
-            }
+                
+                string command = Command;
+                Hem.conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
+                MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
 
-            rdr.Close();
-            Hem.conn.Close();
+                if (rdr.Read() == true)
+                {
+                    for (int i = 0; i < rdr.FieldCount; i++)
+                    {
+                        result.Add(rdr[i].ToString());
+                    }
+                }
+                else
+                {
+                    result.Add("INGEN PATIENT");
+                }
+
+                rdr.Close();
+                Hem.conn.Close();
+                
+            }
+            
+            catch (Exception e)
+            {
+
+                Hem.conn.Close();
+                MessageBox.Show(e.Message);
+
+            }
             return result;
+
+
         }
 
         public static List<string> ReadOneColumn(string Command)
         {
             List<string> result = new List<string>();
-            string command = Command;
-            Hem.conn.Open();
-            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
-            MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
+            try
             {
-                result.Add(rdr.GetString(0));
+                string command = Command;
+                Hem.conn.Open();
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
+                MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    result.Add(rdr.GetString(0));
+                }
+                rdr.Close();
+                Hem.conn.Close();
             }
-            rdr.Close();
-            Hem.conn.Close();
+            catch (Exception e)
+            {
+                Hem.conn.Close();
+                MessageBox.Show(e.Message);
+
+            }
+
             return result;
+        }
+        public static DataGrid ReadAll(string Command, DataGrid Name)
+        {
+            try
+            {
+                string command = Command;
+                Hem.conn.Open();
+                MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
+                cmd.ExecuteNonQuery();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                Name.ItemsSource = dt.DefaultView;
+                adapter.Update(dt);
+                Hem.conn.Close();
+            }
+            catch (Exception e)
+            {
+                Hem.conn.Close();
+                MessageBox.Show(e.Message);
+            }
+            
+            return Name;
         }
     }
 }

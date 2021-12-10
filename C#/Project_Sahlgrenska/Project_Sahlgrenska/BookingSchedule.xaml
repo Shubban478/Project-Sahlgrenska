@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="BookingSchedule" Height="450" Width="800">
+        Title="BookingSchedule" Height="auto" Width="auto">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal">
         <Calendar x:Name="calendar" Grid.Column="0" SelectedDatesChanged="calendar_SelectedDatesChanged"/>
-        <StackPanel x:Name="appointments" Grid.Column="1"/>
+        <StackPanel Grid.Column="1">
+        <DataGrid x:Name="appointmentsTable"  AutoGenerateColumns="True"/>
+        </StackPanel>
+        </StackPanel>
+
+
     </Grid>
 </Window>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\lundg\OneDrive\Skola\Handelsakademin\Inlämningsuppgifter\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\obj\Debug\netcoreapp3.1\
 Project_Sahlgrenska
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\lundg\OneDrive\Skola\Handelsakademin\Inlämningsuppgifter\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\App.xaml
+C:\Users\tomjo\Documents\GitHub\Project-Sahlgrenska\C#\Project_Sahlgrenska\Project_Sahlgrenska\App.xaml
 9-1801237549
 
 14-1205082246
-201405943285
+2011344045453
 BookAppointment.xaml;BookingSchedule.xaml;DiseaseList.xaml;Hem.xaml;Login.xaml;MainWindow.xaml;NewPatient.xaml;OrderItems.xaml;SearchPatient.xaml;
 
-False
+True
 

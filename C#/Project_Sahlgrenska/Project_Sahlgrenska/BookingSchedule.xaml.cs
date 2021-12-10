@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,37 +23,37 @@ namespace Project_Sahlgrenska
         public BookingSchedule()
         {
             InitializeComponent();
+            
             calendar.SelectedDate = DateTime.UtcNow;
+
+
+
         }
 
         private void PopulateAppointments()
         {
 
-            
-            for (int i = 0; i < Bot.ReadOneColumn("select appointments_id from doctors_has_appointments where doctors_id =" + Hem.doctorId + ";").Count; i++)
-            {
-                appointmentsAvailable.Add(Bot.ReadOneColumn("select appointments_id from doctors_has_appointments where doctors_id =" + Hem.doctorId + ";")[i]);
-                //appointmentsAvailable[i] +=
-            }
-            for (int i = 0; i < appointmentsAvailable.Count; i++)
-            {
-                appointments.Children.Add(new CheckBox
-                {
-                    
-                    Content = appointmentsAvailable[i]
-                });
-            }
+            Bot.ReadAll("SELECT * FROM appointments_overview where doktor = " + Hem.doctorId + ";", appointmentsTable);
+            /*
+            Hem.conn.Open();
+            string query = "SELECT * FROM appointments_overview where doktor = "+Hem.doctorId+";";
+            MySqlCommand cmd = new MySqlCommand(query, Hem.conn);
+            cmd.ExecuteNonQuery();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable("appointments");
+            adapter.Fill(dt);
+            appointmentsTable.ItemsSource = dt.DefaultView;
+            adapter.Update(dt);
+            Hem.conn.Close();
+
+            */
 
         }
 
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            ExtinctAppointments();
             PopulateAppointments();
         }
-        private void ExtinctAppointments()
-        {
-            appointmentsAvailable.Clear();
-        }
+
     }
 }
