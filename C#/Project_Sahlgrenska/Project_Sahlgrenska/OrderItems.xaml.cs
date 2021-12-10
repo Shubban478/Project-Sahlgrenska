@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using MySql.Data.MySqlClient;
+using System.Data;
+using System.Windows;
 
 namespace Project_Sahlgrenska
 {
@@ -7,49 +9,54 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class OrderItems : Window
     {
+
         public OrderItems()
         {
             InitializeComponent();
         }
 
+        private void AvlMeds_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AvlEqu_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Hem.conn.Open();
 
+            string query = "SELECT * FROM medication";
+            MySqlCommand cmd = new MySqlCommand(query, Hem.conn);
+            cmd.ExecuteNonQuery();
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable("medication");
+            adapter.Fill(dt);
+            AvlMeds.ItemsSource = dt.DefaultView;
+            adapter.Update(dt);
+
+            Hem.conn.Close();
         }
 
-        private void CheckBox_Checked_Snus(object sender, RoutedEventArgs e)
+        private void Button_Click2(object sender, RoutedEventArgs e)
         {
+            Hem.conn.Open();
 
-        }
+            string query = "SELECT * FROM equipment";
+            MySqlCommand cmd = new MySqlCommand(query, Hem.conn);
+            cmd.ExecuteNonQuery();
 
-        private void CheckBox_Checked_Medicin2(object sender, RoutedEventArgs e)
-        {
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable("equipment");
+            adapter.Fill(dt);
+            AvlEqu.ItemsSource = dt.DefaultView;
+            adapter.Update(dt);
 
-        }
-
-        private void CheckBox_Checked_Medicin3(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked_Equipment(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked_Equipment2(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked_Equipment3(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
+            Hem.conn.Close();
         }
     }
 }
