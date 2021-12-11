@@ -13,7 +13,16 @@ namespace Project_Sahlgrenska
         public OrderItems()
         {
             InitializeComponent();
+            PopulateAvailableMedsEqu();
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PopulateAvailableMedsEqu()
+        {
             Hem.conn.Open();
 
             string query = "SELECT * FROM medication";
@@ -37,11 +46,6 @@ namespace Project_Sahlgrenska
             adapter2.Update(dt2);
 
             Hem.conn.Close();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
