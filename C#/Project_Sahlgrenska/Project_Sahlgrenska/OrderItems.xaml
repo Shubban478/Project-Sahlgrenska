@@ -6,12 +6,20 @@
         ResizeMode="NoResize"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="Beställningar" Height="657" Width="439">
+        Title="Beställningar" Height="657" Width="346">
     <Grid x:Name="Beställningar" Margin="0,0,10,10">
         <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
         <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
         <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,410"/>
         <DataGrid x:Name="AvlEqu" AutoGenerateColumns="True" Margin="10,261,0,202"/>
-        <Button Content="Beställ" HorizontalAlignment="Center" Margin="0,490,0,0" VerticalAlignment="Top" Width="82"/>
+        <Button Content="Beställ" HorizontalAlignment="Center" Margin="0,571,0,0" VerticalAlignment="Top" Width="82"/>
+        <CheckBox x:Name="Cigaretter" Content="Cigaretter" HorizontalAlignment="Left" Margin="10,434,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="Fluoxetin" Content="Fluoxetin" HorizontalAlignment="Left" Margin="10,454,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="Inderal" Content="Inderal" HorizontalAlignment="Left" Margin="10,474,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="Julmust" Content="Julmust" HorizontalAlignment="Left" Margin="10,494,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="Kokain" Content="Kokain" HorizontalAlignment="Left" Margin="10,514,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="Snus" Content="Snus" HorizontalAlignment="Left" Margin="10,534,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="Blodtrycksmaskin" Content="Blodtrycksmaskin" HorizontalAlignment="Left" Margin="201,434,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox x:Name="Ultraljudsmaskin" Content="Ultraljudsmaskin" HorizontalAlignment="Left" Margin="201,454,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
     </Grid>
 </Window>

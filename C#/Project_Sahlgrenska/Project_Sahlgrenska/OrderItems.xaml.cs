@@ -21,6 +21,11 @@ namespace Project_Sahlgrenska
 
         }
 
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void PopulateAvailableMedsEqu()
         {
             Hem.conn.Open();
