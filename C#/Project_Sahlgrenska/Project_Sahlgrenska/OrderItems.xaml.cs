@@ -16,16 +16,6 @@ namespace Project_Sahlgrenska
             PopulateAvailableMedsEqu();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void PopulateAvailableMedsEqu()
         {
             Hem.conn.Open();
@@ -51,6 +41,59 @@ namespace Project_Sahlgrenska
             adapter2.Update(dt2);
 
             Hem.conn.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (Cigaretter.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 10 where Name = 'Cigaretter';");
+            }
+
+            if (Fluoxetin.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Fluoxetin';");
+            }
+
+            if (Inderal.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Inderal';");
+            }
+
+            if (Julmust.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Julmust';");
+            }
+
+            if (Kokain.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Kokain';");
+            }
+
+            if (Snus.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Snus';");
+            }
+
+            if (Blodtrycksmaskin.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Blodtrycksmaskin';");
+            }
+
+            if (Ultraljudsmaskin.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Ultraljudsmaskin';");
+            }
+
+            if (Cigaretter.IsChecked == true || Fluoxetin.IsChecked == true || Inderal.IsChecked == true || Julmust.IsChecked == true || Kokain.IsChecked == true || Snus.IsChecked == true || Blodtrycksmaskin.IsChecked == true || Ultraljudsmaskin.IsChecked == true)
+            {
+                MessageBox.Show("Beställningen lyckades!");
+            }
+
+            else
+            {
+                MessageBox.Show("Dafuq, you did not order anything");
+            }
         }
     }
 }
