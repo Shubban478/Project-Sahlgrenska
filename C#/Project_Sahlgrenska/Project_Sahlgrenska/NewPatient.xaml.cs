@@ -91,7 +91,6 @@ namespace Project_Sahlgrenska
                     "Hela adressen.\n" +
                     "Kön anges i 'M' eller 'F.'\n" +
                     "Datum får ej lämnas blank.\n" +
-                    "Anledning får ej lämnas blank.\n" +
                     "------------\n" +
                     "Error:\n" +
                     ex.Message;
