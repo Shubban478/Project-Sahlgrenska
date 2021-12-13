@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Project_Sahlgrenska
@@ -22,8 +23,29 @@ namespace Project_Sahlgrenska
             {
                 diseaseList.Add(Bot.ReadOneColumn("select name from diagnosis;")[i]);
             }
-            diseases.ItemsSource = diseaseList;
+            sjukdom.ItemsSource = diseaseList;
 
+        }
+
+        private void sjukdom_DropDownClosed(object sender, System.EventArgs e)
+        {
+            Hem.conn.Open();
+
+            string Query = "select symtoms, treatment from diagnosis where name ='" + sjukdom.Text + "' ";
+
+            MySqlCommand cmd = new MySqlCommand(Query, Hem.conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string symtoms = dr.GetString(0);
+                string treatment = dr.GetString(1);
+
+                tsymtom.Text = symtoms;
+                tåtgärd.Text = treatment;
+            }
+
+            Hem.conn.Close();
         }
     }
 }

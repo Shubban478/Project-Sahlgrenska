@@ -108,6 +108,7 @@ namespace Project_Sahlgrenska
             if (Cigaretter.IsChecked == true || Fluoxetin.IsChecked == true || Inderal.IsChecked == true || Julmust.IsChecked == true || Kokain.IsChecked == true || Snus.IsChecked == true || Blodtrycksmaskin.IsChecked == true || Ultraljudsmaskin.IsChecked == true || EKG.IsChecked == true || Hjärtstartare.IsChecked == true || Bladderscan.IsChecked == true || Termometer.IsChecked == true)
             {
                 MessageBox.Show("Beställningen lyckades!");
+                PopulateAvailableMedsEqu();
             }
 
             else

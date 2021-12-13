@@ -8,11 +8,11 @@
         mc:Ignorable="d"
         Title="Sjukdomar" Height="476" Width="435">
     <Grid Margin="10,0,0,-6" HorizontalAlignment="Left" Width="425">
-        <TextBox x:Name="Symtom" HorizontalAlignment="Right" Margin="0,94,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" Height="131"/>
-        <TextBox x:Name="Åtgärd" HorizontalAlignment="Right" Margin="0,261,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" Height="154"/>
+        <TextBox x:Name="tsymtom" HorizontalAlignment="Right" Margin="0,94,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" Height="131" IsReadOnly="True"/>
+        <TextBox x:Name="tåtgärd" HorizontalAlignment="Right" Margin="0,261,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" Height="154" IsReadOnly="True"/>
         <Label Content="Symtom" HorizontalAlignment="Left" Margin="11,63,0,0" VerticalAlignment="Top"/>
         <Label Content="Åtgärd" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="diseases" HorizontalAlignment="Right" Margin="0,36,151,0" VerticalAlignment="Top" Width="264"/>
+        <ComboBox x:Name="sjukdom" HorizontalAlignment="Right" Margin="0,36,151,0" VerticalAlignment="Top" Width="264" DropDownClosed="sjukdom_DropDownClosed"/>
         <Label Content="Välj en sjukdom för att få mer information" Margin="0,10,184,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="231"/>
     </Grid>
 </Window>
