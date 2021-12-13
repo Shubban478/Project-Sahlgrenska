@@ -1,5 +1,5 @@
 <?php
-// ini_set('display_errors', 1); error_reporting(-1);
+ini_set('display_errors', 1); error_reporting(-1);
 
 class db_reader {
 
@@ -15,11 +15,12 @@ class db_reader {
         $this->conn = new mysqli($servername, $username, $password, $dbname, $port);
         // Check connection
         if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->$conn->connect_error);
+            die("Connection failed: " . $this->conn->connect_error);
         }
         // echo "Successfully connected to the database.<br>";
     }
 
+    // Possibly-obsolete method
     public function query($sql) {
         $result = $this->conn->query($sql);
         return $result;
