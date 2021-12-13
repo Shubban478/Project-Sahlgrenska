@@ -13,13 +13,13 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <Label Content="Personnummer"/>
-            <TextBox x:Name="patientId" Text="xxxxxxxx-xxxx" GotFocus="patientId_GotFocus" />
+            <TextBox x:Name="patientId" MaxLength="13" Text="ÅÅÅÅMMDD-XXXX" GotFocus="patientId_GotFocus" />
             <Label Content="Namn"/>
             <TextBox x:Name="patientName"/>
             <Label Content="Adress"/>
             <TextBox x:Name="patientAdress"/>
             <Label Content="Kön"/>
-            <TextBox x:Name="patientGender" Text="M/F" GotFocus="patientGender_GotFocus"/>
+            <TextBox x:Name="patientGender" MaxLength="1" Text="M/F" GotFocus="patientGender_GotFocus"/>
             <Label Content="Datum"/>
             <DatePicker x:Name="patientDate"/>
             <CheckBox x:Name="critical" Content="Kritiskt läge"/>

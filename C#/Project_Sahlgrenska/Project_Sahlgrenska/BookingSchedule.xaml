@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="BookingSchedule" Height="auto" Width="auto">
     <Grid>
-        <StackPanel Orientation="Horizontal">
-        <Calendar x:Name="calendar" Grid.Column="0" SelectedDatesChanged="calendar_SelectedDatesChanged"/>
-        <StackPanel Grid.Column="1">
-        <DataGrid x:Name="appointmentsTable"  AutoGenerateColumns="True"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Calendar x:Name="calendar" SelectedDatesChanged="calendar_SelectedDatesChanged"/>
+                <DataGrid x:Name="appointmentsTable"  AutoGenerateColumns="True"/>
+            </StackPanel>
+            <StackPanel>
+                <CheckBox x:Name="allDoctors" Content="Visa möten med alla doktorer"/>
+            </StackPanel>
         </StackPanel>
-        </StackPanel>
+
 
 
     </Grid>
