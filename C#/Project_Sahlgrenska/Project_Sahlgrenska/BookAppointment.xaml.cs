@@ -113,20 +113,14 @@ namespace Project_Sahlgrenska
                     int quantity = Int32.Parse(Bot.ReadOneValue("select quantity from medication where name ='" + item.Name + "';"));
                     if (quantity == 0)
                     {
-                        meds += item.Name + " är slut.";
+                        MessageBox.Show(item.Name + " är slut.");
                     }
                     else
                     {
                         Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
-                        meds += item.Name;
                         Bot.Update("insert into appointments_has_medication values(" + appointmentId + ",'" + item.Name + "');");
                     }
 
-                }
-                else
-                {
-                    meds = "ingen medicin";
-                    Bot.Update("insert into appointments_has_medication values(" + appointmentId + ",'" + meds + "');");
                 }
             }
             foreach (CheckBox item in bookingEquipment.Children)
@@ -136,33 +130,17 @@ namespace Project_Sahlgrenska
                     int quantity = Int32.Parse(Bot.ReadOneValue("select quantity from equipment where name ='" + item.Name + "';"));
                     if (quantity == 0)
                     {
-                        eq += item.Name + " är upptagen.";
+                        MessageBox.Show(item.Name +" är upptagen.");
                     }
                     else
                     {
                         Bot.Update("update equipment set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
-                        eq += item.Name;
                         Bot.Update("insert into appointments_has_equipment values(" + appointmentId + ",'" + item.Name + "');");
                     }
 
                 }
-                else
-                {
-                    eq = "ingen utrustning";
-                    Bot.Update("insert into appointments_has_equipment values(" + appointmentId + ",'" + eq + "');");
-                }
+
             }
-            pageInfo.Text = "Bokning gjord för: " + patientId +
-                "\n i rum " + roomId +
-                "\n med medicin: " + meds +
-                "\n med utrustning: " + eq +
-                "\n vid tillfälle: " + time + " med doktor " + doctorId +
-                "\n med anledning: " + reason;
-
-
-
-
-
         }
 
         private void bookingTime_GotFocus(object sender, RoutedEventArgs e)
