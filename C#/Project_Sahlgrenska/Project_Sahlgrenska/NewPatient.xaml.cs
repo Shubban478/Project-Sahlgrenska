@@ -54,7 +54,7 @@ namespace Project_Sahlgrenska
                             PatientDate = patientDate.Text;
 
 
-                            Bot.Update("INSERT INTO patients(ID,Name,Address,Gender,Admitted) VALUES('" + PatientId + "','" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate + "')");
+                            Bot.Update("INSERT INTO patients(ID,Name,Address,Gender,Admitted) VALUES('" + PatientId + "','" + PatientName + "','" + PatientAdress + "','" + PatientGender + "','" + PatientDate.Substring(0,10) + "')");
                             if (critical.IsChecked==true)
                             {
                                 Bot.Update("update patients set critical = 'Yes' where id = '" + PatientId + "';");

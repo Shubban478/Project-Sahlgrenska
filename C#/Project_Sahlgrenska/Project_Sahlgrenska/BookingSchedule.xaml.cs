@@ -23,7 +23,7 @@ namespace Project_Sahlgrenska
         public BookingSchedule()
         {
             InitializeComponent();
-            
+
             calendar.SelectedDate = DateTime.UtcNow;
 
 
@@ -32,21 +32,16 @@ namespace Project_Sahlgrenska
 
         private void PopulateAppointments()
         {
+            string tid = calendar.SelectedDate.ToString().Substring(0, 10);
+            if (allDoctors.IsChecked == true)
+            {
+                Bot.ReadAll("SELECT * FROM appointments_overview where tid like '" + tid + "%';", appointmentsTable);
+            }
+            else
+            {
+                Bot.ReadAll("SELECT * FROM appointments_overview where doktor = '" + Hem.doctorId + "' and tid like '" + tid + "%';", appointmentsTable);
+            }
 
-            Bot.ReadAll("SELECT * FROM appointments_overview where doktor = " + Hem.doctorId + ";", appointmentsTable);
-            /*
-            Hem.conn.Open();
-            string query = "SELECT * FROM appointments_overview where doktor = "+Hem.doctorId+";";
-            MySqlCommand cmd = new MySqlCommand(query, Hem.conn);
-            cmd.ExecuteNonQuery();
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable("appointments");
-            adapter.Fill(dt);
-            appointmentsTable.ItemsSource = dt.DefaultView;
-            adapter.Update(dt);
-            Hem.conn.Close();
-
-            */
 
         }
 
