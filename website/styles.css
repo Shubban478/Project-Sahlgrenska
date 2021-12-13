@@ -43,6 +43,7 @@
     padding: 20px;
     border-radius: 10px;
     font-size: 20px;
+    min-width: 400px;;
 }
 
 #about-us {

@@ -36,7 +36,12 @@ if (!isset($_SESSION["username"])) {
             <button onclick="query('patient_query.php')">Visa Patientlista</button>
             <button onclick="getInput('patient_info_query.php')">Sök patientinfo</button>
         </div>
-        <div id="sql-writer"></div>
+        <div id="sql-writer">
+            <?php
+            include "scripts/db_reader.php";
+            include "scripts/queries/critical_query.php";
+            ?>
+        </div>
         <div id="temp"></div>
     </main>
     <footer>

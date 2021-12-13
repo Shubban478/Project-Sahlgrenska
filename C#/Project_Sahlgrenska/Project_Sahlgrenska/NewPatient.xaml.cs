@@ -39,6 +39,10 @@ namespace Project_Sahlgrenska
 
             try
             {
+
+                Patient patient = new Patient(patientId.Text,patientName.Text, patientAdress.Text, patientGender.Text, patientDate.Text);
+
+                /*
                 if (patientId.Text != "xxxxxxxx-xxxx" || patientId.Text.Length != 13 || patientGender.Text.Length != 1)
                 {
                     if (patientName.Text != string.Empty &&
@@ -81,6 +85,7 @@ namespace Project_Sahlgrenska
                 {
                     throw new Exception();
                 }
+                */
             }
             catch (Exception ex)
             {
