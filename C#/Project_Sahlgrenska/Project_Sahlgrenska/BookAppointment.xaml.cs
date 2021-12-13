@@ -90,13 +90,13 @@ namespace Project_Sahlgrenska
         {
             int initAppointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
             int appointmentId = initAppointmentId;
-            string patientId = bookingPatient.Text.Substring(0, 13);
+            string patientId = bookingPatient.Text[..13];
             string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[0] + "%';");
             int doctorId = Int32.Parse(initDoctorId);
             string meds = "";
             string eq = "";
             string reason = bookingReason.Text.ToString();
-            string time = bookingDate.SelectedDate.ToString().Substring(0, 10) + " " + bookingTime.Text.ToString();
+            string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
             int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
 
             Bot.Update("insert into appointments values (" + initAppointmentId + ", '" + time + "', '" + reason + "');");

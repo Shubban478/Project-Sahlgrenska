@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 
 namespace Project_Sahlgrenska
@@ -9,17 +8,15 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class DiseaseList : Window
     {
-        List<string> diseaseList = new List<String>();
-
         public DiseaseList()
         {
             InitializeComponent();
             PopulateDiseaseList();
-
         }
 
         private void PopulateDiseaseList()
         {
+            List<string> diseaseList = new List<string>();
 
             for (int i = 0; i < Bot.ReadOneColumn("select name from diagnosis;").Count; i++)
             {
