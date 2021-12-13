@@ -19,25 +19,25 @@
             <Label />
             
             <Label Content="Personnummer" />
-            <TextBox x:Name="patientId" Height="20" />
+            <TextBox x:Name="patientId" Height="20" IsReadOnly="True"/>
             <Label Content="Kön" />
-            <TextBox x:Name="patientGender" Height="20" />
+            <TextBox x:Name="patientGender" Height="20" IsReadOnly="True"/>
             <Label Content="Fullständigt namn" />
-            <TextBox x:Name="patientName" Height="20" />
+            <TextBox x:Name="patientName" Height="20" IsReadOnly="True"/>
             <Label Content="Adress" />
-            <TextBox x:Name="patientAdress" Height="20"/>
+            <TextBox x:Name="patientAdress" Height="20" IsReadOnly="True"/>
             <Label Content="Inlagd datum" />
-            <TextBox x:Name="patientAdmitted" Height="20"/>
+            <TextBox x:Name="patientAdmitted" Height="20" IsReadOnly="True"/>
             <Label Content="Utskiven datum" />
-            <TextBox x:Name="patientDischarged" Height="20"/>
+            <TextBox x:Name="patientDischarged" Height="20" IsReadOnly="True"/>
 
 
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10,0,10,0">
             <Label Content="Diagnos"/>
-            <TextBox x:Name="patientDiagnosis" Height="170"/>
+            <TextBox x:Name="patientDiagnosis" Height="170" IsReadOnly="True"/>
             <Label Content="Historik"/>
-            <TextBox x:Name="patientHistory" Height="170"/>
+            <TextBox x:Name="patientHistory" Height="170" IsReadOnly="True"/>
             
         </StackPanel>
     </Grid>

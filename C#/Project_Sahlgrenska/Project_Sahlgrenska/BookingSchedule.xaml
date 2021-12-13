@@ -10,7 +10,7 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Calendar x:Name="calendar" SelectedDatesChanged="calendar_SelectedDatesChanged"/>
-                <DataGrid x:Name="appointmentsTable"  AutoGenerateColumns="True"/>
+                <DataGrid x:Name="appointmentsTable"  AutoGenerateColumns="True" IsReadOnly="True"/>
             </StackPanel>
             <StackPanel>
                 <CheckBox x:Name="allDoctors" Content="Visa möten med alla doktorer"/>
