@@ -85,7 +85,27 @@ namespace Project_Sahlgrenska
                 Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Ultraljudsmaskin';");
             }
 
-            if (Cigaretter.IsChecked == true || Fluoxetin.IsChecked == true || Inderal.IsChecked == true || Julmust.IsChecked == true || Kokain.IsChecked == true || Snus.IsChecked == true || Blodtrycksmaskin.IsChecked == true || Ultraljudsmaskin.IsChecked == true)
+            if (EKG.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'EKG';");
+            }
+
+            if (Hjärtstartare.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'Hjärtstartare';");
+            }
+
+            if (Bladderscan.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'Bladderscan';");
+            }
+
+            if (Termometer.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Termometer';");
+            }
+
+            if (Cigaretter.IsChecked == true || Fluoxetin.IsChecked == true || Inderal.IsChecked == true || Julmust.IsChecked == true || Kokain.IsChecked == true || Snus.IsChecked == true || Blodtrycksmaskin.IsChecked == true || Ultraljudsmaskin.IsChecked == true || EKG.IsChecked == true || Hjärtstartare.IsChecked == true || Bladderscan.IsChecked == true || Termometer.IsChecked == true)
             {
                 MessageBox.Show("Beställningen lyckades!");
             }

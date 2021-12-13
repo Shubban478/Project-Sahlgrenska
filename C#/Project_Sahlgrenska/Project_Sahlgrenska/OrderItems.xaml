@@ -9,9 +9,9 @@
         Title="Beställningar" Height="657" Width="346">
     <Grid x:Name="Beställningar" Margin="0,0,10,10">
         <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
-        <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
-        <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,410"/>
-        <DataGrid x:Name="AvlEqu" AutoGenerateColumns="True" Margin="10,261,0,202"/>
+        <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
+        <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,425"/>
+        <DataGrid x:Name="AvlEqu" AutoGenerateColumns="True" Margin="10,254,0,217"/>
         <Button Content="Beställ" HorizontalAlignment="Center" Margin="0,571,0,0" VerticalAlignment="Top" Width="82" Click="Button_Click_1"/>
         <CheckBox x:Name="Cigaretter" Content="Cigaretter" HorizontalAlignment="Left" Margin="10,434,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Fluoxetin" Content="Fluoxetin" HorizontalAlignment="Left" Margin="10,454,0,0" VerticalAlignment="Top"/>
@@ -21,5 +21,9 @@
         <CheckBox x:Name="Snus" Content="Snus" HorizontalAlignment="Left" Margin="10,534,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Blodtrycksmaskin" Content="Blodtrycksmaskin" HorizontalAlignment="Left" Margin="201,434,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Ultraljudsmaskin" Content="Ultraljudsmaskin" HorizontalAlignment="Left" Margin="201,454,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="EKG" Content="EKG" HorizontalAlignment="Left" Margin="201,474,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Hjärtstartare" Content="Hjärtstartare" HorizontalAlignment="Left" Margin="201,494,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Bladderscan" Content="Bladderscan" HorizontalAlignment="Left" Margin="201,514,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Termometer" Content="Termometer" HorizontalAlignment="Left" Margin="201,534,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

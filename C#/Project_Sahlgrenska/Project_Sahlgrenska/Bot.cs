@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,7 +15,7 @@ namespace Project_Sahlgrenska
             {
                 string command = Command;
                 Hem.conn.Open();
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
+                MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
                 _ = cmd.ExecuteNonQuery();
                 Hem.conn.Close();
             }
@@ -24,15 +23,15 @@ namespace Project_Sahlgrenska
             {
                 Hem.conn.Close();
                 MessageBox.Show(e.Message);
-                
+
             }
-            
-            
+
+
 
         }
         public static string ReadOneValue(string Command)
         {
-            string result ="";
+            string result = "";
             try
             {
                 string command = Command;
@@ -43,14 +42,14 @@ namespace Project_Sahlgrenska
                 result = rdr.GetString(0);
                 rdr.Close();
                 Hem.conn.Close();
-                
+
 
             }
             catch (Exception e)
             {
                 Hem.conn.Close();
                 MessageBox.Show(e.Message);
-                
+
             }
             return result;
 
@@ -63,11 +62,11 @@ namespace Project_Sahlgrenska
             List<string> result = new List<string>();
             try
             {
-                
+
                 string command = Command;
                 Hem.conn.Open();
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
-                MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
 
                 if (rdr.Read() == true)
                 {
@@ -83,9 +82,9 @@ namespace Project_Sahlgrenska
 
                 rdr.Close();
                 Hem.conn.Close();
-                
+
             }
-            
+
             catch (Exception e)
             {
 
@@ -105,8 +104,8 @@ namespace Project_Sahlgrenska
             {
                 string command = Command;
                 Hem.conn.Open();
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(command, Hem.conn);
-                MySql.Data.MySqlClient.MySqlDataReader rdr = cmd.ExecuteReader();
+                MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
                     result.Add(rdr.GetString(0));
@@ -143,7 +142,7 @@ namespace Project_Sahlgrenska
                 Hem.conn.Close();
                 MessageBox.Show(e.Message);
             }
-            
+
             return Name;
         }
     }
