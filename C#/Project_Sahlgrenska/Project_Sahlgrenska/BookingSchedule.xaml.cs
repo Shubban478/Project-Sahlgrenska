@@ -29,6 +29,14 @@ namespace Project_Sahlgrenska
 
 
         }
+        public BookingSchedule(string PatientId)
+        {
+            InitializeComponent();
+            calendar.Visibility = Visibility.Hidden;
+            allDoctors.Visibility = Visibility.Hidden;
+            string patientId = PatientId;
+            Bot.ReadAll("SELECT * FROM appointments_overview where Personnummer = '" + patientId + "';", appointmentsTable);
+        }
 
         private void PopulateAppointments()
         {

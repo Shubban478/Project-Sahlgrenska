@@ -29,6 +29,11 @@ namespace Project_Sahlgrenska
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            if (patientLogin.IsChecked == true)
+            {
+                BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
+                patientSchedule.Show();
+            }
             /*
             username = loginName.Text;
             password = loginPassword.Password;
@@ -63,7 +68,7 @@ namespace Project_Sahlgrenska
                 errormessage.Text = "Användare ej hittad";
             }
             */
-            if (true)
+            if (patientLogin.IsChecked == false)
             {
                 Hem.user = "Tom Johansson";
                 Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
@@ -73,6 +78,31 @@ namespace Project_Sahlgrenska
             }
             
             
+        }
+
+
+        private void patientLogin_Checked(object sender, RoutedEventArgs e)
+        {
+            nameLabel.Text = "ID";
+            loginName.Text = "ÅÅÅÅMMDD-XXXX";
+            button1.Content = "Visa möten";
+            passwordLabel.Visibility = Visibility.Hidden;
+            loginPassword.Visibility = Visibility.Hidden;
+        }
+
+        private void patientLogin_Unchecked(object sender, RoutedEventArgs e)
+        {
+            nameLabel.Text = "Namn";
+            loginName.Text = string.Empty;
+            passwordLabel.Visibility = Visibility.Visible;
+            loginPassword.Visibility = Visibility.Visible;
+            button1.Content = "Logga in";
+
+        }
+
+        private void loginName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            loginName.Text = string.Empty;
         }
     }
 }
