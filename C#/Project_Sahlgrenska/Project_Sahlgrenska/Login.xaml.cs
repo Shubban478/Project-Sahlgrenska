@@ -1,16 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Project_Sahlgrenska
 {
@@ -85,9 +75,9 @@ namespace Project_Sahlgrenska
                 errormessage.Text = "Användare ej hittad";
             }
             */
-            
-            
-            
+
+
+
         }
 
 
@@ -113,6 +103,18 @@ namespace Project_Sahlgrenska
         private void loginName_GotFocus(object sender, RoutedEventArgs e)
         {
             loginName.Text = string.Empty;
+        }
+
+        private void update_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                Hem.user = "Tom Johansson";
+                Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
+                Hem hem = new Hem();
+                this.Close();
+                hem.Show();
+            }
         }
     }
 }
