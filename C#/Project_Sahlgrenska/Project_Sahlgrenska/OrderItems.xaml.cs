@@ -113,7 +113,7 @@ namespace Project_Sahlgrenska
 
             else
             {
-                MessageBox.Show("Dafuq, you did not order anything");
+                MessageBox.Show("Ingen beställning gjord!");
             }
         }
     }
