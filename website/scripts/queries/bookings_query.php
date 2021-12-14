@@ -14,7 +14,7 @@ function sqlQuery($patientid) {
     for ($i=0; $i < count($result); $i++) {
         $row = $result[$i];
         echo '<div class="sql-info">';
-        if (is_null($row[2])) {
+        if ($row[2] == "" || is_null($row[2])) {
             echo "<h3>Inget ärende hittat för ".$row[1]."</h3></div>";
         } else {
             echo "<h3>Tid och datum: ".$row[2]."</h3>";

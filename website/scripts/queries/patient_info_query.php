@@ -5,7 +5,7 @@ function patient_info() {
     $key = $_GET["key"];
 
     // Query
-    $sql = "SELECT * FROM patients WHERE id = '$key'";
+    $sql = "SELECT * FROM patients_all WHERE id = '$key'";
 
     $db = new db_reader();
     $result = $db->fetch_array($sql);
@@ -16,7 +16,10 @@ function patient_info() {
     echo "Id: $row[0]<br>";
     echo "Address: $row[2]<br>";
     echo "Kön: $row[3]<br>";
-    echo "Inläggningsdatum: $row[4]<br>";
+    echo "Inläggningsdatum: $row[4]<br><br>";
+    echo "Diagnos: $row[8]<br>";
+    echo "Kommentar: $row[9]<br><br>";
+    echo "Journal: $row[6]";
     echo "</div>";
 
     // Get bookings

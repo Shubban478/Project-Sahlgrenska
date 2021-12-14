@@ -5,7 +5,7 @@ if (isset($_POST)) {
     $username = $_POST["username"];
     $password = $_POST["password"];
     
-    $sql = "SELECT name, password FROM doctors WHERE name = '$username'";
+    $sql = "SELECT name, password, id FROM doctors WHERE name = '$username'";
 
     $db = new db_reader();
     $result = $db->fetch_array($sql);
@@ -14,6 +14,7 @@ if (isset($_POST)) {
         echo "<p style='color:green;'>Succesfully logged in, waiting on redirect.</p>";
         session_start();
         $_SESSION["username"] = $username;
+        $_SESSION["id"] = $result[0][2];
         header("Location: /employee.php");
     } else {
         echo "Wrong password!";

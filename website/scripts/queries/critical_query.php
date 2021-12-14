@@ -5,6 +5,8 @@ function criticalQuery() {
 
     $db = new db_reader();
     $result = $db->fetch_array($sql);
+
+    echo "<h2>Varning! En eller fler patienter är i kritiskt tillstånd.</h2>";
     // Output data in seperate divs
     for ($i=0; $i < count($result); $i++) {
         $row = $result[$i];

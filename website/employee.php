@@ -35,6 +35,7 @@ if (!isset($_SESSION["username"])) {
         <div class="button-container">
             <button onclick="query('patient_query.php')">Visa Patientlista</button>
             <button onclick="getInput('patient_info_query.php')">Sök patientinfo</button>
+            <button onclick="query('doctor_bookings_query.php')">Visa dina bokningar</button>
         </div>
         <div id="sql-writer">
             <?php
