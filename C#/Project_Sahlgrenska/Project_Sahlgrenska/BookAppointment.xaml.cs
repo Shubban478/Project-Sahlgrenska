@@ -29,7 +29,7 @@ namespace Project_Sahlgrenska
             bookingDate.Text = DateTime.UtcNow.ToString();
 
         }
-        private void PopulateAvailableRooms()
+        public void PopulateAvailableRooms()
         {
             roomsAvailable = Bot.ReadOneColumn("select id from rooms where vaccant = 'yes'; ");
             availableRooms.ItemsSource = roomsAvailable;
@@ -101,6 +101,7 @@ namespace Project_Sahlgrenska
             int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
             Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
             EqAndMeds(appointmentId);
+            PopulateAvailableRooms();
         }
 
         private void bookingTime_GotFocus(object sender, RoutedEventArgs e)

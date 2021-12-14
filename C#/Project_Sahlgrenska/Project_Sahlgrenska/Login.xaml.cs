@@ -34,7 +34,7 @@ namespace Project_Sahlgrenska
             {
                 if (patientLogin.IsChecked == false)
                 {
-                    Hem.user = "Tom Johansson";
+                    Hem.user = "Dr. Derek Sheperd";
                     Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
                     Hem hem = new Hem();
                     this.Close();
