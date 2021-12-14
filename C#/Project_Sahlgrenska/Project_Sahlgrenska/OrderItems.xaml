@@ -6,6 +6,7 @@
         ResizeMode="NoResize"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
+        Name="FirstWindow" Icon="/img/Icon1.png"
         Title="Beställningar" Height="769" Width="346">
     <Grid x:Name="Beställningar" Margin="0,0,10,10">
         <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>

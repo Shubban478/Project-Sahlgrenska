@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
+        Name="FirstWindow" Icon="/img/Icon1.png"
         Title="Hem" Height="450" Width="800" GotFocus="Window_GotFocus" LostFocus="Window_LostFocus" Activated="Window_Activated" Deactivated="Window_Deactivated">
     <Grid>
         <Grid.ColumnDefinitions>
