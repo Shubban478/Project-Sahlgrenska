@@ -40,10 +40,12 @@
             <StackPanel>
             <Button x:Name="appointCritical" Content="Boka kritiskt möte" Visibility="Hidden" Click="appointCritical_Click" VerticalContentAlignment="Bottom"></Button>
                 <Button x:Name="criticalFinished" Content="Markera som klar" Visibility="Hidden" Click="criticalFinished_Click" VerticalContentAlignment="Bottom"></Button>
-                
+                <Button x:Name="updateInfo" Content="Visa mötesinfo" Visibility="Hidden" VerticalContentAlignment="Bottom" Click="updateInfo_Click"></Button>
+                <DataGrid x:Name="appointmentInfo"  AutoGenerateColumns="True" Visibility="Hidden" IsReadOnly="True"/>
             </StackPanel>
-
+            
         </StackPanel>
+        
         
         
     </Grid>

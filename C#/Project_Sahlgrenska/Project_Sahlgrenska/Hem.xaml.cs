@@ -117,7 +117,7 @@ namespace Project_Sahlgrenska
             catch (Exception)
             { }
             criticalAppointment.availableRooms.SelectedItem = criticalAppointment.availableRooms.Items[0];
-            criticalAppointment.bookingReason.Text = "AKUT";
+            criticalAppointment.bookingReason.Text = "AKUT: ";
             criticalAppointment.bookingTime.Text = DateTime.UtcNow.ToString().Split(' ')[1];
             criticalAppointment.Show();
         }
@@ -146,6 +146,7 @@ namespace Project_Sahlgrenska
             {
                 appointCritical.Visibility = Visibility.Visible;
                 alert.Visibility = Visibility.Visible;
+                
             }
             
         }
@@ -195,7 +196,29 @@ namespace Project_Sahlgrenska
         private void critical_GotFocus(object sender, RoutedEventArgs e)
         {
             criticalFinished.Visibility = Visibility.Visible;
+            updateInfo.Visibility = Visibility.Visible;
+            appointmentInfo.Visibility = Visibility.Visible;
         }
-        
+
+        private void updateInfo_Click(object sender, RoutedEventArgs e)
+        {
+            string patientId = "";
+            foreach (RadioButton item in critical.Children)
+            {
+
+                try
+                {
+                    if (item.IsChecked == true)
+                    {
+                        patientId = Bot.ReadOneValue("select id from patients where name ='" + item.Content + "';");
+
+                    }
+                }
+                catch (Exception)
+                { continue; }
+
+            }
+            Bot.ReadAll("select * from appointments_overview where personnummer ='" + patientId + "';",appointmentInfo);
+        }
     }
 }

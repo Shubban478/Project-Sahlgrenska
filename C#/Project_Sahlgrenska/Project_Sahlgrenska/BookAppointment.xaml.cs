@@ -17,13 +17,17 @@ namespace Project_Sahlgrenska
         List<string> medsAvailable = new List<string>();
 
 
+
         public BookAppointment()
         {
             InitializeComponent();
+            PopulateBookingPatient();
+            PopulateBookingDoctor();
             PopulateAvailableEquipment();
             PopulateAvailableMeds();
             PopulateAvailableRooms();
             bookingDate.Text = DateTime.UtcNow.ToString();
+
         }
         private void PopulateAvailableRooms()
         {
@@ -88,23 +92,24 @@ namespace Project_Sahlgrenska
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
-            int initAppointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
-            int appointmentId = initAppointmentId;
+            int appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
             string patientId = bookingPatient.Text[..13];
             string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[0] + "%';");
             int doctorId = Int32.Parse(initDoctorId);
-            string meds = "";
-            string eq = "";
             string reason = bookingReason.Text.ToString();
             string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
             int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
+            Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
+            EqAndMeds(appointmentId);
+        }
 
-            Bot.Update("insert into appointments values (" + initAppointmentId + ", '" + time + "', '" + reason + "');");
-            Bot.Update("insert into appointments_has_rooms values (" + appointmentId + ", " + roomId + ");");
-            Bot.Update("insert into patients_has_appointments values('" + patientId + "', " + appointmentId + ");");
-            Bot.Update("insert into doctors_has_appointments values(" + doctorId + ", " + appointmentId + ");");
-            Bot.Update("insert into patients_has_rooms values('" + patientId + "', " + roomId + ");");
+        private void bookingTime_GotFocus(object sender, RoutedEventArgs e)
+        {
+            bookingTime.Text = string.Empty;
+        }
 
+        private void EqAndMeds(int appointmentId)
+        {
             foreach (CheckBox item in bookingMeds.Children)
             {
 
@@ -130,7 +135,7 @@ namespace Project_Sahlgrenska
                     int quantity = Int32.Parse(Bot.ReadOneValue("select quantity from equipment where name ='" + item.Name + "';"));
                     if (quantity == 0)
                     {
-                        MessageBox.Show(item.Name +" är upptagen.");
+                        MessageBox.Show(item.Name + " är upptagen.");
                     }
                     else
                     {
@@ -141,26 +146,6 @@ namespace Project_Sahlgrenska
                 }
 
             }
-        }
-
-        private void bookingTime_GotFocus(object sender, RoutedEventArgs e)
-        {
-            bookingTime.Text = string.Empty;
-        }
-
-        private void bookingPatient_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PopulateBookingPatient();
-        }
-
-        private void bookingDoctor_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PopulateBookingDoctor();
-        }
-
-        private void bookingDoctor_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

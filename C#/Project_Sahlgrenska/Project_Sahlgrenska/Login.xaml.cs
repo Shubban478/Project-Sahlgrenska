@@ -34,6 +34,23 @@ namespace Project_Sahlgrenska
                 BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
                 patientSchedule.Show();
             }
+            if (loginName.Text == "admin")
+            {
+                Admin admin = new Admin();
+                this.Close();
+                admin.Show();
+            }
+            else
+            {
+                if (patientLogin.IsChecked == false)
+                {
+                    Hem.user = "Tom Johansson";
+                    Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
+                    Hem hem = new Hem();
+                    this.Close();
+                    hem.Show();
+                }
+            }
             /*
             username = loginName.Text;
             password = loginPassword.Password;
@@ -68,14 +85,7 @@ namespace Project_Sahlgrenska
                 errormessage.Text = "Användare ej hittad";
             }
             */
-            if (patientLogin.IsChecked == false)
-            {
-                Hem.user = "Tom Johansson";
-                Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
-                Hem hem = new Hem();
-                this.Close();
-                hem.Show();
-            }
+            
             
             
         }
