@@ -8,7 +8,11 @@
         Title="Admin" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <TextBox x:Name="input" KeyDown="input_KeyDown_2" />
+            <Label Content="Update"/>
+            <TextBox x:Name="update" KeyDown="update_KeyDown" />
+            <Label Content="Select"/>
+            <TextBox x:Name="select" KeyDown="select_KeyDown"/>
+            <Label Content="Output"/>
             <DataGrid x:Name="output" AutoGenerateColumns="True" IsReadOnly="True"/>
         </StackPanel>
     </Grid>

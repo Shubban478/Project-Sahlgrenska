@@ -22,12 +22,19 @@ namespace Project_Sahlgrenska
             InitializeComponent();
         }
 
-        private void input_KeyDown_2(object sender, KeyEventArgs e)
+        private void update_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                Bot.Update(input.Text);
-                Bot.ReadAll("select * from " + input.Text.Split(' ')[2] +";", output);
+                Bot.Update(update.Text);
+            }
+        }
+
+        private void select_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                Bot.ReadAll(select.Text,output);
             }
         }
     }
