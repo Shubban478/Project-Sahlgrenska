@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
         Name="FirstWindow" Icon="/img/Icon1.png"
-        Title="Sök symptom" Height="650" Width="800">
+        Title="Sök symptom" Height="600" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="10,0,10,0">
