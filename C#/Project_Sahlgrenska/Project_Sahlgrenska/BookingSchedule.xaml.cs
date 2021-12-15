@@ -40,8 +40,6 @@ namespace Project_Sahlgrenska
             {
                 Bot.ReadAll("SELECT * FROM appointments_overview where doktor = '" + Hem.doctorId + "' and tid like '" + tid + "%';", appointmentsTable);
             }
-
-
         }
 
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
