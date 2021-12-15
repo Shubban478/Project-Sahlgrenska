@@ -25,9 +25,9 @@
             <Label Content="Kön" />
             <TextBox x:Name="patientGender" Height="20" IsReadOnly="True"/>
             <Label Content="Fullständigt namn" />
-            <TextBox x:Name="patientName" Height="20" IsReadOnly="True"/>
+            <TextBox x:Name="patientName" Height="20"/>
             <Label Content="Adress" />
-            <TextBox x:Name="patientAdress" Height="20" IsReadOnly="True"/>
+            <TextBox x:Name="patientAdress" Height="20"/>
             <Label Content="Inlagd datum" />
             <TextBox x:Name="patientAdmitted" Height="20" IsReadOnly="True"/>
             <Label />
@@ -49,12 +49,13 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10,0,10,0">
             <Label/>
+            <Label/>
             <Button Content="Se patientens bokningar" Click="Button_Booking" Width="200" />
             <Label Content="Journal"/>
             <TextBox x:Name="patientHistory" Height="170" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
             <Label Content="Lägg till:"/>
             <TextBox x:Name="updateJournal" Height="40" TextWrapping="Wrap"/>
-            <Button Content="Uppdatera" Click="Button_UpdateJournal" Width="200" />
+            <Button Content="Uppdatera journal" Click="Button_UpdateJournal" Width="200" />
             <TextBlock  x:Name="journalAdded" Foreground="Crimson"/>
             <Label/>
             <Border BorderBrush="Black" BorderThickness="1" Height="1"/>

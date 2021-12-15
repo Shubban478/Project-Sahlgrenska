@@ -18,6 +18,8 @@ namespace Project_Sahlgrenska
     public partial class SearchPatient : Window
     {
         List<string> patientsAvailable = new List<String>();
+        string oldName;
+        string oldAdress;
         public SearchPatient()
         {
             InitializeComponent();
@@ -36,38 +38,7 @@ namespace Project_Sahlgrenska
 
         private void Button_ClickSearch(object sender, RoutedEventArgs e)
         {
-            List<string> list = new List<string>();
-
-            list = Bot.ReadOneLine("select * from patients_all where ID LIKE '" + searchPatient.Text[..13] + "';");
-
-            patientId.Text = list[0];
-            if (list[0] != "INGEN PATIENT")
-            {
-                patientName.Text = list[1];
-                patientAdress.Text = list[2];
-                patientGender.Text = list[3];
-                patientAdmitted.Text = list[4];
-                patientSymptoms.Text = list[9];
-                patientTretment.Text = list[10];
-                patientMedication.Text = list[15];
-                patientRoom.Text = list[11];
-                patientEquipment.Text = list[17];
-                patientHistory.Text = list[6];
-                //patientDiagnosis.Text = list[8] +   "\r\n" + "Kommentar:\r\n" + list[9] +
-                //                                    "\r\n" + "Symptom:\r\n" + list[10] + "\r\n" + "Behandling:\r\n" + list[11];
-            }
-            else
-            {
-                patientName.Text = "INGEN PATIENT";
-                patientAdress.Text = "INGEN PATIENT";
-                patientGender.Text = "INGEN PATIENT";
-                patientAdmitted.Text = "INGEN PATIENT";
-                patientMedication.Text = "INGEN PATIENT";
-                patientRoom.Text = "INGEN PATIENT";
-                patientEquipment.Text = "INGEN PATIENT";
-                patientHistory.Text = "INGEN PATIENT";
-            }
-
+            UpdateSearch();
         }
 
         private void patientHistory_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
@@ -79,39 +50,63 @@ namespace Project_Sahlgrenska
         {
             BookingSchedule patientSchedule = new BookingSchedule(searchPatient.Text[..13]);
             patientSchedule.Show();
-
         }
 
         private void Button_UpdatePatient(object sender, RoutedEventArgs e)
         {
+            if (oldName != patientName.Text || oldAdress != patientAdress.Text)
+            {
+                if (oldName != patientName.Text)
+                {
+                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldName + " ++ " + patientName.Text + "', COALESCE(CONCAT(CHAR(10), History), '')), Name = '" + patientName.Text + "' WHERE ID = '" + patientId.Text + "';");
+                }
 
+                if (oldAdress != patientAdress.Text)
+                {
+                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldAdress + " ++ " + patientAdress.Text + "', COALESCE(CONCAT(CHAR(10), History), '')), Address = '" + patientAdress.Text + "' WHERE ID = '" + patientId.Text + "';");
+                }
+                
+            }
+            UpdateSearch();
         }
-
         private void Button_UpdateJournal(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Journal patient = new Journal(patientId.Text);
-            }
-            catch (Exception ex)
-            {
-
-                journalAdded.Text = "\nDu måste skriva in något:\n" +
-                    "------------\n" +
-                    "Error:\n" +
-                    ex.Message;
-                Hem.conn.Close();
-
-            }
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + updateJournal.Text + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");            
+            UpdateSearch();
         }
-        class Journal
+        private void UpdateSearch()
         {
-            string patientId;
+            List<string> list = new List<string>();
 
-            public Journal(string journalInput)
+            list = Bot.ReadOneLine("select * from patients_all where ID LIKE '" + searchPatient.Text[..13] + "';");
+
+            patientId.Text = list[0];
+            if (list[0] != "INGEN PATIENT")
             {
-                Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + journalInput + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
-                MessageBox.Show(journalInput + "\n added to database.");
+                oldName = Convert.ToString(list[1]);
+                oldAdress = Convert.ToString(list[2]);
+
+                patientName.Text = list[1];
+                patientAdress.Text = list[2];
+                patientGender.Text = list[3];
+                patientAdmitted.Text = list[4];
+                patientSymptoms.Text = list[9];
+                patientTretment.Text = list[10];
+                patientMedication.Text = list[15];
+                patientRoom.Text = list[11];
+                patientEquipment.Text = list[17];
+                patientHistory.Text = list[6];
+            }
+            else
+            {
+                patientName.Text = "INGEN PATIENT";
+                patientAdress.Text = "INGEN PATIENT";
+                patientGender.Text = "INGEN PATIENT";
+                patientAdmitted.Text = "INGEN PATIENT";
+                patientMedication.Text = "INGEN PATIENT";
+                patientRoom.Text = "INGEN PATIENT";
+                patientEquipment.Text = "INGEN PATIENT";
+                patientHistory.Text = "INGEN PATIENT";
             }
         }
     }
