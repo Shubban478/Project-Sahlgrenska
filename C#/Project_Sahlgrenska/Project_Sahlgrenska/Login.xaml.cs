@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,7 +20,38 @@ namespace Project_Sahlgrenska
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            ActuallyLogin();
+            username = loginName.Text;
+            password = loginPassword.Password;
+
+            Hem.conn.Open();
+            string sql = "select password from doctors where name = '" + username + "';";
+            MySqlCommand cmd = new MySqlCommand(sql, Hem.conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            rdr.Read();
+            try
+            {
+                auth = rdr[0].ToString();
+
+            }
+            catch (Exception)
+            {
+
+                errormessage.Text = "Användare ej hittad";
+            }
+            rdr.Close();
+            Hem.conn.Close();
+
+            if (password == auth && password != string.Empty)
+            {
+                Hem.user = username;
+                Hem hem = new Hem();
+                this.Close();
+                ActuallyLogin();
+            }
+            else
+            {
+                errormessage.Text = "Användare ej hittad";
+            }
         }
 
         private void ActuallyLogin()
@@ -39,50 +71,12 @@ namespace Project_Sahlgrenska
             {
                 if (patientLogin.IsChecked == false)
                 {
-                    Hem.user = "Dr. Callie Torres";
                     Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
                     Hem hem = new Hem();
                     this.Close();
                     hem.Show();
                 }
             }
-            /*
-            username = loginName.Text;
-            password = loginPassword.Password;
-
-            Hem.conn.Open();
-            string sql = "select password from doctors where name = '" + username + "';";
-            MySqlCommand cmd = new MySqlCommand(sql, Hem.conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            rdr.Read();
-            try
-            {
-                auth = rdr[0].ToString();
-             
-            }
-            catch (Exception)
-            {
-                
-                errormessage.Text = "Användare ej hittad";
-            }
-            rdr.Close();
-            Hem.conn.Close();
-            
-            if (password == auth && password != string.Empty)
-            {
-                Hem.user = username;
-                Hem hem = new Hem();
-                this.Close();
-                hem.Show();
-            }
-            else
-            {
-                errormessage.Text = "Användare ej hittad";
-            }
-            */
-
-
-
         }
 
         private void PatientLogin_Checked(object sender, RoutedEventArgs e)
