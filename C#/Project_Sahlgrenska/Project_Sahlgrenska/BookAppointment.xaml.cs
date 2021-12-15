@@ -19,7 +19,6 @@ namespace Project_Sahlgrenska
         {
             InitializeComponent();
             PopulateBookingPatient();
-            PopulateBookingDoctor();
             PopulateAvailableEquipment();
             PopulateAvailableMeds();
             PopulateAvailableRooms();
@@ -40,17 +39,6 @@ namespace Project_Sahlgrenska
                 patientsAvailable[i] += " " + Bot.ReadOneColumn("select name from patients;")[i];
             }
             bookingPatient.ItemsSource = patientsAvailable;
-        }
-        private void PopulateBookingDoctor()
-        {
-
-            for (int i = 0; i < Bot.ReadOneColumn("select name from doctors;").Count; i++)
-            {
-                doctorsAvailable.Add(Bot.ReadOneColumn("select name from doctors;")[i]);
-                doctorsAvailable[i] += " " + Bot.ReadOneColumn("select speciality from doctors;")[i];
-            }
-            bookingDoctor.ItemsSource = doctorsAvailable;
-
         }
         private void PopulateAvailableEquipment()
         {
@@ -93,7 +81,7 @@ namespace Project_Sahlgrenska
             {
                 int appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
                 string patientId = bookingPatient.Text[..13];
-                string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[1] + "%';");
+                string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + Hem.user + "%';");
                 int doctorId = Int32.Parse(initDoctorId);
                 string reason = bookingReason.Text.ToString();
                 string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
@@ -135,7 +123,7 @@ namespace Project_Sahlgrenska
 
         }
 
-        private void bookingTime_GotFocus(object sender, RoutedEventArgs e)
+        private void BookingTime_GotFocus(object sender, RoutedEventArgs e)
         {
             bookingTime.Text = string.Empty;
         }
