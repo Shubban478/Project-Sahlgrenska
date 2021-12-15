@@ -92,16 +92,24 @@ namespace Project_Sahlgrenska
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
-            int appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
-            string patientId = bookingPatient.Text[..13];
-            string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[0] + "%';");
-            int doctorId = Int32.Parse(initDoctorId);
-            string reason = bookingReason.Text.ToString();
-            string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
-            int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
-            Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
-            EqAndMeds(appointmentId);
-            PopulateAvailableRooms();
+            try
+            {
+                int appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
+                string patientId = bookingPatient.Text[..13];
+                string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[0] + "%';");
+                int doctorId = Int32.Parse(initDoctorId);
+                string reason = bookingReason.Text.ToString();
+                string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
+                int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
+                Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
+                EqAndMeds(appointmentId);
+                PopulateAvailableRooms();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+            }
+            
         }
 
         private void bookingTime_GotFocus(object sender, RoutedEventArgs e)
