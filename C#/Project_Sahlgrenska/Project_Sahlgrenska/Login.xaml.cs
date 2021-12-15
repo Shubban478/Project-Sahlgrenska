@@ -17,12 +17,12 @@ namespace Project_Sahlgrenska
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            actuallyLogin();
+            ActuallyLogin();
         }
 
-        private void actuallyLogin()
+        private void ActuallyLogin()
         {
             if (patientLogin.IsChecked == true)
             {
@@ -39,7 +39,7 @@ namespace Project_Sahlgrenska
             {
                 if (patientLogin.IsChecked == false)
                 {
-                    Hem.user = "Dr. Derek Sheperd";
+                    Hem.user = "Dr. Callie Torres";
                     Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
                     Hem hem = new Hem();
                     this.Close();
@@ -85,7 +85,7 @@ namespace Project_Sahlgrenska
 
         }
 
-        private void patientLogin_Checked(object sender, RoutedEventArgs e)
+        private void PatientLogin_Checked(object sender, RoutedEventArgs e)
         {
             nameLabel.Text = "ID";
             loginName.Text = "ÅÅÅÅMMDD-XXXX";
@@ -94,7 +94,7 @@ namespace Project_Sahlgrenska
             loginPassword.Visibility = Visibility.Hidden;
         }
 
-        private void patientLogin_Unchecked(object sender, RoutedEventArgs e)
+        private void PatientLogin_Unchecked(object sender, RoutedEventArgs e)
         {
             nameLabel.Text = "Namn";
             loginName.Text = string.Empty;
@@ -104,16 +104,16 @@ namespace Project_Sahlgrenska
 
         }
 
-        private void loginName_GotFocus(object sender, RoutedEventArgs e)
+        private void LoginName_GotFocus(object sender, RoutedEventArgs e)
         {
             loginName.Text = string.Empty;
         }
 
-        private void update_KeyDown(object sender, KeyEventArgs e)
+        private void Update_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                actuallyLogin();
+                ActuallyLogin();
             }
         }
     }

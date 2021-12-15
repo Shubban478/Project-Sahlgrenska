@@ -18,8 +18,6 @@
         <StackPanel Grid.ColumnSpan="2" Grid.Column="0">
             <Label Content="Patient"/>
             <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingPatient"/>
-            <Label Content="Doktor"/>
-            <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="bookingDoctor"/>
             <Label Content="Utrustning"/>
             <StackPanel x:Name="bookingEquipment" Orientation="Horizontal">
             </StackPanel>
@@ -31,7 +29,7 @@
             <Label Content="Anledning"/>
             <TextBox x:Name="bookingReason"/>
             <Label Content="Tid"/>
-            <TextBox x:Name="bookingTime" Text="13:37:00" GotFocus="bookingTime_GotFocus"/>
+            <TextBox x:Name="bookingTime" Text="13:37:00" GotFocus="BookingTime_GotFocus"/>
             <Label Content="Rum"/>
             <ComboBox x:Name="availableRooms" Text="Välj Rum">
             </ComboBox>
