@@ -50,12 +50,12 @@ namespace Project_Sahlgrenska
             {
                 if (oldName != patientName.Text)
                 {
-                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldName + " ++ " + patientName.Text + "', COALESCE(CONCAT(CHAR(10), History), '')), Name = '" + patientName.Text + "' WHERE ID = '" + patientId.Text + "';");
+                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldName + " ++ " + patientName.Text + " \n\', COALESCE(CONCAT(CHAR(10), History), '')), Name = '" + patientName.Text + "' WHERE ID = '" + patientId.Text + "';");
                 }
 
                 if (oldAdress != patientAdress.Text)
                 {
-                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldAdress + " ++ " + patientAdress.Text + "', COALESCE(CONCAT(CHAR(10), History), '')), Address = '" + patientAdress.Text + "' WHERE ID = '" + patientId.Text + "';");
+                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldAdress + " ++ " + patientAdress.Text + " \n\', COALESCE(CONCAT(CHAR(10), History), '')), Address = '" + patientAdress.Text + "' WHERE ID = '" + patientId.Text + "';");
                 }
                 
             }
@@ -63,7 +63,7 @@ namespace Project_Sahlgrenska
         }
         private void Button_UpdateJournal(object sender, RoutedEventArgs e)
         {
-            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + updateJournal.Text + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");            
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ " + updateJournal.Text + " \n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");            
             UpdateSearch();
         }
         private void UpdateSearch()
@@ -104,8 +104,13 @@ namespace Project_Sahlgrenska
 
         private void Button_SentHome(object sender, RoutedEventArgs e)
         {
-            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven \n\', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
             UpdateSearch();
+        }
+
+        private void updateJournal_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -55,7 +55,8 @@
             <Label Content="Journal"/>
             <TextBox x:Name="patientHistory" Height="170" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
             <Label Content="Lägg till:"/>
-            <TextBox x:Name="updateJournal" Height="40" TextWrapping="Wrap"/>
+            <TextBox x:Name="updateJournal" Height="40" TextWrapping="Wrap" TextChanged="updateJournal_TextChanged"/>
+            <Label/>
             <Button Content="Uppdatera journal" Click="Button_UpdateJournal" Width="200" />
             <TextBlock  x:Name="journalAdded" Foreground="Crimson"/>
             <Label/>
