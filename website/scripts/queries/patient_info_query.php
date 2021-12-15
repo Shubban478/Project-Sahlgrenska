@@ -9,6 +9,14 @@ function patient_info() {
 
     $db = new db_reader();
     $result = $db->fetch_array($sql);
+
+    // Check to see if no results have been returned
+    if (is_string($result)) {
+        if (!strcmp($result, "0 Results")) {
+            echo "Error, no results found!";
+            exit;
+        }
+    }
     // output data based on info
     $row = $result[0];
     echo '<div class="sql-info">';
