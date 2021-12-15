@@ -57,13 +57,13 @@ namespace Project_Sahlgrenska
                 {
                     Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldAdress + " ++ " + patientAdress.Text + "', COALESCE(CONCAT(CHAR(10), History), '')), Address = '" + patientAdress.Text + "' WHERE ID = '" + patientId.Text + "';");
                 }
-                
+
             }
             UpdateSearch();
         }
         private void Button_UpdateJournal(object sender, RoutedEventArgs e)
         {
-            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + updateJournal.Text + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");            
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + updateJournal.Text + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");
             UpdateSearch();
         }
         private void UpdateSearch()
@@ -105,6 +105,8 @@ namespace Project_Sahlgrenska
         private void Button_SentHome(object sender, RoutedEventArgs e)
         {
             Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
+            Bot.Update("SET SQL_SAFE_UPDATES = 0; UPDATE bt0mlsay6vs1xbceqzzn.rooms SET beds = '1' WHERE ID LIKE '" + patientRoom.Text + "'; SET SQL_SAFE_UPDATES = 1;");
+            Bot.Update("call update_vaccant_yes()");
             UpdateSearch();
         }
     }
