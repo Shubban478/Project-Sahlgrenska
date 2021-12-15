@@ -37,7 +37,6 @@ namespace Project_Sahlgrenska
         {
 
         }
-
         private void Button_Booking(object sender, RoutedEventArgs e)
         {
             BookingSchedule patientSchedule = new BookingSchedule(searchPatient.Text[..13]);
@@ -52,7 +51,6 @@ namespace Project_Sahlgrenska
                 {
                     Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldName + " ++ " + patientName.Text + " \n\', COALESCE(CONCAT(CHAR(10), History), '')), Name = '" + patientName.Text + "' WHERE ID = '" + patientId.Text + "';");
                 }
-
                 if (oldAdress != patientAdress.Text)
                 {
                     Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldAdress + " ++ " + patientAdress.Text + " \n\', COALESCE(CONCAT(CHAR(10), History), '')), Address = '" + patientAdress.Text + "' WHERE ID = '" + patientId.Text + "';");

@@ -28,7 +28,7 @@ namespace Project_Sahlgrenska
                 diseaseList.Add(symptomResult[i]);
             }
             comboDiseases.ItemsSource = diseaseList;
-            //comboDiseases.SelectedIndex = 0;
+            comboDiseases.SelectedIndex = 0;
             
             diseaseTreatment.Text = Bot.ReadOneValue("SELECT Treatment FROM bt0mlsay6vs1xbceqzzn.diagnosis WHERE Name = '" + diseaseList[0] + "';");
 

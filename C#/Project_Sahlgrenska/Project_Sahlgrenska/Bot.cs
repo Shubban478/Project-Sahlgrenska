@@ -93,17 +93,12 @@ namespace Project_Sahlgrenska
                 Hem.conn.Open();
                 MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
-                if (rdr.Read() == true)
+
+                while (rdr.Read())
                 {
-//                    while (rdr.Read())
-//                    {
                     result.Add(rdr.GetString(0));
-//                    }
                 }
-                else 
-                {
-                    result.Add("INGET SYMPTOM ANGIVET");
-                }
+
                 rdr.Close();
                 Hem.conn.Close();
             }
