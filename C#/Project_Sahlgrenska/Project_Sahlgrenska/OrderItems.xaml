@@ -6,24 +6,33 @@
         ResizeMode="NoResize"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="Beställningar" Height="657" Width="346">
+        Name="FirstWindow" Icon="/img/Icon1.png"
+        Title="Beställningar" Height="769" Width="346">
     <Grid x:Name="Beställningar" Margin="0,0,10,10">
         <Label Content="Tillgänglig medicin" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
         <Label Content="Tillgänglig utrustning" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.396"/>
-        <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,425" IsReadOnly="True"/>
-        <DataGrid x:Name="AvlEqu" AutoGenerateColumns="True" Margin="5,254,5,0" IsReadOnly="True" Height="142" VerticalAlignment="Top"/>
-        <Button Content="Beställ" HorizontalAlignment="Center" Margin="0,571,0,0" VerticalAlignment="Top" Width="82" Click="Button_Click_1"/>
-        <CheckBox x:Name="Cigaretter" Content="Cigaretter" HorizontalAlignment="Left" Margin="10,434,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Fluoxetin" Content="Fluoxetin" HorizontalAlignment="Left" Margin="10,454,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Inderal" Content="Inderal" HorizontalAlignment="Left" Margin="10,474,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Julmust" Content="Julmust" HorizontalAlignment="Left" Margin="10,494,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Kokain" Content="Kokain" HorizontalAlignment="Left" Margin="10,514,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Snus" Content="Snus" HorizontalAlignment="Left" Margin="10,534,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Blodtrycksmaskin" Content="Blodtrycksmaskin" HorizontalAlignment="Left" Margin="201,434,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Ultraljudsmaskin" Content="Ultraljudsmaskin" HorizontalAlignment="Left" Margin="201,454,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="EKG" Content="EKG" HorizontalAlignment="Left" Margin="201,474,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Hjärtstartare" Content="Hjärtstartare" HorizontalAlignment="Left" Margin="201,494,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Bladderscan" Content="Bladderscan" HorizontalAlignment="Left" Margin="201,514,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Termometer" Content="Termometer" HorizontalAlignment="Left" Margin="201,534,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="AvlMeds" AutoGenerateColumns="True" Margin="10,41,0,0" IsReadOnly="True" Height="177" VerticalAlignment="Top"/>
+        <DataGrid x:Name="AvlEqu" AutoGenerateColumns="True" Margin="5,254,5,0" IsReadOnly="True" Height="175" VerticalAlignment="Top"/>
+        <Button Content="Beställ" HorizontalAlignment="Center" Margin="0,685,0,0" VerticalAlignment="Top" Width="82" Click="Button_Click_1"/>
+        <CheckBox x:Name="Glukosamin" Content="Glukosamin" HorizontalAlignment="Left" Margin="10,451,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Harpatinum" Content="Harpatinum" HorizontalAlignment="Left" Margin="10,471,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Ipren" Content="Ipren" HorizontalAlignment="Left" Margin="10,491,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Microlax" Content="Microlax" HorizontalAlignment="Left" Margin="10,511,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Nasonex" Content="Nasonex" HorizontalAlignment="Left" Margin="10,531,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Ormsalva" Content="Ormsalva" HorizontalAlignment="Left" Margin="10,551,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Blodtrycksmaskin" Content="Blodtrycksmaskin" HorizontalAlignment="Left" Margin="198,451,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Ultraljudsmaskin" Content="Ultraljudsmaskin" HorizontalAlignment="Left" Margin="198,631,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="EKG" Content="EKG" HorizontalAlignment="Left" Margin="198,471,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Hjärtstartare" Content="Hjärtstartare" HorizontalAlignment="Left" Margin="198,491,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Plasthandskar" Content="Plasthandskar" HorizontalAlignment="Left" Margin="198,531,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Sängbäcken" Content="Sängbäcken" HorizontalAlignment="Left" Margin="198,551,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Treo_Citrus" Content="Treo Citrus" HorizontalAlignment="Left" Margin="10,571,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Voltarén" Content="Voltarén" HorizontalAlignment="Left" Margin="10,591,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Xylocain" Content="Xylocain" HorizontalAlignment="Left" Margin="10,611,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Xyloproct" Content="Xyloproct" HorizontalAlignment="Left" Margin="10,631,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Termometer" Content="Termometer" HorizontalAlignment="Left" Margin="198,571,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Tops" Content="Tops" HorizontalAlignment="Left" Margin="198,591,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Träspatel" Content="Träspatel" HorizontalAlignment="Left" Margin="198,611,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="Kateter" Content="Kateter" HorizontalAlignment="Left" Margin="198,511,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

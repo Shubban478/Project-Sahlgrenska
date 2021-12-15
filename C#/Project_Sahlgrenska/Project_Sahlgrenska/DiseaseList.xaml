@@ -6,6 +6,7 @@
         ResizeMode="NoResize"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
+        Name="FirstWindow" Icon="/img/Icon1.png"
         Title="Sjukdomar" Height="476" Width="435">
     <Grid Margin="10,0,0,-6" HorizontalAlignment="Left" Width="425">
         <TextBox x:Name="tsymtom" HorizontalAlignment="Right" Margin="0,94,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" Height="131" IsReadOnly="True"/>

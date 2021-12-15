@@ -45,44 +45,59 @@ namespace Project_Sahlgrenska
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (Cigaretter.IsChecked == true)
+            if (Glukosamin.IsChecked == true)
             {
-                Bot.Update("update medication set Quantity = Quantity + 10 where Name = 'Cigaretter';");
+                Bot.Update("update medication set Quantity = Quantity + 10 where Name = 'Glukosamin';");
             }
 
-            if (Fluoxetin.IsChecked == true)
+            if (Harpatinum.IsChecked == true)
             {
-                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Fluoxetin';");
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Harpatinum';");
             }
 
-            if (Inderal.IsChecked == true)
+            if (Ipren.IsChecked == true)
             {
-                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Inderal';");
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Ipren';");
             }
 
-            if (Julmust.IsChecked == true)
+            if (Microlax.IsChecked == true)
             {
-                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Julmust';");
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Microlax';");
             }
 
-            if (Kokain.IsChecked == true)
+            if (Nasonex.IsChecked == true)
             {
-                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Kokain';");
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Nasonex';");
             }
 
-            if (Snus.IsChecked == true)
+            if (Ormsalva.IsChecked == true)
             {
-                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Snus';");
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Ormsalva';");
+            }
+
+            if (Treo_Citrus.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Treo Citrus';");
+            }
+
+            if (Voltarén.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Voltarén';");
+            }
+
+            if (Xylocain.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Xylocain';");
+            }
+
+            if (Xyloproct.IsChecked == true)
+            {
+                Bot.Update("update medication set Quantity = Quantity + 20 where Name = 'Xyloproct';");
             }
 
             if (Blodtrycksmaskin.IsChecked == true)
             {
                 Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Blodtrycksmaskin';");
-            }
-
-            if (Ultraljudsmaskin.IsChecked == true)
-            {
-                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Ultraljudsmaskin';");
             }
 
             if (EKG.IsChecked == true)
@@ -95,17 +110,45 @@ namespace Project_Sahlgrenska
                 Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'Hjärtstartare';");
             }
 
-            if (Bladderscan.IsChecked == true)
+            if (Kateter.IsChecked == true)
             {
-                Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'Bladderscan';");
+                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Kateter';");
+            }
+
+            if (Plasthandskar.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'Plasthandskar';");
+            }
+
+            if (Sängbäcken.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'Sängbäcken';");
             }
 
             if (Termometer.IsChecked == true)
             {
-                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Termometer';");
+                Bot.Update("update equipment set Quantity = Quantity + 2 where Name = 'Termometer';");
             }
 
-            if (Cigaretter.IsChecked == true || Fluoxetin.IsChecked == true || Inderal.IsChecked == true || Julmust.IsChecked == true || Kokain.IsChecked == true || Snus.IsChecked == true || Blodtrycksmaskin.IsChecked == true || Ultraljudsmaskin.IsChecked == true || EKG.IsChecked == true || Hjärtstartare.IsChecked == true || Bladderscan.IsChecked == true || Termometer.IsChecked == true)
+            if (Tops.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Tops';");
+            }
+
+            if (Träspatel.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Träspatel';");
+            }
+
+            if (Ultraljudsmaskin.IsChecked == true)
+            {
+                Bot.Update("update equipment set Quantity = Quantity + 5 where Name = 'Ultraljudsmaskin';");
+            }
+
+            if (Glukosamin.IsChecked == true || Harpatinum.IsChecked == true || Ipren.IsChecked == true || Microlax.IsChecked == true || Nasonex.IsChecked == true ||
+                Ormsalva.IsChecked == true || Treo_Citrus.IsChecked == true || Voltarén.IsChecked == true || Xylocain.IsChecked == true || Xyloproct.IsChecked == true ||
+                Blodtrycksmaskin.IsChecked == true || EKG.IsChecked == true || Hjärtstartare.IsChecked == true || Kateter.IsChecked == true || Plasthandskar.IsChecked == true ||
+                Sängbäcken.IsChecked == true || Termometer.IsChecked == true || Tops.IsChecked == true || Träspatel.IsChecked == true || Ultraljudsmaskin.IsChecked == true)
             {
                 MessageBox.Show("Beställningen lyckades!");
                 PopulateAvailableMedsEqu();

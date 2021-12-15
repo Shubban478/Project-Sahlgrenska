@@ -34,7 +34,7 @@ namespace Project_Sahlgrenska
             {
                 if (patientLogin.IsChecked == false)
                 {
-                    Hem.user = "Tom Johansson";
+                    Hem.user = "Dr. Derek Sheperd";
                     Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
                     Hem hem = new Hem();
                     this.Close();
@@ -109,11 +109,28 @@ namespace Project_Sahlgrenska
         {
             if (e.Key == Key.Return)
             {
-                Hem.user = "Tom Johansson";
-                Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
-                Hem hem = new Hem();
-                this.Close();
-                hem.Show();
+                if (patientLogin.IsChecked == true)
+                {
+                    BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
+                    patientSchedule.Show();
+                }
+                if (loginName.Text == "admin")
+                {
+                    Admin admin = new Admin();
+                    this.Close();
+                    admin.Show();
+                }
+                else
+                {
+                    if (patientLogin.IsChecked == false)
+                    {
+                        Hem.user = "Dr. Derek Sheperd";
+                        Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
+                        Hem hem = new Hem();
+                        this.Close();
+                        hem.Show();
+                    }
+                }
             }
         }
     }

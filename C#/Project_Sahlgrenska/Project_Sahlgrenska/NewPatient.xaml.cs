@@ -22,15 +22,15 @@ namespace Project_Sahlgrenska
         public NewPatient()
         {
             InitializeComponent();
-            patientDate.Text = DateTime.UtcNow.ToString();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            string patientDate = DateTime.UtcNow.ToString();
             try
             {
-                Patient patient = new Patient(patientId.Text,patientName.Text, patientAdress.Text, patientGender.Text, patientDate.Text);
+                Patient patient = new Patient(patientId.Text,patientName.Text, patientAdress.Text, patientGender.Text, patientDate);
             }
             catch (Exception ex)
             {

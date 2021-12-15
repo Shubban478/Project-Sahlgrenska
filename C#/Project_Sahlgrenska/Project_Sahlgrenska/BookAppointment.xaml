@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
+        Name="FirstWindow" Icon="/img/Icon1.png"
         Title="Boka Möte" Height="450" Width="800">
     
     <Grid>

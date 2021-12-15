@@ -4,15 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
+        ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="Logga in" Height="450" Width="800">
-    <Grid>
-        <TextBlock x:Name="nameLabel" Height="23" HorizontalAlignment="Left" Margin="66,120,0,0" Text="Namn" VerticalAlignment="Top" Width="67" />
-        <TextBlock x:Name="passwordLabel" Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Text="Lösenord" VerticalAlignment="Top" Width="77" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" x:Name="loginName" VerticalAlignment="Top" Width="247" GotFocus="loginName_GotFocus" KeyDown="update_KeyDown"/>
-        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" x:Name="loginPassword" VerticalAlignment="Top" Width="247" KeyDown="update_KeyDown"/>
-        <Button Content="Logga in" Height="23" HorizontalAlignment="Left" Margin="118,211,0,0" Name="button1" VerticalAlignment="Top" Width="104" Click="button1_Click" />
-        <CheckBox Content="Patient" x:Name="patientLogin" Height="23" HorizontalAlignment="left" Margin="260,211,0,0" VerticalAlignment="Top" Width="104" Checked="patientLogin_Checked" Unchecked="patientLogin_Unchecked"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="118,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
+        Name="FirstWindow" Icon="/img/Icon1.png"
+        Title="Logga in" Height="439" Width="867">
+    <Grid Margin="0,0,8,-6">
+        <TextBlock x:Name="nameLabel" Height="23" HorizontalAlignment="Left" Margin="259,237,0,0" Text="Namn" VerticalAlignment="Top" Width="67" />
+        <TextBlock x:Name="passwordLabel" Height="23" HorizontalAlignment="Left" Margin="251,285,0,0" Text="Lösenord" VerticalAlignment="Top" Width="77" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="311,232,0,0" x:Name="loginName" VerticalAlignment="Top" Width="247" GotFocus="loginName_GotFocus" KeyDown="update_KeyDown"/>
+        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="311,285,0,0" x:Name="loginPassword" VerticalAlignment="Top" Width="247" KeyDown="update_KeyDown"/>
+        <Button Content="Logga in" Height="23" HorizontalAlignment="Left" Margin="311,328,0,0" Name="button1" VerticalAlignment="Top" Width="104" Click="button1_Click" />
+        <CheckBox Content="Patient" x:Name="patientLogin" Height="23" HorizontalAlignment="Left" Margin="453,328,0,0" VerticalAlignment="Top" Width="104" Checked="patientLogin_Checked" Unchecked="patientLogin_Unchecked"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247" Margin="311,370,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
+        <Image Margin="10,10,0,247" Source="/img/logo.png" Stretch="Fill"/>
     </Grid>
 </Window>

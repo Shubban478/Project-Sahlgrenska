@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
+        Name="FirstWindow" Icon="/img/Icon1.png"
         Title="Ny patient" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,8 +21,6 @@
             <TextBox x:Name="patientAdress"/>
             <Label Content="Kön"/>
             <TextBox x:Name="patientGender" MaxLength="1" Text="M/F" GotFocus="patientGender_GotFocus"/>
-            <Label Content="Datum"/>
-            <DatePicker x:Name="patientDate"/>
             <CheckBox x:Name="critical" Content="Kritiskt läge"/>
             <Button Content="Ok" Click="Button_Click"/>
             <TextBlock  x:Name="patientAdded" Foreground="Crimson"/>

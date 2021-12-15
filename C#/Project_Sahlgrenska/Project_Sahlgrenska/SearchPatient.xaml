@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
-        Title="Sök patient" Height="450" Width="800">
+        Name="FirstWindow" Icon="/img/Icon1.png"
+        Title="Sök patient" Height="650" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="10,0,10,0">
+            <Label/>
             <Label Content="Fyll i personnummer"/>
-            <TextBox x:Name="searchPatient" Height="20"/>
+            <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="searchPatient"/>
             <Label />
-            <Button Content="Sök" Click="Button_Click"/>
+            <Button Content="Sök" Click="Button_Click" Width="200"/>
             <Label />
             
             <Label Content="Personnummer" />
@@ -28,16 +30,40 @@
             <TextBox x:Name="patientAdress" Height="20" IsReadOnly="True"/>
             <Label Content="Inlagd datum" />
             <TextBox x:Name="patientAdmitted" Height="20" IsReadOnly="True"/>
-            <Label Content="Utskiven datum" />
-            <TextBox x:Name="patientDischarged" Height="20" IsReadOnly="True"/>
+            <Label />
+            <Border BorderBrush="Black" BorderThickness="1" Height="1"/>
+            <Label Content="Symptom" />
+            <TextBox x:Name="patientSymptoms" Height="20" IsReadOnly="True"/>
+            <Label Content="Behandling" />
+            <TextBox x:Name="patientTretment" Height="20" IsReadOnly="True"/>
+            <Label Content="Medicin" />
+            <TextBox x:Name="patientMedication" Height="20" IsReadOnly="True"/>
+            <Label Content="Biverkningar" />
+            <TextBox x:Name="patientSideeffects" Height="20" IsReadOnly="True"/>
+            <Label/>
+            <Border BorderBrush="Black" BorderThickness="1" Height="1"/>
+            <Label/>
+            <Button Content="Uppdatera patient" Click="Button3_Click" Width="200" />
+            <Label/>
+
+
+
 
 
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10,0,10,0">
-            <Label Content="Diagnos"/>
-            <TextBox x:Name="patientDiagnosis" Height="170" IsReadOnly="True"/>
-            <Label Content="Historik"/>
-            <TextBox x:Name="patientHistory" Height="170" IsReadOnly="True"/>
+            <Label/>
+            <Button Content="Se patientens bokningar" Click="Button2_Click" Width="200" />
+            <Label Content="Journal"/>
+            <TextBox x:Name="patientHistory" Height="170" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+            <Label Content="Lägg till:"/>
+            <TextBox x:Name="updateHistory" Height="40" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+            <Label/>
+            <Button Content="Uppdatera" Click="Button3_Click" Width="200" />
+            <Label Content="Rum" />
+            <TextBox x:Name="patientRoom" Height="20" IsReadOnly="True"/>
+            <Label Content="Utrustning" />
+            <TextBox x:Name="patientEquipment" Height="20" IsReadOnly="True"/>
             
         </StackPanel>
     </Grid>

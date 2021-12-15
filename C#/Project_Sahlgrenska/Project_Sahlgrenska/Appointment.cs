@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Project_Sahlgrenska
 {
@@ -16,7 +13,7 @@ namespace Project_Sahlgrenska
             Bot.Update("insert into doctors_has_appointments values(" + DoctorId + ", " + AppointmentId + ");");
             Bot.Update("insert into patients_has_rooms values('" + PatientId + "', " + RoomId + ");");
             Bot.Update("update rooms set beds = beds -1 where id =" + RoomId + ";");
-            Bot.Update("call update_vaccant()");
+            Bot.Update("call update_vaccant_no()");
             MessageBox.Show(AppointmentId + "\n" +
                             PatientId + "\n" +
                             DoctorId + "\n" +
