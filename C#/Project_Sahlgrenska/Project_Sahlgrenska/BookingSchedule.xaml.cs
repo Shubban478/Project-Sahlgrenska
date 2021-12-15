@@ -39,7 +39,7 @@ namespace Project_Sahlgrenska
             }
             else
             {
-                Bot.ReadAll("SELECT * FROM appointments_overview where doktor = '" + Hem.doctorId + "' and tid like '" + tid + "%';", appointmentsTable);
+                Bot.ReadAll("SELECT * FROM appointments_overview where doktor = '" + Hem.doctorId + "%';", appointmentsTable);
             }
         }
 
