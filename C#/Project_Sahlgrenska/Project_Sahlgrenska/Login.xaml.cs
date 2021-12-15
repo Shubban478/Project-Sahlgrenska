@@ -109,7 +109,7 @@ namespace Project_Sahlgrenska
         {
             if (e.Key == Key.Return)
             {
-                Hem.user = "Tom Johansson";
+                Hem.user = "Dr. Callie Torres";
                 Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
                 Hem hem = new Hem();
                 this.Close();
