@@ -18,6 +18,7 @@ namespace Project_Sahlgrenska
 
         private void Button_ClickSearch(object sender, RoutedEventArgs e)
         {
+            comboDiseases.Text = "";
             symptomResult = Bot.ReadOneColumn("SELECT * FROM bt0mlsay6vs1xbceqzzn.diagnosis where Symtoms like '%" + symptomSearch.Text + "%'");
 
             List<string> diseaseList = new List<string>();
@@ -27,7 +28,8 @@ namespace Project_Sahlgrenska
                 diseaseList.Add(symptomResult[i]);
             }
             comboDiseases.ItemsSource = diseaseList;
-            comboDiseases.SelectedIndex = 0;
+            //comboDiseases.SelectedIndex = 0;
+            
             diseaseTreatment.Text = Bot.ReadOneValue("SELECT Treatment FROM bt0mlsay6vs1xbceqzzn.diagnosis WHERE Name = '" + diseaseList[0] + "';");
 
         }
