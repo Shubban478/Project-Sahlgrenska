@@ -14,6 +14,7 @@ namespace Project_Sahlgrenska
         public BookingSchedule()
         {
             InitializeComponent();
+            PopulateAppointments();
 
             calendar.SelectedDate = DateTime.UtcNow;
 
@@ -31,7 +32,7 @@ namespace Project_Sahlgrenska
 
         private void PopulateAppointments()
         {
-            string tid = calendar.SelectedDate.ToString().Substring(0, 10);
+            string tid = calendar.SelectedDate.ToString().Substring(0);
             if (allDoctors.IsChecked == true)
             {
                 Bot.ReadAll("SELECT * FROM appointments_overview where tid like '" + tid + "%';", appointmentsTable);
