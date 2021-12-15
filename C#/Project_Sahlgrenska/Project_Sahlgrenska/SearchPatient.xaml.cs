@@ -101,5 +101,11 @@ namespace Project_Sahlgrenska
                 patientHistory.Text = "INGEN PATIENT";
             }
         }
+
+        private void Button_SentHome(object sender, RoutedEventArgs e)
+        {
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
+            UpdateSearch();
+        }
     }
 }

@@ -50,6 +50,7 @@
         <StackPanel Grid.Column="1" Margin="10,0,10,0">
             <Label/>
             <Label/>
+            <Label/>
             <Button Content="Se patientens bokningar" Click="Button_Booking" Width="200" />
             <Label Content="Journal"/>
             <TextBox x:Name="patientHistory" Height="170" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
@@ -63,7 +64,13 @@
             <TextBox x:Name="patientRoom" Height="20" IsReadOnly="True"/>
             <Label Content="Utrustning" />
             <TextBox x:Name="patientEquipment" Height="20" IsReadOnly="True"/>
-            
+            <Label/>
+            <Border BorderBrush="Black" BorderThickness="1" Height="1"/>
+            <Label Content="Skriv ut patient" />
+            <Button Content="Skriv ut" Click="Button_SentHome" Width="200" />
+
+
+
         </StackPanel>
     </Grid>
 </Window>
