@@ -7,6 +7,14 @@ function sqlQuery() {
 
     $db = new db_reader();
     $result = $db->fetch_array($sql);
+
+    // Check to see if no results have been returned
+    if (is_string($result)) {
+        if (!strcmp($result, "0 Results")) {
+            echo "Error, no results found!";
+            exit;
+        }
+    }
     // Output data in seperate divs
     for ($i=0; $i < count($result); $i++) {
         $row = $result[$i];
