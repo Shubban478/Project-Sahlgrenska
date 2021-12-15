@@ -3,17 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        ResizeMode="NoResize"
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
         Name="FirstWindow" Icon="/img/Icon1.png"
-        Title="Sjukdomar" Height="476" Width="435">
-    <Grid Margin="10,0,0,-6" HorizontalAlignment="Left" Width="425">
-        <TextBox x:Name="tsymtom" HorizontalAlignment="Right" Margin="0,94,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" Height="131" IsReadOnly="True"/>
-        <TextBox x:Name="tåtgärd" HorizontalAlignment="Right" Margin="0,261,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="390" Height="154" IsReadOnly="True"/>
-        <Label Content="Symtom" HorizontalAlignment="Left" Margin="11,63,0,0" VerticalAlignment="Top"/>
-        <Label Content="Åtgärd" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="sjukdom" HorizontalAlignment="Right" Margin="0,36,151,0" VerticalAlignment="Top" Width="264" DropDownClosed="sjukdom_DropDownClosed"/>
-        <Label Content="Välj en sjukdom för att få mer information" Margin="0,10,184,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="231"/>
+        Title="Sök symptom" Height="650" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="10,0,10,0">
+            <Label/>
+            <Label Content="Skriv symptom"/>
+            <TextBox x:Name="symptomSearch" Height="20"/>
+            <Label />
+            <Button Content="Sök" Click="Button_ClickSearch" Width="200"/>
+            <Label />
+            <Label />
+            <Label Content="Sjukdom som matchar"/>
+            <ComboBox IsEditable="False" IsTextSearchEnabled="True" x:Name="comboDiseases" DropDownClosed="comboDiseases_DropDownClosed"/>
+            <Label />
+            <Label />
+            <Label Content="Behandling" />
+            <TextBox x:Name="diseaseTreatment" Height="300" IsReadOnly="True" TextWrapping="Wrap"/>
+        </StackPanel>
     </Grid>
 </Window>
