@@ -23,25 +23,25 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Content="Ny patient" x:Name="newPatient" Grid.Column="0" Grid.Row="0" Click="newPatient_Click"/>
-        <Button Content="Sök patient" x:Name="searchPatient" Grid.Column="0" Grid.Row="1" Click="searchPatient_Click"/>
-        <Button Content="Boka Möte" x:Name="bookAppointment" Grid.Column="0" Grid.Row="2" Click="bookAppointment_Click"/>
-        <Button Content="Visa bokningar" x:Name="bookingSchedule" Grid.Column="0" Grid.Row="3" Click="bookingSchedule_Click"/>
-        <Button Content="Beställningar" x:Name="orderItems" Grid.Column="0" Grid.Row="4" Click="orderItems_Click"/>
-        <Button Content="Sjukdomar" x:Name="diseaseList" Grid.Column="0" Grid.Row="5" Click="diseaseList_Click"/>
-        <Button Content="Logga ut" x:Name="logOutButton" Grid.Column="0" Grid.Row="6" Click="logOutButton_Click"/>
+        <Button Content="Ny patient" x:Name="newPatient" Grid.Column="0" Grid.Row="0" Click="NewPatient_Click"/>
+        <Button Content="Sök patient" x:Name="searchPatient" Grid.Column="0" Grid.Row="1" Click="SearchPatient_Click"/>
+        <Button Content="Boka Möte" x:Name="bookAppointment" Grid.Column="0" Grid.Row="2" Click="BookAppointment_Click"/>
+        <Button Content="Visa bokningar" x:Name="bookingSchedule" Grid.Column="0" Grid.Row="3" Click="BookingSchedule_Click"/>
+        <Button Content="Beställningar" x:Name="orderItems" Grid.Column="0" Grid.Row="4" Click="OrderItems_Click"/>
+        <Button Content="Sjukdomar" x:Name="diseaseList" Grid.Column="0" Grid.Row="5" Click="DiseaseList_Click"/>
+        <Button Content="Logga ut" x:Name="logOutButton" Grid.Column="0" Grid.Row="6" Click="LogOutButton_Click"/>
         <StackPanel x:Name="news" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="4">
             <TextBlock x:Name="pageInfo" Text="Välkommen"  FontSize="28"/>
             <TextBlock x:Name="alert" Text="Nödläge"  FontSize="18" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Center"/>
-            <StackPanel x:Name="critical" GotFocus="critical_GotFocus">
+            <StackPanel x:Name="critical" GotFocus="Critical_GotFocus">
                 
             
             
             </StackPanel>
             <StackPanel>
-            <Button x:Name="appointCritical" Content="Boka kritiskt möte" Visibility="Hidden" Click="appointCritical_Click" VerticalContentAlignment="Bottom"></Button>
-                <Button x:Name="criticalFinished" Content="Markera som klar" Visibility="Hidden" Click="criticalFinished_Click" VerticalContentAlignment="Bottom"></Button>
-                <Button x:Name="updateInfo" Content="Visa mötesinfo" Visibility="Hidden" VerticalContentAlignment="Bottom" Click="updateInfo_Click"></Button>
+            <Button x:Name="appointCritical" Content="Boka kritiskt möte" Visibility="Hidden" Click="AppointCritical_Click" VerticalContentAlignment="Bottom"></Button>
+                <Button x:Name="criticalFinished" Content="Markera som klar" Visibility="Hidden" Click="CriticalFinished_Click" VerticalContentAlignment="Bottom"></Button>
+                <Button x:Name="updateInfo" Content="Visa mötesinfo" Visibility="Hidden" VerticalContentAlignment="Bottom" Click="UpdateInfo_Click"></Button>
                 <DataGrid x:Name="appointmentInfo"  AutoGenerateColumns="True" Visibility="Hidden" IsReadOnly="True"/>
             </StackPanel>
             

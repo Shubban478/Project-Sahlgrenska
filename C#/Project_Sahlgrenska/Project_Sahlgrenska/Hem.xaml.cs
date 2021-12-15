@@ -39,52 +39,52 @@ namespace Project_Sahlgrenska
 
         }
 
-        private void logOutButton_Click(object sender, RoutedEventArgs e)
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             Login login = new Login();
             this.Close();
             login.Show();
         }
 
-        private void newPatient_Click(object sender, RoutedEventArgs e)
+        private void NewPatient_Click(object sender, RoutedEventArgs e)
         {
             NewPatient newPatient = new NewPatient();
             newPatient.Show();
         }
 
-        private void searchPatient_Click(object sender, RoutedEventArgs e)
+        private void SearchPatient_Click(object sender, RoutedEventArgs e)
         {
             SearchPatient searchPatient = new SearchPatient();
             searchPatient.Show();
         }
 
-        private void bookAppointment_Click(object sender, RoutedEventArgs e)
+        private void BookAppointment_Click(object sender, RoutedEventArgs e)
         {
             BookAppointment bookAppointment = new BookAppointment();
             bookAppointment.Show();
         }
 
-        private void bookingSchedule_Click(object sender, RoutedEventArgs e)
+        private void BookingSchedule_Click(object sender, RoutedEventArgs e)
         {
             BookingSchedule bookingSchedule = new BookingSchedule();
             bookingSchedule.Show();
         }
 
-        private void orderItems_Click(object sender, RoutedEventArgs e)
+        private void OrderItems_Click(object sender, RoutedEventArgs e)
         {
             OrderItems orderItems = new OrderItems();
             orderItems.Show();
         }
 
-        private void diseaseList_Click(object sender, RoutedEventArgs e)
+        private void DiseaseList_Click(object sender, RoutedEventArgs e)
         {
             DiseaseList diseaseList = new DiseaseList();
             diseaseList.Show();
         }
-        private void appointCritical_Click(object sender, RoutedEventArgs e)
+        private void AppointCritical_Click(object sender, RoutedEventArgs e)
         {
             BookAppointment criticalAppointment = new BookAppointment();
-            criticalAppointment.bookingDoctor.Text = Hem.user;
+
             try
             {
                 foreach (RadioButton item in critical.Children)
@@ -160,7 +160,7 @@ namespace Project_Sahlgrenska
             ExtinctCriticalPatients();
         }
 
-        private void criticalFinished_Click(object sender, RoutedEventArgs e)
+        private void CriticalFinished_Click(object sender, RoutedEventArgs e)
         {
             string donePatientId = "";
             foreach (RadioButton item in critical.Children)
@@ -183,14 +183,14 @@ namespace Project_Sahlgrenska
             PopulateCriticalPatients();
         }
 
-        private void critical_GotFocus(object sender, RoutedEventArgs e)
+        private void Critical_GotFocus(object sender, RoutedEventArgs e)
         {
             criticalFinished.Visibility = Visibility.Visible;
             updateInfo.Visibility = Visibility.Visible;
             appointmentInfo.Visibility = Visibility.Visible;
         }
 
-        private void updateInfo_Click(object sender, RoutedEventArgs e)
+        private void UpdateInfo_Click(object sender, RoutedEventArgs e)
         {
             string patientId = "";
             foreach (RadioButton item in critical.Children)
