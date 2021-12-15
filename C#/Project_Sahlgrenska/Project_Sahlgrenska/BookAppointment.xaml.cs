@@ -15,9 +15,6 @@ namespace Project_Sahlgrenska
         List<string> doctorsAvailable = new List<String>();
         List<string> equipmentAvailable = new List<String>();
         List<string> medsAvailable = new List<string>();
-
-
-
         public BookAppointment()
         {
             InitializeComponent();
@@ -101,6 +98,32 @@ namespace Project_Sahlgrenska
                 string reason = bookingReason.Text.ToString();
                 string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
                 int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
+
+                List<string> AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor ="+doctorId+";");
+                List<DateTime> AppointmentsDate = new List<DateTime>();
+                DateTime Time = Convert.ToDateTime(time);
+                foreach (var item in AppointmentsTime)
+                {
+                    AppointmentsDate.Add(Convert.ToDateTime(item));
+                }
+
+                foreach (DateTime item in AppointmentsDate)
+                {
+                }
+
+
+
+                /*
+                
+                
+                
+
+                
+                for (int i = 0; i < Doctors.Count; i++)
+                {
+
+                }
+                */
                 Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
                 EqAndMeds(appointmentId);
                 PopulateAvailableRooms();

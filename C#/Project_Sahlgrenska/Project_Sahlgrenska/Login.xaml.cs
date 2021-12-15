@@ -19,7 +19,12 @@ namespace Project_Sahlgrenska
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            if (patientLogin.IsChecked == true)
+            actuallyLogin();
+        }
+
+        private void actuallyLogin()
+        {
+                        if (patientLogin.IsChecked == true)
             {
                 BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
                 patientSchedule.Show();
@@ -80,7 +85,6 @@ namespace Project_Sahlgrenska
 
         }
 
-
         private void patientLogin_Checked(object sender, RoutedEventArgs e)
         {
             nameLabel.Text = "ID";
@@ -109,28 +113,7 @@ namespace Project_Sahlgrenska
         {
             if (e.Key == Key.Return)
             {
-                if (patientLogin.IsChecked == true)
-                {
-                    BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
-                    patientSchedule.Show();
-                }
-                if (loginName.Text == "admin")
-                {
-                    Admin admin = new Admin();
-                    this.Close();
-                    admin.Show();
-                }
-                else
-                {
-                    if (patientLogin.IsChecked == false)
-                    {
-                        Hem.user = "Dr. Derek Sheperd";
-                        Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
-                        Hem hem = new Hem();
-                        this.Close();
-                        hem.Show();
-                    }
-                }
+                actuallyLogin();
             }
         }
     }
