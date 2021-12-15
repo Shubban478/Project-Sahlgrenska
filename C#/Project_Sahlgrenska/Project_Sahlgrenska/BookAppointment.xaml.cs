@@ -99,7 +99,7 @@ namespace Project_Sahlgrenska
                 string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
                 int roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
 
-                List<string> AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor ="+doctorId+";");
+                List<string> AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
                 List<DateTime> AppointmentsDate = new List<DateTime>();
                 DateTime Time = Convert.ToDateTime(time);
                 foreach (var item in AppointmentsTime)
@@ -132,7 +132,7 @@ namespace Project_Sahlgrenska
             {
                 MessageBox.Show(ee.Message);
             }
-            
+
         }
 
         private void bookingTime_GotFocus(object sender, RoutedEventArgs e)

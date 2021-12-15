@@ -1,16 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Project_Sahlgrenska
 {
@@ -49,8 +40,6 @@ namespace Project_Sahlgrenska
             {
                 Bot.ReadAll("SELECT * FROM appointments_overview where doktor = '" + Hem.doctorId + "' and tid like '" + tid + "%';", appointmentsTable);
             }
-
-
         }
 
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

@@ -1,14 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Project_Sahlgrenska
 {
@@ -18,6 +10,8 @@ namespace Project_Sahlgrenska
     public partial class SearchPatient : Window
     {
         List<string> patientsAvailable = new List<String>();
+        string oldName;
+        string oldAdress;
         public SearchPatient()
         {
             InitializeComponent();
@@ -36,6 +30,44 @@ namespace Project_Sahlgrenska
 
         private void Button_ClickSearch(object sender, RoutedEventArgs e)
         {
+            UpdateSearch();
+        }
+
+        private void patientHistory_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
+
+        private void Button_Booking(object sender, RoutedEventArgs e)
+        {
+            BookingSchedule patientSchedule = new BookingSchedule(searchPatient.Text[..13]);
+            patientSchedule.Show();
+        }
+
+        private void Button_UpdatePatient(object sender, RoutedEventArgs e)
+        {
+            if (oldName != patientName.Text || oldAdress != patientAdress.Text)
+            {
+                if (oldName != patientName.Text)
+                {
+                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldName + " ++ " + patientName.Text + "', COALESCE(CONCAT(CHAR(10), History), '')), Name = '" + patientName.Text + "' WHERE ID = '" + patientId.Text + "';");
+                }
+
+                if (oldAdress != patientAdress.Text)
+                {
+                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' -- " + oldAdress + " ++ " + patientAdress.Text + "', COALESCE(CONCAT(CHAR(10), History), '')), Address = '" + patientAdress.Text + "' WHERE ID = '" + patientId.Text + "';");
+                }
+
+            }
+            UpdateSearch();
+        }
+        private void Button_UpdateJournal(object sender, RoutedEventArgs e)
+        {
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + updateJournal.Text + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");
+            UpdateSearch();
+        }
+        private void UpdateSearch()
+        {
             List<string> list = new List<string>();
 
             list = Bot.ReadOneLine("select * from patients_all where ID LIKE '" + searchPatient.Text[..13] + "';");
@@ -43,6 +75,9 @@ namespace Project_Sahlgrenska
             patientId.Text = list[0];
             if (list[0] != "INGEN PATIENT")
             {
+                oldName = Convert.ToString(list[1]);
+                oldAdress = Convert.ToString(list[2]);
+
                 patientName.Text = list[1];
                 patientAdress.Text = list[2];
                 patientGender.Text = list[3];
@@ -53,8 +88,6 @@ namespace Project_Sahlgrenska
                 patientRoom.Text = list[11];
                 patientEquipment.Text = list[17];
                 patientHistory.Text = list[6];
-                //patientDiagnosis.Text = list[8] +   "\r\n" + "Kommentar:\r\n" + list[9] +
-                //                                    "\r\n" + "Symptom:\r\n" + list[10] + "\r\n" + "Behandling:\r\n" + list[11];
             }
             else
             {
@@ -67,52 +100,14 @@ namespace Project_Sahlgrenska
                 patientEquipment.Text = "INGEN PATIENT";
                 patientHistory.Text = "INGEN PATIENT";
             }
-
         }
 
-        private void patientHistory_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        private void Button_SentHome(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Button_Booking(object sender, RoutedEventArgs e)
-        {
-            BookingSchedule patientSchedule = new BookingSchedule(searchPatient.Text[..13]);
-            patientSchedule.Show();
-
-        }
-
-        private void Button_UpdatePatient(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_UpdateJournal(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Journal patient = new Journal(patientId.Text);
-            }
-            catch (Exception ex)
-            {
-
-                journalAdded.Text = "\nDu måste skriva in något:\n" +
-                    "------------\n" +
-                    "Error:\n" +
-                    ex.Message;
-                Hem.conn.Close();
-
-            }
-        }
-        class Journal
-        {
-            string patientId;
-
-            public Journal(string journalInput)
-            {
-                Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + journalInput + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
-                MessageBox.Show(journalInput + "\n added to database.");
-            }
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
+            Bot.Update("SET SQL_SAFE_UPDATES = 0; UPDATE bt0mlsay6vs1xbceqzzn.rooms SET beds = '1' WHERE ID LIKE '" + patientRoom.Text + "'; SET SQL_SAFE_UPDATES = 1;");
+            Bot.Update("call update_vaccant_yes()");
+            UpdateSearch();
         }
     }
 }
