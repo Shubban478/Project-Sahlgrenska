@@ -93,7 +93,7 @@ namespace Project_Sahlgrenska
             {
                 int appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
                 string patientId = bookingPatient.Text[..13];
-                string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[0] + "%';");
+                string initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + bookingDoctor.Text.Split(' ')[1] + "%';");
                 int doctorId = Int32.Parse(initDoctorId);
                 string reason = bookingReason.Text.ToString();
                 string time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
