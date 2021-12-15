@@ -1,18 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Project_Sahlgrenska
 {
@@ -38,14 +28,14 @@ namespace Project_Sahlgrenska
         public static string user = "";
         public static int doctorId;
         List<string> criticalPatients = new List<string>();
-        
+
 
 
         public Hem()
         {
             InitializeComponent();
             pageInfo.Text += " " + user;
-            
+
 
         }
 
@@ -99,14 +89,14 @@ namespace Project_Sahlgrenska
             {
                 foreach (RadioButton item in critical.Children)
                 {
-                    
+
                     try
                     {
                         if (item.IsChecked == true)
                         {
                             string patientId = Bot.ReadOneValue("select id from patients where name ='" + item.Content + "';");
                             criticalAppointment.bookingPatient.Text = patientId;
-                            
+
                         }
                     }
                     catch (Exception)
@@ -124,31 +114,31 @@ namespace Project_Sahlgrenska
 
         private void Window_GotFocus(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void PopulateCriticalPatients()
         {
-            
+
             criticalPatients = Bot.ReadOneColumn("select name from patients where critical ='Yes';");
             for (int i = 0; i < criticalPatients.Count; i++)
             {
-                
-                    critical.Children.Add(new RadioButton
-                    {
-                        Name = criticalPatients[i].Split(' ')[0],
-                        Content = criticalPatients[i]
-                    });
-                
+
+                critical.Children.Add(new RadioButton
+                {
+                    Name = criticalPatients[i].Split(' ')[0],
+                    Content = criticalPatients[i]
+                });
+
 
             }
             if (criticalPatients.Count > 0)
             {
                 appointCritical.Visibility = Visibility.Visible;
                 alert.Visibility = Visibility.Visible;
-                
+
             }
-            
+
         }
         private void ExtinctCriticalPatients()
         {
@@ -157,7 +147,7 @@ namespace Project_Sahlgrenska
 
         private void Window_LostFocus(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -167,7 +157,7 @@ namespace Project_Sahlgrenska
 
         private void Window_Deactivated(object sender, EventArgs e)
         {
-            ExtinctCriticalPatients();  
+            ExtinctCriticalPatients();
         }
 
         private void criticalFinished_Click(object sender, RoutedEventArgs e)
@@ -181,7 +171,7 @@ namespace Project_Sahlgrenska
                     if (item.IsChecked == true)
                     {
                         donePatientId = Bot.ReadOneValue("select id from patients where name ='" + item.Content + "';");
-                        
+
                     }
                 }
                 catch (Exception)
@@ -218,7 +208,7 @@ namespace Project_Sahlgrenska
                 { continue; }
 
             }
-            Bot.ReadAll("select * from appointments_overview where personnummer ='" + patientId + "';",appointmentInfo);
+            Bot.ReadAll("select * from appointments_overview where personnummer ='" + patientId + "';", appointmentInfo);
         }
     }
 }
