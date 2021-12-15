@@ -18,14 +18,13 @@ namespace Project_Sahlgrenska
     public partial class SearchPatient : Window
     {
         List<string> patientsAvailable = new List<String>();
-
         public SearchPatient()
         {
             InitializeComponent();
-            PopulateBookingPatient();
+            PopulatePatients();
         }
 
-        private void PopulateBookingPatient()
+        private void PopulatePatients()
         {
             for (int i = 0; i < Bot.ReadOneColumn("select id from patients;").Count; i++)
             {
@@ -35,7 +34,7 @@ namespace Project_Sahlgrenska
             searchPatient.ItemsSource = patientsAvailable;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_ClickSearch(object sender, RoutedEventArgs e)
         {
             List<string> list = new List<string>();
 
@@ -68,7 +67,7 @@ namespace Project_Sahlgrenska
                 patientEquipment.Text = "INGEN PATIENT";
                 patientHistory.Text = "INGEN PATIENT";
             }
-            
+
         }
 
         private void patientHistory_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
@@ -76,21 +75,44 @@ namespace Project_Sahlgrenska
 
         }
 
-        private void Button2_Click(object sender, RoutedEventArgs e)
+        private void Button_Booking(object sender, RoutedEventArgs e)
         {
             BookingSchedule patientSchedule = new BookingSchedule(searchPatient.Text[..13]);
             patientSchedule.Show();
 
         }
 
-        private void Button3_Click(object sender, RoutedEventArgs e)
+        private void Button_UpdatePatient(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button4_Click(object sender, RoutedEventArgs e)
+        private void Button_UpdateJournal(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Journal patient = new Journal(patientId.Text);
+            }
+            catch (Exception ex)
+            {
 
+                journalAdded.Text = "\nDu måste skriva in något:\n" +
+                    "------------\n" +
+                    "Error:\n" +
+                    ex.Message;
+                Hem.conn.Close();
+
+            }
+        }
+        class Journal
+        {
+            string patientId;
+
+            public Journal(string journalInput)
+            {
+                Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' " + journalInput + "', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
+                MessageBox.Show(journalInput + "\n added to database.");
+            }
         }
     }
 }

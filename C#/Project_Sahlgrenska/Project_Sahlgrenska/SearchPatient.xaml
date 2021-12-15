@@ -14,10 +14,10 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="10,0,10,0">
             <Label/>
-            <Label Content="Fyll i personnummer"/>
-            <ComboBox IsEditable="true" IsTextSearchEnabled="True" x:Name="searchPatient"/>
+            <Label Content="Välj personnummer"/>
+            <ComboBox IsEditable="False" IsTextSearchEnabled="True" x:Name="searchPatient"/>
             <Label />
-            <Button Content="Sök" Click="Button_Click" Width="200"/>
+            <Button Content="Sök" Click="Button_ClickSearch" Width="200"/>
             <Label />
             
             <Label Content="Personnummer" />
@@ -38,12 +38,8 @@
             <TextBox x:Name="patientTretment" Height="20" IsReadOnly="True"/>
             <Label Content="Medicin" />
             <TextBox x:Name="patientMedication" Height="20" IsReadOnly="True"/>
-            <Label Content="Biverkningar" />
-            <TextBox x:Name="patientSideeffects" Height="20" IsReadOnly="True"/>
             <Label/>
-            <Border BorderBrush="Black" BorderThickness="1" Height="1"/>
-            <Label/>
-            <Button Content="Uppdatera patient" Click="Button3_Click" Width="200" />
+            <Button Content="Uppdatera patient" Click="Button_UpdatePatient" Width="200" />
             <Label/>
 
 
@@ -53,13 +49,15 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10,0,10,0">
             <Label/>
-            <Button Content="Se patientens bokningar" Click="Button2_Click" Width="200" />
+            <Button Content="Se patientens bokningar" Click="Button_Booking" Width="200" />
             <Label Content="Journal"/>
             <TextBox x:Name="patientHistory" Height="170" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
             <Label Content="Lägg till:"/>
-            <TextBox x:Name="updateHistory" Height="40" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+            <TextBox x:Name="updateJournal" Height="40" TextWrapping="Wrap"/>
+            <Button Content="Uppdatera" Click="Button_UpdateJournal" Width="200" />
+            <TextBlock  x:Name="journalAdded" Foreground="Crimson"/>
             <Label/>
-            <Button Content="Uppdatera" Click="Button3_Click" Width="200" />
+            <Border BorderBrush="Black" BorderThickness="1" Height="1"/>
             <Label Content="Rum" />
             <TextBox x:Name="patientRoom" Height="20" IsReadOnly="True"/>
             <Label Content="Utrustning" />
