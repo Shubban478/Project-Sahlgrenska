@@ -1,11 +1,10 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace Project_Sahlgrenska
 {
     class Appointment
     {
-        
+
         public Appointment(int AppointmentId, string PatientId, int DoctorId, string Reason, string Time, int RoomId)
         {
 
@@ -25,7 +24,7 @@ namespace Project_Sahlgrenska
     );
         }
 
-        
+
 
     }
 }

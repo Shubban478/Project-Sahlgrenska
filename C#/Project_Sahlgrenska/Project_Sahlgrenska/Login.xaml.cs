@@ -24,7 +24,7 @@ namespace Project_Sahlgrenska
 
         private void actuallyLogin()
         {
-                        if (patientLogin.IsChecked == true)
+            if (patientLogin.IsChecked == true)
             {
                 BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
                 patientSchedule.Show();

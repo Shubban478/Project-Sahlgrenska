@@ -1,16 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using MySqlConnector;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Project_Sahlgrenska
 {
@@ -22,7 +11,7 @@ namespace Project_Sahlgrenska
         public NewPatient()
         {
             InitializeComponent();
-            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -30,7 +19,7 @@ namespace Project_Sahlgrenska
             string patientDate = DateTime.UtcNow.ToString();
             try
             {
-                Patient patient = new Patient(patientId.Text,patientName.Text, patientAdress.Text, patientGender.Text, patientDate);
+                Patient patient = new Patient(patientId.Text, patientName.Text, patientAdress.Text, patientGender.Text, patientDate);
             }
             catch (Exception ex)
             {
