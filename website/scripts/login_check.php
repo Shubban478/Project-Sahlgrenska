@@ -17,7 +17,8 @@ if (isset($_POST)) {
         $_SESSION["id"] = $result[0][2];
         header("Location: /employee.php");
     } else {
-        echo "Wrong password!";
+        header("Location: /login.php?error=true");
+        // echo "Wrong password!";
     }
 }
 ?>
