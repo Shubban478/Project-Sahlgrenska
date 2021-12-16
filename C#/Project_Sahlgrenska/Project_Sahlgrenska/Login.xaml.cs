@@ -18,9 +18,44 @@ namespace Project_Sahlgrenska
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
+
+                ActuallyLogin();
+
+
+        }
+
+        private void ActuallyLogin()
+        {
             try
             {
-                ActuallyLogin();
+                string auth = "";
+                if (patientLogin.IsChecked == true)
+                {
+                    BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
+                    errormessage.Text = loginName.Text;
+                    patientSchedule.Show();
+                }
+                if (loginName.Text == "admin")
+                {
+                    Admin admin = new Admin();
+                    errormessage.Text = "Admin login successful";
+                    admin.Show();
+                }
+                else
+                {
+                    auth = Bot.ReadOneValue("select password from doctors where name ='" + loginName.Text + "';");
+                    if (auth == loginPassword.Password && auth != string.Empty)
+                    {
+                        Hem.user = loginName.Text;
+                        Hem hem = new Hem();
+                        this.Close();
+                        hem.Show();
+                    }
+                    else
+                    {
+                        errormessage.Text = "Användare ej hittad";
+                    }
+                }
             }
             catch (Exception ee)
             {
@@ -28,38 +63,6 @@ namespace Project_Sahlgrenska
                 MessageBox.Show(ee.Message);
             }
 
-        }
-
-        private void ActuallyLogin()
-        {
-            string auth = "";
-            if (patientLogin.IsChecked == true)
-            {
-                BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
-                errormessage.Text = loginName.Text;
-                patientSchedule.Show();
-            }
-            if (loginName.Text == "admin")
-            {
-                Admin admin = new Admin();
-                errormessage.Text = "Admin login successful";
-                admin.Show();
-            }
-            else
-            {
-                auth = Bot.ReadOneValue("select password from doctors where name ='" + loginName.Text + "';");
-                if (auth == loginPassword.Password && auth != string.Empty)
-                {
-                    Hem.user = loginName.Text;
-                    Hem hem = new Hem();
-                    this.Close();
-                    hem.Show();
-                }
-                else
-                {
-                    errormessage.Text = "Användare ej hittad";
-                }
-            }
 
 
             
