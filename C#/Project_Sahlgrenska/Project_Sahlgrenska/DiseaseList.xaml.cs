@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 
 namespace Project_Sahlgrenska
@@ -29,7 +28,7 @@ namespace Project_Sahlgrenska
             }
             comboDiseases.ItemsSource = diseaseList;
             comboDiseases.SelectedIndex = 0;
-            
+
             diseaseTreatment.Text = Bot.ReadOneValue("SELECT Treatment FROM bt0mlsay6vs1xbceqzzn.diagnosis WHERE Name = '" + diseaseList[0] + "';");
 
         }
