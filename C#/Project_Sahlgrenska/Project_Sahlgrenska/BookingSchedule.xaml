@@ -15,6 +15,9 @@
             </StackPanel>
             <StackPanel>
                 <CheckBox x:Name="allDoctors" Content="Visa möten med alla doktorer"/>
+                <Button x:Name="done" Content="Avsluta möte"/>
+                <Label x:Name="notesLabel" Content="Anteckningar"/>
+                <TextBlock x:Name="notes"/>
             </StackPanel>
         </StackPanel>
 

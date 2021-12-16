@@ -25,6 +25,9 @@ namespace Project_Sahlgrenska
             InitializeComponent();
             calendar.Visibility = Visibility.Hidden;
             allDoctors.Visibility = Visibility.Hidden;
+            done.Visibility = Visibility.Hidden;
+            notes.Visibility = Visibility.Hidden;
+            notesLabel.Visibility = Visibility.Hidden;
             string patientId = PatientId;
             Bot.ReadAll("SELECT * FROM appointments_overview where Personnummer = '" + patientId + "';", appointmentsTable);
         }
