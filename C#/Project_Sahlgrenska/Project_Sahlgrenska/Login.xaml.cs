@@ -17,10 +17,7 @@ namespace Project_Sahlgrenska
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-
             ActuallyLogin();
-
-
         }
 
         private void ActuallyLogin()
@@ -61,10 +58,6 @@ namespace Project_Sahlgrenska
 
                 MessageBox.Show(ee.Message);
             }
-
-
-
-
 
         }
 

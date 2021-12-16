@@ -29,14 +29,10 @@ namespace Project_Sahlgrenska
         public static int doctorId;
         List<string> criticalPatients = new List<string>();
 
-
-
         public Hem()
         {
             InitializeComponent();
             pageInfo.Text += " " + user;
-
-
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)

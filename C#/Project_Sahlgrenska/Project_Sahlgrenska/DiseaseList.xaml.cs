@@ -30,7 +30,6 @@ namespace Project_Sahlgrenska
             comboDiseases.SelectedIndex = 0;
 
             diseaseTreatment.Text = Bot.ReadOneValue("SELECT Treatment FROM bt0mlsay6vs1xbceqzzn.diagnosis WHERE Name = '" + diseaseList[0] + "';");
-
         }
 
         private void comboDiseases_DropDownClosed(object sender, System.EventArgs e)

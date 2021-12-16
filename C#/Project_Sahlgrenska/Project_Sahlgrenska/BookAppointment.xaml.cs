@@ -106,7 +106,9 @@ namespace Project_Sahlgrenska
                 }
                 AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
                 CheckIfDoctorAvailable();
-
+                Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
+                EqAndMeds(appointmentId);
+                PopulateAvailableRooms();
             }
             catch (Exception ee)
             {
