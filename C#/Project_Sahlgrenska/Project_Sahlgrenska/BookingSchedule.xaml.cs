@@ -16,7 +16,8 @@ namespace Project_Sahlgrenska
             InitializeComponent();
             PopulateAppointments();
 
-            calendar.SelectedDate = DateTime.UtcNow;
+            calendar.SelectedDate = DateTime.Now;
+            Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
 
 
 
@@ -39,7 +40,7 @@ namespace Project_Sahlgrenska
             }
             else
             {
-                Bot.ReadAll("SELECT * FROM appointments_overview where doktor = '" + Hem.doctorId + "%';", appointmentsTable);
+                Bot.ReadAll("SELECT * FROM appointments_overview where doktor = " + Hem.doctorId + " and tid like '" + tid + "%';", appointmentsTable);
             }
         }
 
