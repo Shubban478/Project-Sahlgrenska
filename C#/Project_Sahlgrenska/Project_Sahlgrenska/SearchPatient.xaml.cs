@@ -61,7 +61,7 @@ namespace Project_Sahlgrenska
         }
         private void Button_UpdateJournal(object sender, RoutedEventArgs e)
         {
-            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ " + updateJournal.Text + " \n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");            
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ " + updateJournal.Text + " \n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId.Text + "';");
             UpdateSearch();
         }
         private void UpdateSearch()
@@ -88,7 +88,7 @@ namespace Project_Sahlgrenska
                 patientHistory.Text = list[6];
 
                 if (list[7] == "Yes")
-                { 
+                {
                     patientCritical.Text = "PATIENT I KRITISKT LÄGE";
                 }
 

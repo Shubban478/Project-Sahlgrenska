@@ -117,7 +117,7 @@ namespace Project_Sahlgrenska
 
         private void CheckIfDoctorAvailable()
         {
-            
+
             AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
             DateTime Time = Convert.ToDateTime(time);
             foreach (var item in AppointmentsTime)

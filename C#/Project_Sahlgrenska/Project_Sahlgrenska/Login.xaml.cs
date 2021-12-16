@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,7 +18,7 @@ namespace Project_Sahlgrenska
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
 
-                ActuallyLogin();
+            ActuallyLogin();
 
 
         }
@@ -65,8 +64,8 @@ namespace Project_Sahlgrenska
 
 
 
-            
-            
+
+
         }
 
         private void PatientLogin_Checked(object sender, RoutedEventArgs e)
