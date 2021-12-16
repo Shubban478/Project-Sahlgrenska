@@ -49,7 +49,7 @@ namespace Project_Sahlgrenska
                     }
                     else
                     {
-                        errormessage.Text = "Användare ej hittad";
+                        errormessage.Text = "Användarnamnet eller lösenordet stämmer inte överens.";
                     }
                 }
             }

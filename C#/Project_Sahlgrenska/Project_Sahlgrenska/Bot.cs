@@ -34,10 +34,19 @@ namespace Project_Sahlgrenska
                 Hem.conn.Open();
                 MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
-                rdr.Read();
-                result = rdr.GetString(0);
-                rdr.Close();
-                Hem.conn.Close();
+
+                if (rdr.HasRows)
+                {
+                    rdr.Read();
+                    result = rdr.GetString(0);
+                    rdr.Close();
+                    Hem.conn.Close();
+                }
+                else
+                {
+                    Hem.conn.Close();
+                }
+
             }
             catch (Exception e)
             {
