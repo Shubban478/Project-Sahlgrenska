@@ -114,6 +114,7 @@ namespace Project_Sahlgrenska
             {
                 MessageBox.Show(ee.Message);
             }
+            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Bokat möte " + appointmentId + " med Dr ID: " + doctorId + ". Datum " + time + " i rum " + roomId + ". Anledning till mötet: " + reason + "\n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
 
         }
 
