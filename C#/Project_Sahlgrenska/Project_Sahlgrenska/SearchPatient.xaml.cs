@@ -109,7 +109,8 @@ namespace Project_Sahlgrenska
         private void Button_SentHome(object sender, RoutedEventArgs e)
         {
             Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven från sjukhuset och " + patientRoom.Text + "\n\', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
-            Bot.Update("SET SQL_SAFE_UPDATES = 0; UPDATE bt0mlsay6vs1xbceqzzn.rooms SET beds = '1' WHERE ID LIKE '" + patientRoom.Text + "'; SET SQL_SAFE_UPDATES = 1;");
+            Bot.Update("DELETE FROM patients_has_rooms WHERE rooms_ID = '" + patientRoom.Text + "';");
+            Bot.Update("SET SQL_SAFE_UPDATES = 0; UPDATE rooms SET beds = beds + 1 WHERE id = '" + patientRoom.Text + "'; SET SQL_SAFE_UPDATES = 1;");
             Bot.Update("call update_vaccant_yes()");
             UpdateSearch();
         }
