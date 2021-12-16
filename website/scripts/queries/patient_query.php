@@ -23,7 +23,7 @@ function sqlQuery() {
         }
         $color = "";
         $critical = ">";
-        if ($row[7] == "Yes") {
+        if (strtolower($row[7]) == "yes") {
             $color = "style='border:5px solid red'";
             $critical = "style='color:red'>CRITICAL CONDITION - ";
         }
