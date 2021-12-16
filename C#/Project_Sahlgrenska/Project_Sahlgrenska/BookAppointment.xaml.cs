@@ -168,6 +168,8 @@ namespace Project_Sahlgrenska
                     {
                         Bot.Update("update medication set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
                         Bot.Update("insert into appointments_has_medication values(" + appointmentId + ",'" + item.Name + "');");
+                        Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(' ++ Medicin: " + item.Name + "\n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
+
                     }
 
                 }
@@ -185,6 +187,8 @@ namespace Project_Sahlgrenska
                     {
                         Bot.Update("update equipment set Quantity = Quantity - 1 where Name like '" + item.Name + "%';");
                         Bot.Update("insert into appointments_has_equipment values(" + appointmentId + ",'" + item.Name + "');");
+                        Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(' ++ Utrustning: " + item.Name + "\n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
+
                     }
 
                 }
