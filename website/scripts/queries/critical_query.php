@@ -1,7 +1,7 @@
 <?php
 function criticalQuery() {
     // Query
-    $sql = "SELECT * FROM patients WHERE history LIKE '%akut%'";
+    $sql = "SELECT * FROM patients WHERE critical LIKE '%yes%'";
 
     $db = new db_reader();
     $result = $db->fetch_array($sql);
