@@ -111,15 +111,15 @@ namespace Project_Sahlgrenska
         {
             if (patientRoom.Text == "")
             {
-                Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven från sjukhuset."  + "\n\', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
+                Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven från sjukhuset." + "\n\', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
                 UpdateSearch();
             }
             else
                 Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Patienten utskriven från sjukhuset och rum:  " + patientRoom.Text + ".\n\', COALESCE(CONCAT(CHAR(10), History), '')), SentHome = NOW() WHERE ID = '" + patientId.Text + "';");
-                Bot.Update("DELETE FROM patients_has_rooms WHERE rooms_ID = '" + patientRoom.Text + "';");
-                Bot.Update("SET SQL_SAFE_UPDATES = 0; UPDATE rooms SET beds = beds + 1 WHERE id = '" + patientRoom.Text + "'; SET SQL_SAFE_UPDATES = 1;");
-                Bot.Update("call update_vaccant_yes()");
-                UpdateSearch();
+            Bot.Update("DELETE FROM patients_has_rooms WHERE patients_ID = '" + patientId.Text + "';");
+            Bot.Update("SET SQL_SAFE_UPDATES = 0; UPDATE rooms SET beds = beds + 1 WHERE id = '" + patientRoom.Text + "'; SET SQL_SAFE_UPDATES = 1;");
+            Bot.Update("call update_vaccant_yes()");
+            UpdateSearch();
         }
 
         private void updateJournal_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
