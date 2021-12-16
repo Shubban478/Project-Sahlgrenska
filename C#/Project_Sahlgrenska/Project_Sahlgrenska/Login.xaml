@@ -11,7 +11,7 @@
     <Grid Margin="0,0,8,-6">
         <TextBlock x:Name="nameLabel" Height="23" HorizontalAlignment="Left" Margin="259,237,0,0" Text="Namn" VerticalAlignment="Top" Width="67" />
         <TextBlock x:Name="passwordLabel" Height="23" HorizontalAlignment="Left" Margin="251,285,0,0" Text="Lösenord" VerticalAlignment="Top" Width="77" />
-        <TextBox Text="Dr. Derek Sheperd" Height="23" HorizontalAlignment="Left" Margin="311,232,0,0" x:Name="loginName" VerticalAlignment="Top" Width="247" GotFocus="LoginName_GotFocus" KeyDown="Update_KeyDown"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="311,232,0,0" x:Name="loginName" VerticalAlignment="Top" Width="247" GotFocus="LoginName_GotFocus" KeyDown="Update_KeyDown"/>
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="311,285,0,0" x:Name="loginPassword" VerticalAlignment="Top" Width="247" KeyDown="Update_KeyDown"/>
         <Button Content="Logga in" Height="23" HorizontalAlignment="Left" Margin="311,328,0,0" Name="button1" VerticalAlignment="Top" Width="104" Click="Button1_Click" />
         <CheckBox Content="Patient" x:Name="patientLogin" Height="23" HorizontalAlignment="Left" Margin="453,328,0,0" VerticalAlignment="Top" Width="104" Checked="PatientLogin_Checked" Unchecked="PatientLogin_Unchecked"/>
