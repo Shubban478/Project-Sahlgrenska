@@ -106,7 +106,6 @@ namespace Project_Sahlgrenska
             {
                 Hem.conn.Close();
                 MessageBox.Show(e.Message);
-
             }
 
             return result;
@@ -133,6 +132,40 @@ namespace Project_Sahlgrenska
             }
 
             return Name;
+        }
+        public static List<string> JonteSpecial(string Command)
+        {
+
+            List<string> result = new List<string>();
+            try
+            {
+                string command = Command;
+                Hem.conn.Open();
+                MySqlCommand cmd = new MySqlCommand(command, Hem.conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                if (rdr.Read() == true)
+                {
+                    for (int i = 0; i < rdr.FieldCount; i++)
+                    {
+                        result.Add(rdr[i].ToString());
+                    }
+                }
+                else
+                {
+                    result.Add("SKRIV IN ETT SYMPTOM");
+                }
+
+                rdr.Close();
+                Hem.conn.Close();
+            }
+            catch (Exception e)
+            {
+                Hem.conn.Close();
+                MessageBox.Show(e.Message);
+            }
+
+            return result;
         }
     }
 }

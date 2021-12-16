@@ -86,6 +86,12 @@ namespace Project_Sahlgrenska
                 patientRoom.Text = list[11];
                 patientEquipment.Text = list[17];
                 patientHistory.Text = list[6];
+
+                if (list[7] == "Yes")
+                { 
+                    patientCritical.Text = "PATIENT I KRITISKT LÄGE";
+                }
+
             }
             else
             {
