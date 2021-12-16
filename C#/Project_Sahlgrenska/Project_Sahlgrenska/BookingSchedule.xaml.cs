@@ -19,8 +19,6 @@ namespace Project_Sahlgrenska
             calendar.SelectedDate = DateTime.Now;
             Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
 
-
-
         }
         public BookingSchedule(string PatientId)
         {

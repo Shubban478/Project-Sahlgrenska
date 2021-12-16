@@ -35,6 +35,7 @@ namespace Project_Sahlgrenska
         {
             InitializeComponent();
             pageInfo.Text += " " + user;
+            PopulateCriticalPatients();
 
 
         }

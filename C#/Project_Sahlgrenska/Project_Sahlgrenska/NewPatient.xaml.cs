@@ -16,23 +16,19 @@ namespace Project_Sahlgrenska
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string patientDate = DateTime.UtcNow.ToString();
+            string patientDate = DateTime.Now.ToString();
+            string criticalValue = "no";
+            if (critical.IsChecked == true)
+            {
+                criticalValue = "yes";
+            }
             try
             {
-                Patient patient = new Patient(patientId.Text, patientName.Text, patientAdress.Text, patientGender.Text, patientDate);
+                Patient patient = new Patient(patientId.Text, patientName.Text, patientAdress.Text, patientGender.Text, patientDate, criticalValue);
             }
             catch (Exception ex)
             {
-
-                patientAdded.Text = "\nKontrollera följande:\n" +
-                    "Personnummer 12 siffror med bindestreck. \n" +
-                    "Hela namnet.\n" +
-                    "Hela adressen.\n" +
-                    "Kön anges i 'M' eller 'F.'\n" +
-                    "Datum får ej lämnas blank.\n" +
-                    "------------\n" +
-                    "Error:\n" +
-                    ex.Message;
+                MessageBox.Show(ex.Message);
                 Hem.conn.Close();
 
             }
