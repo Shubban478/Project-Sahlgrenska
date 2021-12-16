@@ -10,9 +10,7 @@ namespace Project_Sahlgrenska
     /// </summary>
     public partial class Login : Window
     {
-        string username = "";
-        string password = "";
-        string auth = "";
+
         public Login()
         {
             InitializeComponent();
@@ -20,63 +18,52 @@ namespace Project_Sahlgrenska
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            username = loginName.Text;
-            password = loginPassword.Password;
-
-            Hem.conn.Open();
-            string sql = "select password from doctors where name = '" + username + "';";
-            MySqlCommand cmd = new MySqlCommand(sql, Hem.conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            rdr.Read();
             try
             {
-                auth = rdr[0].ToString();
-
-            }
-            catch (Exception)
-            {
-
-                errormessage.Text = "Användare ej hittad";
-            }
-            rdr.Close();
-            Hem.conn.Close();
-
-            if (password == auth && password != string.Empty)
-            {
-                Hem.user = username;
-                Hem hem = new Hem();
-                this.Close();
                 ActuallyLogin();
             }
-            else
+            catch (Exception ee)
             {
-                errormessage.Text = "Användare ej hittad";
+
+                MessageBox.Show(ee.Message);
             }
+
         }
 
         private void ActuallyLogin()
         {
+            string auth = "";
             if (patientLogin.IsChecked == true)
             {
                 BookingSchedule patientSchedule = new BookingSchedule(loginName.Text);
+                errormessage.Text = loginName.Text;
                 patientSchedule.Show();
             }
             if (loginName.Text == "admin")
             {
                 Admin admin = new Admin();
-                this.Close();
+                errormessage.Text = "Admin login successful";
                 admin.Show();
             }
             else
             {
-                if (patientLogin.IsChecked == false)
+                auth = Bot.ReadOneValue("select password from doctors where name ='" + loginName.Text + "';");
+                if (auth == loginPassword.Password && auth != string.Empty)
                 {
-                    Hem.doctorId = Int32.Parse(Bot.ReadOneValue("select id from doctors where name ='" + Hem.user + "';"));
+                    Hem.user = loginName.Text;
                     Hem hem = new Hem();
                     this.Close();
                     hem.Show();
                 }
+                else
+                {
+                    errormessage.Text = "Användare ej hittad";
+                }
             }
+
+
+            
+            
         }
 
         private void PatientLogin_Checked(object sender, RoutedEventArgs e)
