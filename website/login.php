@@ -29,10 +29,12 @@ if (isset($_SESSION["username"])) {
             <input type="password" name="password" id="password" required><br><br>
             <input type="submit" name="submit" id="submit">
             <?php
-            $error = $_GET["error"];
-            if (!strcmp($error, "true")) {
-                echo "<div id='login-error'>";
-                echo "<p style='color:darkred'>Username or password is wrong.</p></div>";
+            if (isset($_GET["error"])) {
+                $error = $_GET["error"];
+                if (!strcmp($error, "true")) {
+                    echo "<div id='login-error'>";
+                    echo "<p style='color:darkred'>Username or password is wrong.</p></div>";
+                }
             }
             ?>
         </form>
