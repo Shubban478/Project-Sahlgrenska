@@ -21,7 +21,7 @@ function patient_info() {
     $row = $result[0];
     echo '<div class="sql-info">';
     echo "<h3>Namn: $row[1]</h3>";
-    echo "Id: $row[0]<br>";
+    echo "Personnummer: $row[0]<br>";
     echo "Address: $row[2]<br>";
     echo "Kön: $row[3]<br>";
     echo "Inläggningsdatum: $row[4]<br><br>";
