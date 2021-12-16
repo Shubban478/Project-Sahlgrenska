@@ -17,10 +17,10 @@ namespace Project_Sahlgrenska
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string patientDate = DateTime.Now.ToString();
-            string criticalValue = "no";
+            string criticalValue = "No";
             if (critical.IsChecked == true)
             {
-                criticalValue = "yes";
+                criticalValue = "Yes";
             }
             try
             {
