@@ -97,7 +97,7 @@ namespace Project_Sahlgrenska
                 reason = bookingReason.Text.ToString();
                 time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
                 roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
-                AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
+                AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + " and tid IS NOT NULL;");
                 auth = true;
             }
             catch (Exception ee)
