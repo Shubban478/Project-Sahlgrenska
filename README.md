@@ -14,3 +14,4 @@ Password: CE2AriOp5v9YqliNasMM
 -- --
  
 Hemsidan finns hääär.. Nää DÄR! --> https://sahlrenska-hospitalet.000webhostapp.com/
+Hemsidan kan bete sig annorlunda mot det som har visats, ha i åtanke att den har körts på localhost med IIS vid uppvisning.
