@@ -8,7 +8,7 @@ function sqlQuery() {
     if (isset($_SESSION["id"])) {
         $userid = $_SESSION["id"];
     } else {
-        echo "There was an error with the current session.";
+        echo "There was an error resuming the current session. This might be due to your chosen dns provider.";
         exit;
     }
   
@@ -45,5 +45,5 @@ function sqlQuery() {
         }
     }
 }
-sqlQuery($value);
+sqlQuery();
 ?>
