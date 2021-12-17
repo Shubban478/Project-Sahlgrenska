@@ -89,62 +89,62 @@ namespace Project_Sahlgrenska
         {
             try
             {
+                try
+                {
                 appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
                 patientId = bookingPatient.Text[..13];
                 initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + Hem.user + "%';");
                 doctorId = Int32.Parse(initDoctorId);
                 reason = bookingReason.Text.ToString();
                 time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
-                try
-                {
-                    roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
+                roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
+                AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
                 }
                 catch (Exception ee)
                 {
-
                     MessageBox.Show(ee.Message);
                 }
-                AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
-                CheckIfDoctorAvailable();
-                Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
-                EqAndMeds(appointmentId);
-                PopulateAvailableRooms();
+                if (CheckIfDoctorAvailable(AppointmentsTime))
+                {
+                    Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
+                    EqAndMeds(appointmentId);
+                    PopulateAvailableRooms();
+                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Bokat möte " + appointmentId + " med Dr ID: " + doctorId + ". Datum: " + time + " i rum: " + roomId + ". Anledning till mötet: " + reason + "\n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
+                }
+                else
+                {
+                    MessageBox.Show("doktorn upptagen vid tillfälle");
+                }
             }
             catch (Exception ee)
             {
                 MessageBox.Show(ee.Message);
             }
-            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Bokat möte " + appointmentId + " med Dr ID: " + doctorId + ". Datum: " + time + " i rum: " + roomId + ". Anledning till mötet: " + reason + "\n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
-
         }
 
-        private void CheckIfDoctorAvailable()
+        private bool CheckIfDoctorAvailable(List<string> Times)
         {
-
-            AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
             DateTime Time = Convert.ToDateTime(time);
-            foreach (var item in AppointmentsTime)
+            foreach (var item in Times)
             {
                 AppointmentsDate.Add(Convert.ToDateTime(item));
             }
-
             foreach (DateTime item in AppointmentsDate)
             {
+                
+                TimeSpan start = item.TimeOfDay;
                 TimeSpan end = item.AddMinutes(59).TimeOfDay;
-                TimeSpan thisBooking = Time.TimeOfDay;
+                TimeSpan thisBookingStart = Time.TimeOfDay;
+                TimeSpan thisBookingEnd = Time.AddMinutes(59).TimeOfDay;
+                
 
-                if (thisBooking > end)
+                if (thisBookingEnd > start && thisBookingStart > end)
                 {
-                    Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
-                    EqAndMeds(appointmentId);
-                    PopulateAvailableRooms();
-                    break;
-                }
-                else
-                {
-                    MessageBox.Show("Doktor upptagen vid tillfälle");
+                    return false;
                 }
             }
+            return true;
+
         }
 
         private void BookingTime_GotFocus(object sender, RoutedEventArgs e)
