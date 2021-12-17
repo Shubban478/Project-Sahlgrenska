@@ -1,7 +1,8 @@
 <?php
 function sqlQuery() {
+    session_start();
     include "../db_reader.php";
-    
+
     // Check log-in credentials for query
     $userid = "";
     if (isset($_SESSION["id"])) {
@@ -10,7 +11,7 @@ function sqlQuery() {
         echo "There was an error with the current session.";
         exit;
     }
-
+  
     // Query
     $sql = "SELECT * from appointments_overview WHERE doktor=$userid";
 
@@ -44,5 +45,5 @@ function sqlQuery() {
         }
     }
 }
-sqlQuery();
+sqlQuery($value);
 ?>

@@ -22,7 +22,7 @@ function criticalQuery() {
             echo "Address: ".$row[2]."<br>";
             echo "Kön: ".$row[3]."<br>";
             echo "Inläggningsdatum: ".$row[4]."<br>";
-            echo "<br>Beskrivning: ".$row[6]."<br>";
+            echo "<br>Journal: ".$row[6]."<br>";
             echo "</div>";
         }
     }
