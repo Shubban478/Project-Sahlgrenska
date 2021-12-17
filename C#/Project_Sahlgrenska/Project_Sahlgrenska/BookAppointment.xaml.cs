@@ -15,7 +15,7 @@ namespace Project_Sahlgrenska
         List<string> doctorsAvailable = new List<String>();
         List<string> equipmentAvailable = new List<String>();
         List<string> medsAvailable = new List<string>();
-        List<string> AppointmentsTime = new List<string>();
+        
         List<DateTime> AppointmentsDate = new List<DateTime>();
         string time;
         int appointmentId;
@@ -87,6 +87,7 @@ namespace Project_Sahlgrenska
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
+            List<string> AppointmentsTime = new List<string>();
             bool auth = false;
             try
             {
@@ -104,6 +105,7 @@ namespace Project_Sahlgrenska
                 reason = bookingReason.Text.ToString();
                 time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
                 roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
+
                 AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + " and tid IS NOT NULL;");
                 auth = true;
             }
