@@ -15,7 +15,7 @@ namespace Project_Sahlgrenska
         List<string> doctorsAvailable = new List<String>();
         List<string> equipmentAvailable = new List<String>();
         List<string> medsAvailable = new List<string>();
-        List<string> AppointmentsTime = new List<string>();
+        
         List<DateTime> AppointmentsDate = new List<DateTime>();
         string time;
         int appointmentId;
@@ -87,64 +87,66 @@ namespace Project_Sahlgrenska
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
+            List<string> AppointmentsTime = new List<string>();
+            bool auth = false;
             try
             {
-                appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
+                try
+                {
+                    appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
+                }
+                catch (Exception)
+                {
+                    appointmentId = 1;
+                }
                 patientId = bookingPatient.Text[..13];
                 initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + Hem.user + "%';");
                 doctorId = Int32.Parse(initDoctorId);
                 reason = bookingReason.Text.ToString();
                 time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
-                try
-                {
-                    roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
-                }
-                catch (Exception ee)
-                {
+                roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
 
-                    MessageBox.Show(ee.Message);
-                }
-                AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
-                CheckIfDoctorAvailable();
+                AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + " and tid IS NOT NULL;");
+                auth = true;
+            }
+            catch (Exception ee)
+            {
+                auth = false;
+                MessageBox.Show(ee.Message);
+            }
+            if (CheckIfDoctorAvailable(AppointmentsTime)==true && auth == true)
+            {
                 Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
                 EqAndMeds(appointmentId);
                 PopulateAvailableRooms();
             }
-            catch (Exception ee)
+            else
             {
-                MessageBox.Show(ee.Message);
+                MessageBox.Show("doktorn upptagen vid tillfälle");
             }
-            Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Bokat möte " + appointmentId + " med Dr ID: " + doctorId + ". Datum: " + time + " i rum: " + roomId + ". Anledning till mötet: " + reason + "\n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
-
         }
 
-        private void CheckIfDoctorAvailable()
+        private bool CheckIfDoctorAvailable(List<string> Times)
         {
-
-            AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
             DateTime Time = Convert.ToDateTime(time);
-            foreach (var item in AppointmentsTime)
+            foreach (var item in Times)
             {
                 AppointmentsDate.Add(Convert.ToDateTime(item));
             }
-
             foreach (DateTime item in AppointmentsDate)
             {
-                TimeSpan end = item.AddMinutes(59).TimeOfDay;
-                TimeSpan thisBooking = Time.TimeOfDay;
 
-                if (thisBooking > end)
+                TimeSpan start = item.TimeOfDay;
+                TimeSpan end = item.AddMinutes(59).TimeOfDay;
+                TimeSpan thisBookingStart = Time.TimeOfDay;
+                TimeSpan thisBookingEnd = Time.AddMinutes(59).TimeOfDay;
+                if (thisBookingEnd > start && thisBookingStart > end)
                 {
-                    Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
-                    EqAndMeds(appointmentId);
-                    PopulateAvailableRooms();
-                    break;
-                }
-                else
-                {
-                    MessageBox.Show("Doktor upptagen vid tillfälle");
+                    return false;
                 }
             }
+            return true;
+
         }
 
         private void BookingTime_GotFocus(object sender, RoutedEventArgs e)

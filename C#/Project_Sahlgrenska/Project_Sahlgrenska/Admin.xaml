@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Project_Sahlgrenska"
         mc:Ignorable="d"
         Name="FirstWindow" Icon="/img/Icon1.png"
-        Title="Admin" Height="450" Width="800">
+        Title="Admin" Height="auto" Width="auto">
     <Grid>
         <StackPanel>
             <Label Content="Update"/>
