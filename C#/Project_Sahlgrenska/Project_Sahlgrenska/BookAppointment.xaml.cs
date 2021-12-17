@@ -90,7 +90,14 @@ namespace Project_Sahlgrenska
             bool auth = false;
             try
             {
-                appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
+                try
+                {
+                    appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
+                }
+                catch (Exception)
+                {
+                    appointmentId = 1;
+                }
                 patientId = bookingPatient.Text[..13];
                 initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + Hem.user + "%';");
                 doctorId = Int32.Parse(initDoctorId);

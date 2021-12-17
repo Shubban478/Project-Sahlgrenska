@@ -105,16 +105,24 @@ namespace Project_Sahlgrenska
 
                 while (rdr.Read())
                 {
+                    if (rdr.IsDBNull(0))
+                    {
+                        Hem.conn.Close();
+                        return result;
+                    }
                     result.Add(rdr.GetString(0));
                 }
 
                 rdr.Close();
+
                 Hem.conn.Close();
             }
             catch (Exception e)
             {
+                
                 Hem.conn.Close();
                 MessageBox.Show(e.Message);
+                
             }
 
             return result;
