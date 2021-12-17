@@ -87,10 +87,9 @@ namespace Project_Sahlgrenska
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
+            bool auth = false;
             try
             {
-                try
-                {
                 appointmentId = Int32.Parse(Bot.ReadOneColumn("select max(id) from appointments;")[0]) + 1;
                 patientId = bookingPatient.Text[..13];
                 initDoctorId = Bot.ReadOneValue("select id from doctors where name like '" + Hem.user + "%';");
@@ -99,26 +98,22 @@ namespace Project_Sahlgrenska
                 time = bookingDate.SelectedDate.ToString()[..10] + " " + bookingTime.Text.ToString();
                 roomId = Convert.ToInt32(availableRooms.SelectedItem.ToString());
                 AppointmentsTime = Bot.ReadOneColumn("select tid from appointments_overview where doktor =" + doctorId + ";");
-                }
-                catch (Exception ee)
-                {
-                    MessageBox.Show(ee.Message);
-                }
-                if (CheckIfDoctorAvailable(AppointmentsTime))
-                {
-                    Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
-                    EqAndMeds(appointmentId);
-                    PopulateAvailableRooms();
-                    Bot.Update("UPDATE bt0mlsay6vs1xbceqzzn.patients SET History = CONCAT(NOW(), ' ++ Bokat möte " + appointmentId + " med Dr ID: " + doctorId + ". Datum: " + time + " i rum: " + roomId + ". Anledning till mötet: " + reason + "\n\', COALESCE(CONCAT(CHAR(10), History), '')) WHERE ID = '" + patientId + "';");
-                }
-                else
-                {
-                    MessageBox.Show("doktorn upptagen vid tillfälle");
-                }
+                auth = true;
             }
             catch (Exception ee)
             {
+                auth = false;
                 MessageBox.Show(ee.Message);
+            }
+            if (CheckIfDoctorAvailable(AppointmentsTime)==true && auth == true)
+            {
+                Appointment appointment = new Appointment(appointmentId, patientId, doctorId, reason, time, roomId);
+                EqAndMeds(appointmentId);
+                PopulateAvailableRooms();
+            }
+            else
+            {
+                MessageBox.Show("doktorn upptagen vid tillfälle");
             }
         }
 
@@ -131,13 +126,11 @@ namespace Project_Sahlgrenska
             }
             foreach (DateTime item in AppointmentsDate)
             {
-                
+
                 TimeSpan start = item.TimeOfDay;
                 TimeSpan end = item.AddMinutes(59).TimeOfDay;
                 TimeSpan thisBookingStart = Time.TimeOfDay;
                 TimeSpan thisBookingEnd = Time.AddMinutes(59).TimeOfDay;
-                
-
                 if (thisBookingEnd > start && thisBookingStart > end)
                 {
                     return false;
